@@ -25,9 +25,8 @@ return new class extends Migration
 
             // Relación de uno a mucho
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('role_id');
 
-            // Un usuario técnico proporciona muchos servicio y un servicio le pertenece a un técnico
+            // Un usuario técnico proporciona muchos servicio y un servicio le pertenece a un usuario técnico
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

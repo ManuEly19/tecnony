@@ -41,4 +41,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+        // Relación de uno a muchos
+    // Un usuario le pertenece un rol
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    // Relación de uno a muchos
+    // Un usuario tecnico puede proporcionar muchos servicios
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
 }
