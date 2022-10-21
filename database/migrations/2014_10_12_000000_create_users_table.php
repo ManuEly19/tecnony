@@ -20,8 +20,8 @@ return new class extends Migration
             // columnas para la tabla BDD
             $table->string('first_name', 50);
             $table->string('last_name', 50);
-            $table->string('personal_phone', 10);
-            $table->string('address', 50);
+            $table->integer('personal_phone', 10);
+            $table->string('address', 300);
             $table->string('password');
             $table->boolean('state')->default(true);
 

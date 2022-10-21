@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            // ID para la tabla de la BDD
+        Schema::create('service_request_tecs', function (Blueprint $table) {
             $table->id();
-
-            // columna para la tabla BDD
-            $table->string('name', 30);
-            $table->string('description', 500);
-
-            // columnas especiales para la tabla de la BDD
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('service_request_tecs');
     }
 };

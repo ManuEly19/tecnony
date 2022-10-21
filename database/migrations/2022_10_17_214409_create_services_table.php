@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
 
             // columna para la tabla BDD
-            $table->string('name', 30);
-            $table->string('description', 100);
+            $table->string('name', 100);
+            $table->string('description', 500);
             $table->float('price', 8, 2);
             $table->boolean('state')->default(true);
 
