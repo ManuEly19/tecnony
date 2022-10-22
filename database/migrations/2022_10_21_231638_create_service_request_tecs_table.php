@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('service_request_tecs', function (Blueprint $table) {
-            // ID para la tabla de solicitud de servicio del lado del cliente
+            // ID para la tabla de solicitud de servicio del lado del tecnico
             $table->id();
 
             // columnas generales para la tabla
