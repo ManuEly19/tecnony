@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-            // ID para la tabla de la BDD
+            // ID para la tabla de roles
             $table->id();
 
-            // columna para la tabla BDD
+            // columna para la tabla
             $table->string('name', 30);
             $table->string('description', 500);
 
-            // columnas especiales para la tabla de la BDD
+            // columnas especiales para la tabla
             $table->timestamps();
         });
     }

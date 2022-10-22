@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            // ID para la tabla de la BDD
+            // ID para la tabla de usuarios
             $table->id();
 
-            // columnas para la tabla BDD
+            // columnas para la tabla
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->integer('personal_phone', 10);
@@ -25,17 +25,17 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('state')->default(true);
 
-            // columnas que seran unicas para la tabla de la BDD
+            // columnas que seran unicas para la tabla
             $table->integer('cedula', 10)->unique();
             $table->string('email')->unique();
             $table->string('username', 50)->unique();
 
-            // columnas que seran podran aceptar regitros null para la tabla de la BDD
+            // columnas que podran aceptar regitros null para la tabla
             $table->string('home_phone', 9)->nullable();
             $table->date('birthdate')->nullable();
             $table->timestamp('email_verified_at')->nullable();
 
-            // columnas especiales para la tabla de la BDD
+            // columnas especiales para la tabla
             $table->rememberToken();
             $table->timestamps();
         });
