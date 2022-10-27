@@ -26,10 +26,9 @@ return new class extends Migration
             $table->string('model', 50);
             $table->string('brand', 50);
             $table->string('serie', 100)->nullable();
-            $table->string('description_problem', 1000);
+            $table->text('description_problem');
 
-            // RELACION
-
+            // RELACIONES
 
             // columnas especiales para la tabla
             $table->timestamps();

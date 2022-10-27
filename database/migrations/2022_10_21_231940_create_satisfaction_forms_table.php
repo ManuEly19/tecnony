@@ -18,10 +18,20 @@ return new class extends Migration
             $table->id();
 
             // columna para la tabla
-            $table->string('comment', 500)->nullable();
-            $table->string('suggestion', 500)->nullable();
+            $table->string('comment', 1000)->nullable();
+            $table->string('suggestion', 1000)->nullable();
             $table->float('qualification', 1, 2)->default(1.0);
 
+            // RELACION
+            // De uno a uno
+            $table->unsignedBigInteger('service_request_id')->unique();
+            //Una solicitud de servicio tiene un formulario de satisfacción y un formulario de satisfaction le pertenece a una solicitud de servicio.
+            $table->foreign('service_request_id')
+                ->references('id')
+                ->on('service_request_clis')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+                
             // columnas especiales para la tabla
             $table->timestamps();
         });

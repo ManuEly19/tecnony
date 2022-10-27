@@ -22,9 +22,17 @@ return new class extends Migration
             $table->date('date_acceptance');
 
             // columnas de datos de control para la tabla
-            $table->string('observation', 1000)->nullable();
+            $table->text('observation')->nullable();
 
             // RELACION
+            // Relación de uno a uno
+            $table->unsignedBigInteger('affiliation_tec_id')->unique();
+            // Una solicitud de afiliación del lado del técnico tiene una solicitud de afiliación del lado del admin y un solicitud de afiliación del lado del admin le pertenece a una solicitud de afiliación del lado del técnico.
+            $table->foreign('affiliation_tec_id')
+                ->references('id')
+                ->on('affiliation_tecs')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             // columnas especiales para la tabla
             $table->timestamps();

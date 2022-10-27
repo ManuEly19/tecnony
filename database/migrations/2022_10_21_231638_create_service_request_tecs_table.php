@@ -20,21 +20,29 @@ return new class extends Migration
             // columnas generales para la tabla
             $table->int('state', 1);
             $table->date('start_date');
-            $table->string('diagnosis', 1000);
+            $table->text('diagnosis');
 
             // columnas de datos de finalizacion del servicios para la tabla
-            $table->string('incident_resolution', 1000);
-            $table->string('warranty', 100)->nullable();
-            $table->string('spare_parts', 1000)->nullable();
+            $table->text('incident_resolution');
+            $table->string('warranty', 500)->nullable();
+            $table->text('spare_parts')->nullable();
             $table->float('price_spare_parts', 8, 2)->nullable();
             $table->float('final_price', 8, 2);
             $table->date('end_date');
 
             // columnas de datos de control para la tabla
-            $table->string('observation', 1000)->nullable();
+            $table->text('observation')->nullable();
 
             // RELACION
-
+            // Relación de uno a uno
+            $table->unsignedBigInteger('service_request_cli_id')->unique();
+            // Solicitud de servicio de lado del cliente tiene una solicitud de servicios del lado del técnico y una solicitud de servicios del lado del técnico le pertenece a una solicitud de servicio del lado del cliente.
+            $table->foreign('service_request_cli_id')
+                ->references('id')
+                ->on('service_request_clis')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+                
             // columnas especiales para la tabla
             $table->timestamps();
         });

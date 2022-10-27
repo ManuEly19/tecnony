@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('profession', 50);
             $table->string('specialization', 50);
             $table->integer('work_phone', 10);
-            $table->string('attention_schedule', 100)->nullable();
+            $table->text('attention_schedule')->nullable();
             $table->string('local_name', 50)->nullable();
-            $table->string('local_address', 100)->nullable();
+            $table->string('local_address', 300)->nullable();
             $table->boolean('confirmation')->default(false);
 
             // RELACION

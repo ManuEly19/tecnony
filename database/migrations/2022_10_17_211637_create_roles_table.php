@@ -19,7 +19,7 @@ return new class extends Migration
 
             // columna para la tabla
             $table->string('name', 30);
-            $table->string('description', 500);
+            $table->text('description');
 
             // columnas especiales para la tabla
             $table->timestamps();
