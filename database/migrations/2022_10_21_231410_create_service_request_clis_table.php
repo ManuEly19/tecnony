@@ -29,6 +29,23 @@ return new class extends Migration
             $table->text('description_problem');
 
             // RELACIONES
+            // Relación de uno a mucho
+            $table->unsignedBigInteger('service_id')->nullable();
+            // Un servicio tiene de uno a muchos solicitudes de servicio y una solicitud de servicios le pertenece a un servicio.
+            $table->foreign('service_id')
+                ->references('id')
+                ->on('services')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
+
+            // Relación de uno a mucho
+            $table->unsignedBigInteger('user_cli_id');
+            // Un usuario cliente hace de uno a muchas solicitudes de servicio y una solicitud de servicio le pertenece a un usuario cliente
+            $table->foreign('user_cli_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             // columnas especiales para la tabla
             $table->timestamps();

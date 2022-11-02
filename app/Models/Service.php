@@ -15,4 +15,11 @@ class Service extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // Relación de uno a muchos
+    // Un servicio tiene de uno a muchos solicitudes de servicio
+    public function service_request()
+    {
+        return $this->hasMany(Service_request_cli::class);
+    }
 }

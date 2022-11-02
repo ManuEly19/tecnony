@@ -15,4 +15,11 @@ class Service_request_tec extends Model
     {
         return $this->belongsTo(Service_request_cli::class);
     }
+
+    // Relación de uno a muchos
+    // Una solicitud de servicio es atendido por un usuario técnico
+    public function user_tec()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

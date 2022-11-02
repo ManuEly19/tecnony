@@ -31,7 +31,14 @@ return new class extends Migration
             $table->boolean('confirmation')->default(false);
 
             // RELACION
-
+            // De uno a uno
+            $table->unsignedBigInteger('user_tec_id')->unique();
+            // Una solicitud de afiliación es hecha por un usuario técnico y un usuario técnico le pertenece una solicitud.
+            $table->foreign('user_tec_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             // columnas especiales para la tabla
             $table->timestamps();

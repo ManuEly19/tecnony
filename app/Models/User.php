@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-        // Relación de uno a muchos
+    // Relación de uno a muchos
     // Un usuario le pertenece un rol
     public function role()
     {
@@ -56,4 +56,31 @@ class User extends Authenticatable
         return $this->hasMany(Service::class);
     }
 
+    // Relacion de uno a uno
+    // Un usuario tecnico tiene una solicitud de afiliacion
+    public function affiliation_tec()
+    {
+        return $this->hasOne(Affiliation_tec::class);
+    }
+
+    // Relación de uno a muchos
+    // Un usuario admin tiene que gestionar muchas solicitudes de afiliación
+    public function affiliation_ad()
+    {
+        return $this->hasMany(Affiliation_ad::class);
+    }
+
+    // Relación de uno a muchos
+    // Un usuario cliente hace de uno a muchas solicitudes de servicio
+    public function service_request_cli()
+    {
+        return $this->hasMany(Service_request_cli::class);
+    }
+
+    // Relación de uno a muchos
+    // Un usuario técnico atiende de uno a muchas solicitudes de servicios
+    public function service_request_tec()
+    {
+        return $this->hasMany(Service_request_tec::class);
+    }
 }

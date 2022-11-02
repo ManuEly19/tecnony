@@ -15,4 +15,12 @@ class Affiliation_ad extends Model
     {
         return $this->belongsTo(Affiliation_tec::class);
     }
+
+    // Relacion de uno a muchos
+    // Una solicitud de afiliación es gestionada por un admin.
+    public function user_ad()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

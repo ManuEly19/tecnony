@@ -42,7 +42,16 @@ return new class extends Migration
                 ->on('service_request_clis')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-                
+
+            // Relación de uno a mucho
+            $table->unsignedBigInteger('user_tec_id');
+            // Un usuario técnico atiende de uno a muchas solicitudes de servicios y una solicitud de servicio es atendido por un usuario técnico
+            $table->foreign('user_tec_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             // columnas especiales para la tabla
             $table->timestamps();
         });

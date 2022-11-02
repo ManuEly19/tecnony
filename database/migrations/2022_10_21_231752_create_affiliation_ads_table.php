@@ -34,6 +34,15 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            // Relación de uno a mucho
+            $table->unsignedBigInteger('user_ad_id');
+            // Un usuario admin tiene que gestionar muchas solicitudes de afiliación y una solicitud de afiliación es gestionada por un admin
+            $table->foreign('user_ad_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             // columnas especiales para la tabla
             $table->timestamps();
         });

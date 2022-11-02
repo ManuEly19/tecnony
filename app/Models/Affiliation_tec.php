@@ -15,4 +15,11 @@ class Affiliation_tec extends Model
     {
         return $this->hasOne(Affiliation_ad::class);
     }
+
+    // Relacion de uno a uno
+    // Una solicitud de afiliación le pertenece a un usuario técnico
+    public function user_tec()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
