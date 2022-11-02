@@ -11,7 +11,7 @@ class Satisfaction_form extends Model
 
     // Relacion de uno a uno
     // Un formulario de satisfaction le pertenece a una solicitud de servicio
-    public function service_request ()
+    public function service_request()
     {
         return $this->belongsTo(Service_request_cli::class);
     }
