@@ -42,6 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // RELACIONES
     // Relación de uno a muchos
     // Un usuario le pertenece un rol
     public function role()
@@ -82,5 +83,12 @@ class User extends Authenticatable
     public function service_request_tec()
     {
         return $this->hasMany(Service_request_tec::class);
+    }
+
+    // Relación polimórfica uno a uno
+    // Un usuario pueden tener una imagen
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imageable');
     }
 }

@@ -22,4 +22,11 @@ class Service extends Model
     {
         return $this->hasMany(Service_request_cli::class);
     }
+
+    // Relación polimórfica uno a uno
+    // Un servicio pueden tener una imagen
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imageable');
+    }
 }
