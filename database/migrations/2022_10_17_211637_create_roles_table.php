@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
 
             // columna para la tabla
-            $table->string('name', 30);
-            $table->text('description');
+            $table->string('name', 50);
+            $table->string('slug', 25);
 
             // columnas especiales para la tabla
             $table->timestamps();
