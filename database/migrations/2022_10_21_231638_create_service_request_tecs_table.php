@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
 
             // columnas generales para la tabla
-            $table->int('state', 1);
+            $table->integer('state');
             $table->date('start_date');
             $table->text('diagnosis');
 

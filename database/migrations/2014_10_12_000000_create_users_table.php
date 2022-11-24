@@ -20,13 +20,13 @@ return new class extends Migration
             // columnas para la tabla
             $table->string('first_name', 50);
             $table->string('last_name', 50);
-            $table->integer('personal_phone', 10);
+            $table->string('personal_phone', 10);
             $table->string('address', 300);
             $table->string('password');
             $table->boolean('state')->default(true);
 
             // columnas que seran unicas para la tabla
-            $table->integer('cedula', 10)->unique();
+            $table->string('cedula', 10)->unique();
             $table->string('email')->unique();
             $table->string('username', 50)->unique();
 

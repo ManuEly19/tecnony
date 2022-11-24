@@ -18,13 +18,13 @@ return new class extends Migration
             $table->id();
 
             // columnas generales para la tabla
-            $table->int('state', 1);
+            $table->integer('state');
             $table->date('date_issue');
 
             // columnas de datos laborales del tecnico para la tabla
             $table->string('profession', 50);
             $table->string('specialization', 50);
-            $table->integer('work_phone', 10);
+            $table->string('work_phone', 10);
             $table->text('attention_schedule')->nullable();
             $table->string('local_name', 50)->nullable();
             $table->string('local_address', 300)->nullable();

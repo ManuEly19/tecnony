@@ -20,7 +20,7 @@ return new class extends Migration
             // columna para la tabla
             $table->string('comment', 1000)->nullable();
             $table->string('suggestion', 1000)->nullable();
-            $table->float('qualification', 1, 2)->default(1.0);
+            $table->float('qualification', 2, 2)->default(1.0);
 
             // RELACION
             // De uno a uno
@@ -31,7 +31,7 @@ return new class extends Migration
                 ->on('service_request_clis')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-                
+
             // columnas especiales para la tabla
             $table->timestamps();
         });

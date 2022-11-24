@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
 
             // columnas generales para la tabla
-            $table->int('state', 1);
+            $table->integer('state');
             $table->date('date_issue');
 
             // columnas de datos del dispositivo para la tabla

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
 
             // columnas de datos de gestion del admin para la tabla
-            $table->int('state', 1);
+            $table->integer('state');
             $table->date('date_acceptance');
 
             // columnas de datos de control para la tabla
