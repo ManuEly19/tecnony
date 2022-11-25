@@ -30,6 +30,6 @@ class UserSeeder extends Seeder
 
         $rol_cliente = Role::where('name', 'cliente')->first();
         // 5 usuarios que le pertenecen al rol guard
-        User::factory()->for($rol_cliente)->count(5)->create();
+        User::factory()->for($rol_cliente)->count(10)->create();
     }
 }

@@ -20,7 +20,7 @@ class ServiceFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
+            'name' => $this->faker->title,
             'description' => $this->faker->text(255),
             'price' => $this->faker->randomFloat(2, 5, 50),
         ];

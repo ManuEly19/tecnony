@@ -61,28 +61,28 @@ class User extends Authenticatable
     // Un usuario tecnico tiene una solicitud de afiliacion
     public function affiliation_tec()
     {
-        return $this->hasOne(Affiliation_tec::class);
+        return $this->hasOne(AffiliationTec::class);
     }
 
     // Relación de uno a muchos
     // Un usuario admin tiene que gestionar muchas solicitudes de afiliación
     public function affiliation_ad()
     {
-        return $this->hasMany(Affiliation_ad::class);
+        return $this->hasMany(AffiliationAd::class);
     }
 
     // Relación de uno a muchos
     // Un usuario cliente hace de uno a muchas solicitudes de servicio
     public function service_request_cli()
     {
-        return $this->hasMany(Service_request_cli::class);
+        return $this->hasMany(ServiceRequestCli::class);
     }
 
     // Relación de uno a muchos
     // Un usuario técnico atiende de uno a muchas solicitudes de servicios
     public function service_request_tec()
     {
-        return $this->hasMany(Service_request_tec::class);
+        return $this->hasMany(ServiceRequestTec::class);
     }
 
     // Relación polimórfica uno a uno

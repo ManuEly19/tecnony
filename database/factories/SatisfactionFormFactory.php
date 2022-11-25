@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\SatisfactionForm;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,13 @@ class SatisfactionFormFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = SatisfactionForm::class;
+
     public function definition()
     {
         return [
-            //
+            'comment' => $this->faker->paragraph(3),
+            'suggestion' => $this->faker->paragraph(2),
         ];
     }
 }

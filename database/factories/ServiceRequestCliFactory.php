@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Service_request_cli;
+use App\Models\ServiceRequestCli;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,12 +15,12 @@ class ServiceRequestCliFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = Service_request_cli::class;
+    protected $model = ServiceRequestCli::class;
 
     public function definition()
     {
         return [
-            'state' => '4',
+            'state' => 4,
             'date_issue' => $this->faker->dateTimeBetween('-2 week', '-1 week'),
 
             'device' => $this->faker->word(),

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
+    protected $guarded = [];
+
     use HasFactory;
 
     // Relación de uno a muchos
@@ -20,7 +22,7 @@ class Service extends Model
     // Un servicio tiene de uno a muchos solicitudes de servicio
     public function service_request()
     {
-        return $this->hasMany(Service_request_cli::class);
+        return $this->hasMany(ServiceRequestCli::class);
     }
 
     // Relación polimórfica uno a uno

@@ -16,14 +16,15 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
-        $users_tecnico = User::where('role_id', 2)->get();
+        // Obtenemos los usarios tecnicos
+        $users_tecnicos = User::where('role_id', 2)->get();
         // dd($users_tecnico);
         // dd(count($users_guards));
 
         // Para cada tecnico se asigna 2 servicios
-        $users_tecnico->each(function($user)
-        {
-            Service::factory()->count(2)->for($user)->create();
+        $users_tecnicos->each(function($users_tecnico) {
+            Service::factory()->for($users_tecnico)->count(2)->create();
         });
+
     }
 }

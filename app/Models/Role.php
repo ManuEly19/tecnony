@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
+    protected $guarded = [];
+    
     use HasFactory;
 
     // Relación de uno a muchos
@@ -15,5 +17,5 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     }
-    
+
 }

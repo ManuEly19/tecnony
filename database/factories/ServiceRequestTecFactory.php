@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ServiceRequestTec;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,23 @@ class ServiceRequestTecFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = ServiceRequestTec::class;
+
     public function definition()
     {
         return [
-            //
+            'state' => '4',
+            'start_date' => $this->faker->dateTimeBetween('-1 week', 'now'),
+            'diagnosis' => $this->faker->text(255),
+
+            'incident_resolution' => $this->faker->text(255),
+            'warranty' => $this->faker->sentence(5),
+            'spare_parts' => $this->faker->sentence(10),
+            'price_spare_parts' => $this->faker->randomFloat(2,5,50),
+            'final_price' => $this->faker->randomFloat(2,10,70),
+            'end_date' => $this->faker->date('now'),
+
+            'observation' => $this->faker->sentence(5),
         ];
     }
 }

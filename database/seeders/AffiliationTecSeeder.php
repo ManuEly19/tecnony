@@ -14,6 +14,6 @@ class AffiliationTecSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //asignamos una solicitud a cada tecnico
     }
 }

@@ -24,9 +24,9 @@ return new class extends Migration
 
             // RELACION
             // De uno a uno
-            $table->unsignedBigInteger('service_request_id')->unique();
+            $table->unsignedBigInteger('service_request_cli_id')->unique();
             //Una solicitud de servicio tiene un formulario de satisfacción y un formulario de satisfaction le pertenece a una solicitud de servicio.
-            $table->foreign('service_request_id')
+            $table->foreign('service_request_cli_id')
                 ->references('id')
                 ->on('service_request_clis')
                 ->onDelete('cascade')
