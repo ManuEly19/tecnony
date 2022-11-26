@@ -89,6 +89,30 @@ class User extends Authenticatable
     // Un usuario pueden tener una imagen
     public function image()
     {
-        return $this->morphOne(Image::class,'imageable');
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    // Obtener el nombre completo del usuario
+    public function getFullName()
+    {
+        return "$this->first_name $this->last_name";
+    }
+
+    // Crear un avatar por default
+    public function getDefaultAvatarPath()
+    {
+        return "https://cdn-icons-png.flaticon.com/512/848/848006.png";
+    }
+
+    // Obtener la imagen de la BDD
+    public function getAvatarPath()
+    {
+        // se verifica no si existe una iamgen
+        if (!$this->image) {
+            // asignarle el path de una imagen por defecto
+            return $this->getDefaultAvatarPath();
+        }
+        // retornar el path de la imagen registrada en la BDD
+        return $this->image->path;
     }
 }

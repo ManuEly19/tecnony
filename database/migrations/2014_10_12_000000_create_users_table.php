@@ -26,7 +26,7 @@ return new class extends Migration
             $table->boolean('state')->default(true);
 
             // columnas que seran unicas para la tabla
-            $table->string('cedula', 10)->unique();
+            $table->string('cedula', 10)->unique()->nullable();
             $table->string('email')->unique();
             $table->string('username', 50)->unique();
 
