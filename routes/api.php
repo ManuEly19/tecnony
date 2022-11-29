@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\AvatarController;
 use App\Http\Controllers\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
