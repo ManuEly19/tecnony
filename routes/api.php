@@ -2,25 +2,29 @@
 
 use App\Http\Controllers\Account\AvatarController;
 use App\Http\Controllers\Account\ProfileController;
+use App\Http\Controllers\Users\ClienteController;
+use App\Http\Controllers\Users\TecnicoController;
 use Illuminate\Support\Facades\Route;
 
 // Se hace uso de grupo de rutas
 // https://laravel.com/docs/9.x/routing#route-groups
 // https://laravel.com/docs/9.x/routing#route-group-prefixes
 
-Route::prefix('v1')->group(function ()
-{
+Route::prefix('v1')->group(function () {
     // Hacer uso del archivo auth.php
     require __DIR__ . '/auth.php';
 
+    // Ruta pública para el registro de usuario tecnico
+    Route::post('/register-tecnico', [TecnicoController::class, 'register'])->name('register.tecnico');
+
+    // Ruta pública para el registro de usuario cliente
+    Route::post('/register-cliente', [ClienteController::class, 'register'])->name('register.cliente');
+
     // Se hace uso de grupo de rutas y que pasen por el proceso de auth con sanctum
-    Route::middleware(['auth:sanctum'])->group(function ()
-    {
+    Route::middleware(['auth:sanctum'])->group(function () {
         // Se hace uso de grupo de rutas
-        Route::prefix('profile')->group(function ()
-        {
-            Route::controller(ProfileController::class)->group(function ()
-            {
+        Route::prefix('profile')->group(function () {
+            Route::controller(ProfileController::class)->group(function () {
                 Route::get('/', 'show')->name('profile');
                 Route::post('/', 'store')->name('profile.store');
             });
@@ -28,5 +32,3 @@ Route::prefix('v1')->group(function ()
         });
     });
 });
-
-

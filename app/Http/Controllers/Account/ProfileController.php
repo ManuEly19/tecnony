@@ -27,8 +27,8 @@ class ProfileController extends Controller
     {
         // Validar que el usuario sea mayor de edad
         $allowed_date_range = [
-            'max' => date('Y-m-d', strtotime('-70 years')),
-            'min' => date('Y-m-d', strtotime('-18 years')),
+            'max' => date('Y-m-d', strtotime('-90 years')),
+            'min' => date('Y-m-d', strtotime('-16 years')),
         ];
 
         // Validación de los datos de entrada
@@ -44,7 +44,7 @@ class ProfileController extends Controller
             ],
             'cedula' => ['required', 'numeric', 'digits:10'],
             'personal_phone' => ['required', 'numeric', 'digits:10'],
-            'home_phone' => ['nullable', 'numeric', 'digits:9'],
+            'home_phone' => ['nullable', 'numeric', 'digits:7'],
             'address' => ['required', 'string', 'min:5', 'max:50'],
         ]);
 

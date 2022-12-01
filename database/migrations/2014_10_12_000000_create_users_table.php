@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('username', 50)->unique();
 
             // columnas que podran aceptar regitros null para la tabla
-            $table->string('home_phone', 9)->nullable();
+            $table->string('home_phone', 7)->nullable();
             $table->date('birthdate')->nullable();
             $table->timestamp('email_verified_at')->nullable();
 

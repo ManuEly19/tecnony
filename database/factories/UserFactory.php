@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'username' => $this->faker->name(),
 
-            'home_phone' => '02' . $this->faker->randomNumber(7),
+            'home_phone' => '02' . $this->faker->randomNumber(5),
             'birthdate' => $this->faker->dateTimeBetween('-50 years', 'now'),
             'email_verified_at' => now(),
 

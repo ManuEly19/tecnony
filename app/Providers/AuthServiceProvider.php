@@ -24,7 +24,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        // https://laravel.com/docs/9.x/authorization#writing-gates
 
-        //
+        // -------- ADMINISTRADOR --------
+        // Puede realizar 
     }
 }

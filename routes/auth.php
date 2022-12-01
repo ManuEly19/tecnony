@@ -6,8 +6,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordController;
 use Illuminate\Support\Facades\Route;
 
+// Ruta pública para el inicio de sesion del admin y tecnico
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+// Ruta pública para el inicio de sesion del cliente
 Route::post('/loginCli', [AuthController::class, 'loginCli'])->name('loginCli');
 
 // Ruta pública para el manejo del olvido de contraseña del usuario
