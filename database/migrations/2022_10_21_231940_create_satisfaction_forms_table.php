@@ -20,11 +20,11 @@ return new class extends Migration
             // columna para la tabla
             $table->string('comment', 1000)->nullable();
             $table->string('suggestion', 1000)->nullable();
-            $table->float('qualification', 2, 2)->default(1.0);
+            $table->float('qualification')->default(4);
 
             // RELACION
             // De uno a uno
-            $table->unsignedBigInteger('service_request_cli_id')->unique();
+            $table->unsignedBigInteger('service_request_cli_id')->unique()->nullable();
             //Una solicitud de servicio tiene un formulario de satisfacción y un formulario de satisfaction le pertenece a una solicitud de servicio.
             $table->foreign('service_request_cli_id')
                 ->references('id')

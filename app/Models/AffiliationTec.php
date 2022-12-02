@@ -20,7 +20,7 @@ class AffiliationTec extends Model
 
     // Relacion de uno a uno
     // Una solicitud de afiliación le pertenece a un usuario técnico
-    public function user_tec()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

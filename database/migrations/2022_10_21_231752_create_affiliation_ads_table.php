@@ -26,7 +26,7 @@ return new class extends Migration
 
             // RELACION
             // Relación de uno a uno
-            $table->unsignedBigInteger('affiliation_tec_id')->unique();
+            $table->unsignedBigInteger('affiliation_tec_id')->unique()->nullable();
             // Una solicitud de afiliación del lado del técnico tiene una solicitud de afiliación del lado del admin y un solicitud de afiliación del lado del admin le pertenece a una solicitud de afiliación del lado del técnico.
             $table->foreign('affiliation_tec_id')
                 ->references('id')
@@ -36,7 +36,7 @@ return new class extends Migration
 
             // Relación de uno a mucho
             // Relacion con un usuario admin
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             // Un usuario admin tiene que gestionar muchas solicitudes de afiliación y una solicitud de afiliación es gestionada por un admin
             $table->foreign('user_id')
                 ->references('id')

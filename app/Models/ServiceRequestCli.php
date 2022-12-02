@@ -34,7 +34,7 @@ class ServiceRequestCli extends Model
 
     // Relación de uno a muchos
     // una solicitud de servicio le pertenece a un usuario cliente
-    public function user_cli()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

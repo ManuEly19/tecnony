@@ -21,7 +21,7 @@ class ServiceSeeder extends Seeder
         // dd($users_tecnico);
         // dd(count($users_guards));
 
-        // Para cada tecnico se asigna 2 servicios
+        // Para cada tecnico se crear 2 servicios
         $users_tecnicos->each(function($users_tecnico) {
             Service::factory()->for($users_tecnico)->count(2)->create();
         });

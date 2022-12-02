@@ -20,7 +20,7 @@ class AffiliationAdFactory extends Factory
     {
         return [
             'state' => '2',
-            'date_acceptance' => $this->faker->date('-1 week'),
+            'date_acceptance' => $this->faker->dateTime('-1 week'),
 
             'observation' => $this->faker->paragraph(),
         ];

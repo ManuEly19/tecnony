@@ -35,7 +35,7 @@ return new class extends Migration
 
             // RELACION
             // Relación de uno a uno
-            $table->unsignedBigInteger('service_request_cli_id')->unique();
+            $table->unsignedBigInteger('service_request_cli_id')->unique()->nullable();
             // Solicitud de servicio de lado del cliente tiene una solicitud de servicios del lado del técnico y una solicitud de servicios del lado del técnico le pertenece a una solicitud de servicio del lado del cliente.
             $table->foreign('service_request_cli_id')
                 ->references('id')
@@ -45,7 +45,7 @@ return new class extends Migration
 
             // Relación de uno a mucho
             // Relacion con un usurio tecnico
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             // Un usuario técnico atiende de uno a muchas solicitudes de servicios y una solicitud de servicio es atendido por un usuario técnico
             $table->foreign('user_id')
                 ->references('id')

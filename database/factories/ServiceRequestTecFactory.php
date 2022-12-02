@@ -29,7 +29,7 @@ class ServiceRequestTecFactory extends Factory
             'spare_parts' => $this->faker->sentence(10),
             'price_spare_parts' => $this->faker->randomFloat(2,5,50),
             'final_price' => $this->faker->randomFloat(2,10,70),
-            'end_date' => $this->faker->date('now'),
+            'end_date' => $this->faker->dateTime('now'),
 
             'observation' => $this->faker->sentence(5),
         ];

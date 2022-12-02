@@ -20,7 +20,7 @@ class AffiliationAd extends Model
 
     // Relacion de uno a muchos
     // Una solicitud de afiliación es gestionada por un admin.
-    public function user_ad()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

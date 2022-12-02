@@ -17,10 +17,19 @@ class ServiceRequestTecSeeder extends Seeder
      */
     public function run()
     {
-        // Obtenemos todo las solicitudes del lado del cleinte
+        //Creamos 30 solicitudes de servicio del lado del tecnico
+        ServiceRequestTec::factory()->count(30)->create();
+
+/*         // Obtenemos todo las solicitudes del lado del cleinte
         $service_request_clis = ServiceRequestCli::all();
 
-       /*  //Por cada solicitud del lado del cliente se tiene una solicitud del lado del tecnico
+        //Por cada solicitud del lado del cliente se crea una solicitud del lado del tecnico
+        $service_request_clis->each(function($service_request)
+        {
+            ServiceRequestTec::factory()->for($service_request)->count(1)->create();
+        });
+ */
+       /*  //Por cada solicitud del lado del cliente se crea una solicitud del lado del tecnico
         $service_request_clis->each(function($service_request_cli)
         {
             $service_request_cli->service_request_tec()->save(ServiceRequestTec::factory()->make());

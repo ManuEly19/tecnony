@@ -33,7 +33,7 @@ return new class extends Migration
             // RELACION
             // De uno a uno
             // Relacion con un usuario tecnico
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id')->unique()->nullable();
             // Una solicitud de afiliación es hecha por un usuario técnico y un usuario técnico le pertenece una solicitud.
             $table->foreign('user_id')
                 ->references('id')

@@ -22,6 +22,7 @@ class SatisfactionFormFactory extends Factory
         return [
             'comment' => $this->faker->paragraph(3),
             'suggestion' => $this->faker->paragraph(2),
+            'qualification' => $this->faker->randomFloat(2, 0, 10),
         ];
     }
 }
