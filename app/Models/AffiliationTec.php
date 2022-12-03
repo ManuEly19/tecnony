@@ -14,8 +14,6 @@ class AffiliationTec extends Model
         'local_name', 'local_address', 'confirmation',
     ];
 
-    use HasFactory;
-
     // Relacion de uno a uno
     // Una solicitud de afiliación del lado del técnico tiene una solicitud de afiliación del lado del admin
     public function affiliation_ad()

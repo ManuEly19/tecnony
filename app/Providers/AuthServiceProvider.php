@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\AffiliationAd;
 use App\Models\User;
+use App\Policies\AffiliationAdPolicy;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,8 +16,9 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array<class-string, class-string>
      */
+    // https://laravel.com/docs/9.x/authorization#registering-policies
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        AffiliationAd::class => AffiliationAdPolicy::class,
     ];
 
     /**
@@ -29,57 +33,51 @@ class AuthServiceProvider extends ServiceProvider
 
         // -------- ADMINISTRADOR --------
         // 1 . Puede gestionar solicitudes de afiliacion
-        Gate::define('manage-affiliations', function (User $user)
-        {
+        Gate::define('manage-affiliations', function (User $user) {
             return $user->role->slug === "admin";
         });
 
         // De visualizar comentarios, sugerencias y calificaciones
         // 2. Puede activar o desactivar Tecnicos
-        Gate::define('manage-tecnicos', function (User $user)
-        {
+        Gate::define('manage-tecnicos', function (User $user) {
             return $user->role->slug === "admin";
         });
 
+
         // -------- TECNICO --------
         // 1. Puede Solicitar afiliacion
-        Gate::define('affiliation', function (User $user)
-        {
+        Gate::define('affiliation', function (User $user) {
             return $user->role->slug === "tecnico";
         });
 
         // 2. Puede gestionar servicios
-        Gate::define('manage-services', function (User $user)
-        {
+        Gate::define('manage-services', function (User $user) {
             return $user->role->slug === "tecnico";
         });
 
         // 3. Aprobar servicios y [visualizar sus propias solicitudes]
-        Gate::define('approve-hiring', function (User $user)
-        {
+        Gate::define('approve-hiring', function (User $user) {
             return $user->role->slug === "tecnico";
         });
+        
 
         // De visualizar comentarios, sugerencias y calificaciones
         // []. Puede [visualizar visualizar los suyos ]
 
         // -------- CLIENTE --------
         // 2. Contratar servicio
-        Gate::define('hire-services', function (User $user)
-        {
+        Gate::define('hire-services', function (User $user) {
             return $user->role->slug === "cliente";
         });
 
         // 3. Gestionar las contrataciones o solicitudes de servicio
-        Gate::define('manage-hiring', function (User $user)
-        {
+        Gate::define('manage-hiring', function (User $user) {
             return $user->role->slug === "cliente";
         });
 
         // De comentarios, sugerencias y calificaciones
         // 4.Hacer el formulario de satisfacion
-        Gate::define('make-satisfaction-form', function (User $user)
-        {
+        Gate::define('make-satisfaction-form', function (User $user) {
             return $user->role->slug === "cliente";
         });
     }

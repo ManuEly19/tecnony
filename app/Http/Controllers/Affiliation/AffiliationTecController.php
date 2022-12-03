@@ -92,8 +92,8 @@ class AffiliationTecController extends Controller
         $user = Auth::user();
 
         // Validamos que la solicitud no este aceptada o rechazada
-        if ($user->affiliation_tec->state == 2 || $user->affiliation_tec->state == 3){
-            return $this->sendResponse(message: 'The technician cannot make changes when the affiliation has already been attended');
+        if ($user->affiliation_tec->state == 2){
+            return $this->sendResponse(message: 'The technician cannot make changes when the affiliation is already accepted');
         }
 
         // Validación de los datos de entrada

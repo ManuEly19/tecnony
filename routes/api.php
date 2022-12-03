@@ -44,8 +44,10 @@ Route::prefix('v1')->group(function () {
         Route::prefix("manage")->group(function () {
             Route::controller(AffiliationAdController::class)->group(function () {
                 Route::get('/affiliations', 'index');
-                Route::get('/affiliations/show', 'show');
-                Route::get('/affiliation/show/{affiliation}', 'showOne');
+                Route::get('/affiliations/show', 'showAll');
+                Route::get('/affiliation/show/{affiliation}', 'show');
+                Route::post('/affiliation/create/{affiliationtec}', 'create');
+                Route::post('/affiliation/update/{affiliation}', 'update');
             });
         });
     });
