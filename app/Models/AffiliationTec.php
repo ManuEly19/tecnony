@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class AffiliationTec extends Model
 {
-    protected $guarded = [];
+    use HasFactory;
+
+    protected $fillable = [
+        'state','date_issue', 'profession', 'specialization', 'work_phone', 'personal_phone', 'attention_schedule',
+        'local_name', 'local_address', 'confirmation',
+    ];
 
     use HasFactory;
 
