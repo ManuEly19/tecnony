@@ -105,7 +105,7 @@ class User extends Authenticatable
         return "https://cdn-icons-png.flaticon.com/512/848/848006.png";
     }
 
-    // Obtener la imagen de la BDD
+    // Obtener la imagen de la BD
     public function getAvatarPath()
     {
         // se verifica no si existe una iamgen

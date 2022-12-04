@@ -68,6 +68,6 @@ class Kernel extends HttpKernel
         // https://laravel.com/docs/9.x/middleware#registering-middleware
         'is.user.active' => \App\Http\Middleware\IsUserActive::class,
         'verify.user.role' => \App\Http\Middleware\VerifyUserRole::class,
-
+        'is.tecnico.affiliation.active' => \App\Http\Middleware\IsTecnicoAffiliationActive::class,
     ];
 }

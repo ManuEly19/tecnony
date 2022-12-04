@@ -4,8 +4,9 @@ use App\Http\Controllers\Account\AvatarController;
 use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Affiliation\AffiliationAdController;
 use App\Http\Controllers\Affiliation\AffiliationTecController;
-use App\Http\Controllers\Users\ClienteController;
-use App\Http\Controllers\Users\TecnicoController;
+use App\Http\Controllers\Register\TecnicoController;
+use App\Http\Controllers\Register\ClienteController;
+use App\Http\Controllers\Service\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 // Se hace uso de grupo de rutas
@@ -24,7 +25,7 @@ Route::prefix('v1')->group(function () {
 
     // Se hace uso de grupo de rutas y que pasen por el proceso de auth con sanctum
     Route::middleware(['auth:sanctum'])->group(function () {
-        // Se hace uso de grupo de rutas
+        // Se hace uso de grupo de rutas para la gestion de perfil
         Route::prefix('profile')->group(function () {
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('/', 'show')->name('profile');
@@ -33,6 +34,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/avatar', [AvatarController::class, 'store'])->name('profile.avatar');
         });
 
+        // Grupo de rutas para la afiliacion del tenico
         Route::prefix("affiliation")->group(function () {
             Route::controller(AffiliationTecController::class)->group(function () {
                 Route::get('/show', 'show');
@@ -41,13 +43,27 @@ Route::prefix('v1')->group(function () {
             });
         });
 
+        // Grupo de rutas para la gestion de las afiliaciones del lado del administrador
         Route::prefix("manage")->group(function () {
             Route::controller(AffiliationAdController::class)->group(function () {
-                Route::get('/affiliations', 'index');
-                Route::get('/affiliations/show', 'showAll');
+                Route::get('/affiliation', 'index');
+                Route::get('/affiliation/show', 'showAll');
                 Route::get('/affiliation/show/{affiliation}', 'show');
                 Route::post('/affiliation/create/{affiliationtec}', 'create');
                 Route::post('/affiliation/update/{affiliation}', 'update');
+            });
+        });
+
+        // Grupo de rutas para la gestion de servicios
+        Route::prefix('service')->group(function ()
+        {
+            Route::controller(ServiceController::class)->group(function ()
+            {
+                Route::get('/', 'index');
+                Route::post('/create', 'create');
+                Route::get('/show/{service}', 'show');
+                Route::post('/update/{service}', 'update');
+                Route::get('/destroy/{service}', 'destroy');
             });
         });
     });

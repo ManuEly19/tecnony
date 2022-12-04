@@ -155,14 +155,12 @@ class AffiliationAdController extends Controller
         // Se obtiene el usuario tecnico
         $userTec = $affiliation->affiliation_tec->user;
 
-
         // Se verifica si la afiliacion ha sido aceptada
         if ($request->state == 2) {
             // Actualizamos el estado de la afiliacion del lado del tecnico
             $affiliation->affiliation_tec->state = 2;
             // actualizamos en la base de datos
             $affiliation->affiliation_tec->update();
-
             // Se procede a invocar la función para en envío de una notificación de registro
             $this->sendNotification1($userTec);
         }
@@ -173,18 +171,15 @@ class AffiliationAdController extends Controller
             $affiliation->affiliation_tec->state = 3;
             // actualizamos en la base de datos
             $affiliation->affiliation_tec->update();
-
-             // Se procede a invocar la función para en envío de una notificación de registro
+            // Se procede a invocar la función para en envío de una notificación de registro
             $this->sendNotification2($userTec, $affiliation);
         }
 
         $affiliation->update($request->all());
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The response to the affiliation has been updated.' . $affiliation->affiliation_tec->state);
+        return $this->sendResponse(message: 'The response to the affiliation has been updated.');
     }
-
-
 
 
     // Función para enviar notificacion para la solicitud aceptada

@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\AffiliationAd;
+use App\Models\Service;
 use App\Models\User;
 use App\Policies\AffiliationAdPolicy;
+use App\Policies\ServicePolicy;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     // https://laravel.com/docs/9.x/authorization#registering-policies
     protected $policies = [
         AffiliationAd::class => AffiliationAdPolicy::class,
+        Service::class => ServicePolicy::class
     ];
 
     /**
@@ -59,7 +62,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('approve-hiring', function (User $user) {
             return $user->role->slug === "tecnico";
         });
-        
+
 
         // De visualizar comentarios, sugerencias y calificaciones
         // []. Puede [visualizar visualizar los suyos ]
