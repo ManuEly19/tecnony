@@ -7,6 +7,7 @@ use App\Http\Controllers\Affiliation\AffiliationTecController;
 use App\Http\Controllers\Register\TecnicoController;
 use App\Http\Controllers\Register\ClienteController;
 use App\Http\Controllers\Service\ServiceController;
+use App\Http\Controllers\Service\ViewServiceController;
 use Illuminate\Support\Facades\Route;
 
 // Se hace uso de grupo de rutas
@@ -22,6 +23,14 @@ Route::prefix('v1')->group(function () {
 
     // Ruta pública para el registro de usuario cliente
     Route::post('/register-cliente', [ClienteController::class, 'register'])->name('register.cliente');
+
+    // Grupo de rutas para la gestion de servicios
+    Route::prefix('view-service')->group(function () {
+        Route::controller(ViewServiceController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/{service}', 'show');
+        });
+    });
 
     // Se hace uso de grupo de rutas y que pasen por el proceso de auth con sanctum
     Route::middleware(['auth:sanctum'])->group(function () {
@@ -55,10 +64,8 @@ Route::prefix('v1')->group(function () {
         });
 
         // Grupo de rutas para la gestion de servicios
-        Route::prefix('service')->group(function ()
-        {
-            Route::controller(ServiceController::class)->group(function ()
-            {
+        Route::prefix('service')->group(function () {
+            Route::controller(ServiceController::class)->group(function () {
                 Route::get('/', 'index');
                 Route::post('/create', 'create');
                 Route::get('/show/{service}', 'show');
