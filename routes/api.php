@@ -4,6 +4,7 @@ use App\Http\Controllers\Account\AvatarController;
 use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Affiliation\AffiliationAdController;
 use App\Http\Controllers\Affiliation\AffiliationTecController;
+use App\Http\Controllers\Hiring\HiringController;
 use App\Http\Controllers\Register\TecnicoController;
 use App\Http\Controllers\Register\ClienteController;
 use App\Http\Controllers\Service\ServiceController;
@@ -71,6 +72,13 @@ Route::prefix('v1')->group(function () {
                 Route::get('/show/{service}', 'show');
                 Route::post('/update/{service}', 'update');
                 Route::get('/destroy/{service}', 'destroy');
+            });
+        });
+
+        // Grupo de rutas para la gestion de contratacion del lado del cliente
+        Route::prefix('hiring')->group(function () {
+            Route::controller(HiringController::class)->group(function () {
+                Route::post('/{service}', 'create');
             });
         });
     });

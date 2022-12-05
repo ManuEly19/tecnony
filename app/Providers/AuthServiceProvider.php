@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\AffiliationAd;
 use App\Models\Service;
+use App\Models\ServiceRequestCli;
 use App\Models\User;
 use App\Policies\AffiliationAdPolicy;
+use App\Policies\HiringPolicy;
 use App\Policies\ServicePolicy;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
@@ -21,7 +23,8 @@ class AuthServiceProvider extends ServiceProvider
     // https://laravel.com/docs/9.x/authorization#registering-policies
     protected $policies = [
         AffiliationAd::class => AffiliationAdPolicy::class,
-        Service::class => ServicePolicy::class
+        Service::class => ServicePolicy::class,
+        ServiceRequestCli::class => HiringPolicy::class,
     ];
 
     /**
