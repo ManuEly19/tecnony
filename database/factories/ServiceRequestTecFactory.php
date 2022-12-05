@@ -21,7 +21,6 @@ class ServiceRequestTecFactory extends Factory
     {
         return [
             'state' => '4',
-            'start_date' => $this->faker->dateTimeBetween('-1 week', 'now'),
             'diagnosis' => $this->faker->text(255),
 
             'incident_resolution' => $this->faker->text(255),

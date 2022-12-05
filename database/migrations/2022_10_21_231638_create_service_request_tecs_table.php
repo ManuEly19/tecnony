@@ -19,7 +19,6 @@ return new class extends Migration
 
             // columnas generales para la tabla
             $table->integer('state');
-            $table->date('start_date');
             $table->text('diagnosis');
 
             // columnas de datos de finalizacion del servicios para la tabla
