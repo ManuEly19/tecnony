@@ -67,7 +67,7 @@ class AffiliationAdController extends Controller
 
 
     // Se necesita POLITICA de propiedad
-    // Mostra las afiliaciones que atendio el usuario tecnico
+    // Mostra una afiliacion atendida por el usuario tecnico
     public function show(AffiliationAd $affiliation)
     {
         // Validamos si existen solicitudes de afiliaciones

@@ -79,6 +79,11 @@ Route::prefix('v1')->group(function () {
         Route::prefix('hiring')->group(function () {
             Route::controller(HiringController::class)->group(function () {
                 Route::post('/{service}', 'create');
+                // --------------------------------
+                Route::get('/show', 'index');
+                Route::get('/show/{hiring}', 'show');
+                Route::post('/update/{hiring}', 'update');
+                Route::get('/cancel/{hiring}', 'destroy');
             });
         });
     });
