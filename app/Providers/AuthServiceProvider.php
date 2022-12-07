@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Models\AffiliationAd;
 use App\Models\Service;
 use App\Models\ServiceRequestCli;
+use App\Models\ServiceRequestTec;
 use App\Models\User;
 use App\Policies\AffiliationAdPolicy;
+use App\Policies\ApproveHiringPolicy;
 use App\Policies\HiringPolicy;
 use App\Policies\ServicePolicy;
 use Illuminate\Auth\Access\Response;
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         AffiliationAd::class => AffiliationAdPolicy::class,
         Service::class => ServicePolicy::class,
         ServiceRequestCli::class => HiringPolicy::class,
+        ServiceRequestTec::class => ApproveHiringPolicy::class,
     ];
 
     /**

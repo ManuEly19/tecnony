@@ -5,6 +5,7 @@ use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Affiliation\AffiliationAdController;
 use App\Http\Controllers\Affiliation\AffiliationTecController;
 use App\Http\Controllers\Hiring\HiringController;
+use App\Http\Controllers\Hiring\ManageHiringController;
 use App\Http\Controllers\Register\TecnicoController;
 use App\Http\Controllers\Register\ClienteController;
 use App\Http\Controllers\Service\ServiceController;
@@ -81,6 +82,18 @@ Route::prefix('v1')->group(function () {
                 Route::post('/{service}', 'create');
                 // --------------------------------
                 Route::get('/show', 'index');
+                Route::get('/show/{hiring}', 'show');
+                Route::post('/update/{hiring}', 'update');
+                Route::get('/cancel/{hiring}', 'destroy');
+            });
+        });
+
+        // Grupo de rutas para la gestion de contratacion del lado del cliente
+        Route::prefix('manage-hiring')->group(function () {
+            Route::controller(ManageHiringController::class)->group(function () {
+                Route::get('/shownew', 'shownew');
+                Route::get('/show', 'index');
+                Route::post('/{service}', 'create');
                 Route::get('/show/{hiring}', 'show');
                 Route::post('/update/{hiring}', 'update');
                 Route::get('/cancel/{hiring}', 'destroy');

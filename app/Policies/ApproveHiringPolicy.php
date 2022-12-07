@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\ServiceRequestCli;
+use App\Models\ServiceRequestTec;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class HiringPolicy
+class ApproveHiringPolicy
 {
     use HandlesAuthorization;
 
@@ -19,13 +19,15 @@ class HiringPolicy
     // Determinar el permiso para el método index
     public function viewAny(User $user)
     {
-        return $user->role->slug === "cliente";
+        return $user->role->slug === "tecnico";
     }
 
+    // Hay una funcion que trae las controtaciones a traves de servicio
+
     // Determinar el permiso para el método show
-    public function view(User $user, ServiceRequestCli $service_resquest_cli)
+    public function view(User $user, ServiceRequestTec $service_resquest_tec)
     {
-        return $user->id === $service_resquest_cli->user_id
+        return $user->id === $service_resquest_tec->user_id
             ? Response::allow()
             : Response::deny("You are not the owner of this service request.");
     }
@@ -33,23 +35,22 @@ class HiringPolicy
     // Determinar el permiso para el método create
     public function create(User $user)
     {
-        return $user->role->slug === "cliente";
+        return $user->role->slug === "tecnico";
     }
 
     // Determinar el permiso para el método update
-    public function update(User $user, ServiceRequestCli $service_resquest_cli)
+    public function update(User $user, ServiceRequestTec $service_resquest_tec)
     {
-        return $user->id === $service_resquest_cli->user_id
+        return $user->id === $service_resquest_tec->user_id
             ? Response::allow()
             : Response::deny("You are not the owner of this service request.");
     }
 
     // Determinar el permiso para el método delete
-    public function delete(User $user, ServiceRequestCli $service_resquest_cli)
+    public function delete(User $user, ServiceRequestTec $service_resquest_tec)
     {
-        return $user->id === $service_resquest_cli->user_id
+        return $user->id === $service_resquest_tec->user_id
             ? Response::allow()
             : Response::deny("You are not the owner of this service request.");
     }
-
 }
