@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceRequestTec extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['diagnosis', 'incident_resolution', 'warranty', 'spare_parts', 'price_spare_parts', 'final_price'];
 
     use HasFactory;
 

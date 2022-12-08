@@ -38,13 +38,13 @@ class ApproveHiringPolicy
         return $user->role->slug === "tecnico";
     }
 
-    // Determinar el permiso para el método update
+/*     // Determinar el permiso para el método update
     public function update(User $user, ServiceRequestTec $service_resquest_tec)
     {
         return $user->id === $service_resquest_tec->user_id
             ? Response::allow()
             : Response::deny("You are not the owner of this service request.");
-    }
+    } */
 
     // Determinar el permiso para el método delete
     public function delete(User $user, ServiceRequestTec $service_resquest_tec)

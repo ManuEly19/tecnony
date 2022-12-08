@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Hiring;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HiringCliResource;
+use App\Http\Resources\HiringTecResource;
 use App\Http\Resources\ProfileResource;
 use App\Http\Resources\ServiceResource;
 use App\Models\Service;
@@ -91,7 +92,7 @@ class ManageHiringController extends Controller
         }
 
         // Validamos solo por si acaso
-        // * Si la solicitud no esta en proceso
+        // * Si la solicitud ya esta en proceso
         if ($hiring->state == 3) {
             return $this->sendResponse(message: 'This service request is already being attended');
         }
@@ -121,7 +122,7 @@ class ManageHiringController extends Controller
         }
 
         // Validamos solo por si acaso
-        // * Si la solicitud no esta en proceso
+        // * Si la solicitud ya esta en proceso
         if ($hiring->state == 3) {
             return $this->sendResponse(message: 'This service request is already being attended');
         }
@@ -139,6 +140,12 @@ class ManageHiringController extends Controller
     // Finalizar una solicitud de servicio aprovada por el tecnico
     public function create(Request $request, ServiceRequestCli $hiring)
     {
+        // Validamos solo por si acaso
+        // * Si la solicitud no esta en proceso
+        if ($hiring->state != 3) {
+            return $this->sendResponse(message: 'This action is unauthorized.');
+        }
+
         // Validación de los datos de entrada
         $request->validate([
             'diagnosis' => ['required', 'string', 'min:5', 'max:500'],
@@ -180,15 +187,85 @@ class ManageHiringController extends Controller
     // Mostrar las solicitudes de servicios finalizada
     public function index()
     {
+        // Se obtiene el usuario autenticado
+        $user = Auth::user();
+
+        // Se obtine las solitiud de servicios atendidas por el tecnico
+        $hirings = $user->service_request_tec;
+        // Validamos si existen solicitudes de afiliaciones
+        if (!$hirings->first()) {
+            return $this->sendResponse(message: 'There are no service requests handled by this technician');
+        }
+
+        // Invoca el controlador padre para la respuesta json
+        return $this->sendResponse(message: 'The list of attended service requests has been successfully generated', result: [
+            'service_requests' => HiringTecResource::collection($hirings)
+        ]);
     }
 
     // Mostrar las solicitudes de servicios finalizada a
-    public function show()
+    public function show(ServiceRequestTec $hiring)
     {
+        // Validamos si existen solicitudes de servicio
+        if (!$hiring) {
+            return $this->sendResponse(message: 'service request does not exist');
+        }
+
+        // Invoca el controlador padre para la respuesta json
+        return $this->sendResponse(message: 'The attended service request was returned successfully', result: [
+            'service_request' => new HiringCliResource($hiring->service_request_cli),
+            'attention' => new HiringTecResource($hiring),
+            'of_service' => new ServiceResource($hiring->service_request_cli->service),
+            'created_by' => new ProfileResource($hiring->service_request_cli->user)
+        ]);
     }
 
+    // NO ES NECESARIO POR AHORA
     // Actualizar una solicitud de servicio aprovada por el tecnico
-    public function update()
+    public function updateFinalize(Request $request, ServiceRequestTec $hiring)
     {
+        // Se obtiene el usuario autenticado
+        $user = Auth::user();
+
+        // Validamos
+        // * Si la solicitud le pertenece al tecnico
+        if ($hiring->user_id != $user->id) {
+            return $this->sendResponse(message: 'You are not the owner of this service request.');
+        }
+
+        // Validamos
+        // * Si la solcitud ya tiene comentarios en ese caso no se permite actualizar
+        if ($hiring->service_request_cli->satisfaction_form->first() != null) {
+            return $this->sendResponse(message: 'You can no longer update this service request.');
+        }
+
+        // Validamos
+        // * Si la solicitud no esta finalizada
+        if ($hiring->state != 4) {
+            return $this->sendResponse(message: 'This action is unauthorized.');
+        }
+
+        // Validación de los datos de entrada
+        $request->validate([
+            'diagnosis' => ['required', 'string', 'min:5', 'max:500'],
+
+            'incident_resolution' => ['required', 'string', 'min:5', 'max:500'],
+            'warranty' => ['nullable', 'string', 'min:5', 'max:300'],
+            'spare_parts' => ['nullable', 'string', 'min:5', 'max:500'],
+            'price_spare_parts' => ['nullable', 'numeric'],
+            'final_price' => ['required', 'numeric'],
+        ]);
+
+        // Se agrega la fecha de creacion del estado
+        $request->end_date = date('Y-m-d');
+
+        // Del request se obtiene unicamente los dos campos
+        $request_data = $request->only(['diagnosis', 'incident_resolution', 'warranty', 'spare_parts', 'price_spare_parts', 'final_price']);
+
+        // Se actualiza la informacion del servicio
+        $hiring->fill($request_data)->save();
+
+        // Invoca el controlador padre para la respuesta json
+        return $this->sendResponse(message: 'Service request updated successfully');
     }
 }

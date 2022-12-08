@@ -97,9 +97,9 @@ Route::prefix('v1')->group(function () {
                 Route::get('/decline/{hiring}', 'decline');
                 Route::post('/finalize/{hiring}', 'create');
                 // ------------------------------------
-                Route::get('/show', 'index');
-                Route::get('/show/{hiring}', 'show');
-                Route::post('/update/{hiring}', 'update');
+                Route::get('/show-finalize', 'index');
+                Route::get('/show-finalize/{hiring}', 'show');
+                Route::post('/update-finalize/{hiring}', 'updateFinalize');
             });
         });
     });

@@ -66,7 +66,7 @@ class HiringController extends Controller
         // Se obtiene el usuario autenticado
         $user = Auth::user();
 
-        // Se obtine las solitiud de afiliacion atendidas por el usuario admin
+        // Se obtine las solitiud de servicio hecha por el cliente
         $hirings = $user->service_request_cli;
 
         // Validamos si existen solicitudes de afiliaciones
@@ -75,7 +75,7 @@ class HiringController extends Controller
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The affiliation answered list has been generated successfully', result: [
+        return $this->sendResponse(message: 'Service request list has been generated successfully', result: [
             'service_requests' => HiringCliResource::collection($hirings)
         ]);
     }
@@ -85,7 +85,7 @@ class HiringController extends Controller
     {
         // Validamos si existen solicitudes de servicio
         if (!$hiring) {
-            return $this->sendResponse(message: 'the affiliation request does not exist');
+            return $this->sendResponse(message: 'Service request does not exist');
         }
 
         // valida si la solicitud tiene
@@ -109,7 +109,6 @@ class HiringController extends Controller
             'created_by' => new ProfileResource($hiring->service->user)
         ]);
     }
-
 
     // Se crea una contratacion a un servicio
     public function update(Request $request, ServiceRequestCli $hiring)

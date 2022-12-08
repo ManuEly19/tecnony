@@ -25,7 +25,7 @@ class HiringTecResource extends JsonResource
             'incident_resolution' => $this->incident_resolution,
             'warranty' => $this->warranty,
             'spare_parts' => $this->spare_parts,
-            'price_spare_parts' => $this->seprice_spare_partsrie,
+            'price_spare_parts' => $this->price_spare_parts,
             'final_price' => $this->final_price,
             'end_date' => $this->end_date,
 
