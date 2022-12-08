@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProfileResource;
 use App\Http\Resources\ServiceResource;
 use App\Models\AffiliationTec;
 use App\Models\Service;
@@ -42,6 +43,7 @@ class ViewServiceController extends Controller
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'Service details', result: [
             'service' => new ServiceResource($service),
+            'created_by' => new ProfileResource($service->user)
         ]);
     }
 }

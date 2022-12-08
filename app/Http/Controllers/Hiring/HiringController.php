@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Hiring;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HiringCliResource;
 use App\Http\Resources\HiringTecResource;
+use App\Http\Resources\ProfileResource;
 use App\Http\Resources\ServiceResource;
 use App\Models\Service;
 use App\Models\ServiceRequestCli;
@@ -75,7 +76,7 @@ class HiringController extends Controller
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'The affiliation answered list has been generated successfully', result: [
-            'service-requests' => HiringCliResource::collection($hirings)
+            'service_requests' => HiringCliResource::collection($hirings)
         ]);
     }
 
@@ -93,17 +94,19 @@ class HiringController extends Controller
         if (($hiring->state == 3 || $hiring->state == 4) && $hiring->state == $hiring->service_request_tec->state) {
             // Invoca el controlador padre para la respuesta json
             return $this->sendResponse(message: 'The customer service request was returned successfully', result: [
-                'service request' => new HiringCliResource($hiring),
+                'service_request' => new HiringCliResource($hiring),
                 'attention' => new HiringTecResource($hiring->service_request_tec),
-                'of service' => new ServiceResource($hiring->service)
+                'of_service' => new ServiceResource($hiring->service),
+                'created_by' => new ProfileResource($hiring->service->user)
             ]);
         }
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'The customer service request was returned successfully', result: [
-            'service request' => new HiringCliResource($hiring),
+            'service_request' => new HiringCliResource($hiring),
             'important' => 'the service request has not yet been attended',
-            'of service' => new ServiceResource($hiring->service)
+            'of_service' => new ServiceResource($hiring->service),
+            'created_by' => new ProfileResource($hiring->service->user)
         ]);
     }
 

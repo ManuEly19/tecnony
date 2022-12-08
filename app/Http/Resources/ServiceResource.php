@@ -23,7 +23,6 @@ class ServiceResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'image' => $this->getImagePath(),
-            'created_by' => new UserResource($this->user),
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

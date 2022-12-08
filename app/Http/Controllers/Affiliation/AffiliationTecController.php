@@ -42,7 +42,7 @@ class AffiliationTecController extends Controller
             return $this->sendResponse(message: 'The technician affiliation request was returned correctly', result: [
                 'affiliation' => new AffiliationTecResource($affiliation),
                 'attention' => new AffiliationAdResource($affiliation->affiliation_ad),
-                'attended by' => new ProfileResource($affiliation->affiliation_ad->user)
+                'attended_by' => new ProfileResource($affiliation->affiliation_ad->user)
             ]);
         }
 

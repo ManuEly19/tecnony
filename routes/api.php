@@ -92,11 +92,14 @@ Route::prefix('v1')->group(function () {
         Route::prefix('manage-hiring')->group(function () {
             Route::controller(ManageHiringController::class)->group(function () {
                 Route::get('/shownew', 'shownew');
+                Route::get('/showone/{hiring}', 'showone');
+                Route::get('/approve/{hiring}', 'approve');
+                Route::get('/decline/{hiring}', 'decline');
+                Route::post('/finalize/{hiring}', 'create');
+                // ------------------------------------
                 Route::get('/show', 'index');
-                Route::post('/{service}', 'create');
                 Route::get('/show/{hiring}', 'show');
                 Route::post('/update/{hiring}', 'update');
-                Route::get('/cancel/{hiring}', 'destroy');
             });
         });
     });
