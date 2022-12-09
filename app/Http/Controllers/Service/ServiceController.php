@@ -67,6 +67,9 @@ class ServiceController extends Controller
         // Se crea una nueva instancia (en memoria)
         $service = new Service($service_data);
 
+        // Del usuario se almacena su servicio en base a la relación
+        $user->services()->save($service);
+
         // Si del request se tiene una imagen
         if ($request->has('image')) {
             // Pasando a la función la imagen del request
@@ -78,10 +81,10 @@ class ServiceController extends Controller
 
             // Se hace uso del Trait para asociar esta imagen con el modelo servicio
             $service->attachImage($direciones);
-        }
 
-        // Del usuario se almacena su servicio en base a la relación
-        $user->services()->save($service);
+            // Actualizar el servicio
+            $service->update();
+        }
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'The service has been created');
