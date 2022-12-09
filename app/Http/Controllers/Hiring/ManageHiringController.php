@@ -44,7 +44,7 @@ class ManageHiringController extends Controller
         $hirings = ServiceRequestCli::whereIn('state', [0, 3])
             ->whereIn('service_id', $serviceid)->get();
 
-        // Validamos si existen solicitudes de afiliaciones para el tecnico
+        // Validamos si existen solicitudes para este tecnico
         if (!$hirings->first()) {
             return $this->sendResponse(message: 'There are no service requests for this technical');
         }
@@ -127,7 +127,7 @@ class ManageHiringController extends Controller
             return $this->sendResponse(message: 'This service request is already being attended');
         }
 
-        // Cambiar de estado a la solicitud a en proceso
+        // Cambiar de estado a la solicitud a rechazado
         $hiring->state = 1;
 
         // Guardar cambios
@@ -240,8 +240,8 @@ class ManageHiringController extends Controller
         }
 
         // Validamos
-        // * Si la solicitud no esta finalizada
-        if ($hiring->state != 4) {
+        // * Si la solicitud no esta finalizada o comentada
+        if ($hiring->state != 4 || $hiring->state != 5) {
             return $this->sendResponse(message: 'This action is unauthorized.');
         }
 

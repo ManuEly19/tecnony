@@ -4,6 +4,9 @@ use App\Http\Controllers\Account\AvatarController;
 use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Affiliation\AffiliationAdController;
 use App\Http\Controllers\Affiliation\AffiliationTecController;
+use App\Http\Controllers\Comment\CreateCommentController;
+use App\Http\Controllers\Comment\ManageTecCommentController;
+use App\Http\Controllers\Comment\ViewCommentController;
 use App\Http\Controllers\Hiring\HiringController;
 use App\Http\Controllers\Hiring\ManageHiringController;
 use App\Http\Controllers\Register\TecnicoController;
@@ -100,6 +103,26 @@ Route::prefix('v1')->group(function () {
                 Route::get('/show-finalize', 'index');
                 Route::get('/show-finalize/{hiring}', 'show');
                 Route::post('/update-finalize/{hiring}', 'updateFinalize');
+            });
+        });
+
+        // Grupo de rutas para creacion de formulario de satisfacion
+        Route::prefix('satisfaction-form')->group(function () {
+            Route::controller(CreateCommentController::class)->group(function () {
+                Route::get('/', 'index');
+                Route::post('/create/{hiring}', 'create');
+            });
+        });
+
+        // Ruta para la visualizacion de formularios de satisfacion para el tecnico
+        Route::get('/view-satisfaction-form', [ViewCommentController::class, 'index']);
+
+        // Grupo de rutas para la gestionar los tecnicos
+        Route::prefix('manage-tec')->group(function () {
+            Route::controller(ManageTecCommentController::class)->group(function () {
+                Route::get('/', 'index');
+                Route::get('/show/{tec}', 'show');
+                Route::get('/change-state/{tec}', 'change');
             });
         });
     });

@@ -20,7 +20,7 @@ class ServiceRequestCliFactory extends Factory
     public function definition()
     {
         return [
-            'state' => 4,
+            'state' => 5,
             'date_issue' => $this->faker->dateTimeBetween('-2 week', '-1 week'),
 
             'device' => $this->faker->word(),

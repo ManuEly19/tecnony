@@ -49,7 +49,7 @@ class TecnicoController extends Controller
             ]
         ]);
 
-         // Obtiene el rol del usuario Tecncio
+        // Obtiene el rol del usuario Tecncio
         $role = Role::where('slug', 'tecnico')->first();
 
         // Crear una instancia del usuario

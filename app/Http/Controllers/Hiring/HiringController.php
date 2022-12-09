@@ -89,9 +89,8 @@ class HiringController extends Controller
         }
 
         // valida si la solicitud tiene
-        // * en proceso o finalizado por el tecnico
-        // * Que los estados de la solicitud es igual del lado del cliente y tecnico
-        if (($hiring->state == 3 || $hiring->state == 4) && $hiring->state == $hiring->service_request_tec->state) {
+        // * en proceso, finalizado o comentado por el tecnico
+        if (($hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5)) {
             // Invoca el controlador padre para la respuesta json
             return $this->sendResponse(message: 'The customer service request was returned successfully', result: [
                 'service_request' => new HiringCliResource($hiring),
@@ -115,7 +114,7 @@ class HiringController extends Controller
     {
         // Validamos
         // * Si la solicitud no esta pendiente o cancelado
-        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4) {
+        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5) {
             return $this->sendResponse(message: 'This action is unauthorized.');
         }
 
@@ -143,7 +142,7 @@ class HiringController extends Controller
     {
         // Validamos
         // * Si la solicitud no esta pendiente o cancelado
-        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4) {
+        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5) {
             return $this->sendResponse(message: 'This action is unauthorized.');
         }
 

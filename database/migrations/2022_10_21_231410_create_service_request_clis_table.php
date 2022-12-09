@@ -39,7 +39,7 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             // Relación de uno a mucho
-            // Relacion con un usuario cliente 
+            // Relacion con un usuario cliente
             $table->unsignedBigInteger('user_id')->nullable();
             // Un usuario cliente hace de uno a muchas solicitudes de servicio y una solicitud de servicio le pertenece a un usuario cliente
             $table->foreign('user_id')

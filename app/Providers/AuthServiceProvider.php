@@ -48,7 +48,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // De visualizar comentarios, sugerencias y calificaciones
         // 2. Puede activar o desactivar Tecnicos
-        Gate::define('manage-tecnicos', function (User $user) {
+        Gate::define('manage-tec-comment', function (User $user) {
             return $user->role->slug === "admin";
         });
 
@@ -69,9 +69,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role->slug === "tecnico";
         });
 
-
         // De visualizar comentarios, sugerencias y calificaciones
-        // []. Puede [visualizar visualizar los suyos ]
+        // []. Puede [visualizar los suyos ]
+        Gate::define('view-satisfaction-form', function (User $user) {
+            return $user->role->slug === "tecnico";
+        });
+
 
         // -------- CLIENTE --------
         // 2. Contratar servicio
