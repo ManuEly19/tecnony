@@ -74,7 +74,7 @@ class ManageTecCommentController extends Controller
     {
         // validamos si el usuario es tecnico
         if ($tec->role_id != 2) {
-            return $this->sendResponse(message: 'This action is unauthorized.' . $user->role_id);
+            return $this->sendResponse(message: 'This action is unauthorized.');
         }
 
         // Obtiene el estado del usuario
