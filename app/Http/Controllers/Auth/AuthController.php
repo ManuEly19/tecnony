@@ -36,21 +36,21 @@ class AuthController extends Controller
             !Hash::check($request['password'], $user->password)
         ) {
             // Se invoca a la función padre
-            return $this->sendResponse(message: 'The provided credentials are incorrect.', code: 404);
+            return $this->sendResponse(message: 'Las credenciales proporcionadas son incorrectas', code: 404);
         }
 
         // Valida lo siguiente
         //  * Si el token de usurio no es vacío
         if (!$user->tokens->isEmpty()) {
             // Se invoca a la función padre
-            return $this->sendResponse(message: 'User is already authenticated.', code: 403);
+            return $this->sendResponse(message: 'El usuario ya está autenticado', code: 403);
         }
 
         // Se procede a la creación de un token para el usuario
         $token = $user->createToken('auth-token')->plainTextToken;
 
         // Se invoca a la función padre
-        return $this->sendResponse(message: 'Successful authentication.', result: [
+        return $this->sendResponse(message: 'Autenticación exitosa', result: [
             'user' => new UserResource($user),
             'access_token' => $token,
             'token_type' => 'Bearer',
@@ -79,21 +79,21 @@ class AuthController extends Controller
             !Hash::check($request['password'], $user->password)
         ) {
             // Se invoca a la función padre
-            return $this->sendResponse(message: 'The provided credentials are incorrect.', code: 404);
+            return $this->sendResponse(message: 'Las credenciales proporcionadas son incorrectas', code: 404);
         }
 
         // Valida lo siguiente
         //  * Si el token de usurio no es vacío
         if (!$user->tokens->isEmpty()) {
             // Se invoca a la función padre
-            return $this->sendResponse(message: 'User is already authenticated.', code: 403);
+            return $this->sendResponse(message: 'El usuario ya está autenticado', code: 403);
         }
 
         // Se procede a la creación de un token para el usuario
         $token = $user->createToken('auth-token')->plainTextToken;
 
         // Se invoca a la función padre
-        return $this->sendResponse(message: 'Successful authentication.', result: [
+        return $this->sendResponse(message: 'Autenticación exitosa', result: [
             'user' => new UserResource($user),
             'access_token' => $token,
             'token_type' => 'Bearer',

@@ -30,7 +30,7 @@ class PasswordController extends Controller
         return $status === Password::RESET_LINK_SENT
             ? $this->sendResponse(__($status))
             : $this->sendResponse(
-                message: 'Link reset failure.',
+                message: 'Error de restablecimiento de enlace',
                 errors: ['email' => __($status)],
                 code: 422
             );
@@ -42,8 +42,8 @@ class PasswordController extends Controller
         $frontend_url = env('APP_FRONTEND_URL');
         $token = $request->route('token');
         $email = $request->email;
-        $url = "$frontend_url/?token=$token&email=$email";
-        return $this->sendResponse(message: 'Successful redirection', result: ['url' => $url]);
+        $url = "$frontend_url/$token/$email"; // cambio de URL para el reset mas rapido y directo
+        return $this->sendResponse(message: 'Redirección exitosa', result: ['url' => $url]);
     }
 
     // Función para la actualización del password
@@ -74,7 +74,7 @@ class PasswordController extends Controller
         return $status == Password::PASSWORD_RESET
             ? $this->sendResponse(__($status))
             : $this->sendResponse(
-                message: 'Reset password failure.',
+                message: 'Error al restablecer la contraseña',
                 errors: ['email' => __($status)],
                 code: 422
             );
@@ -93,6 +93,6 @@ class PasswordController extends Controller
         $user = $request->user();
         $user->password = Hash::make($validated['password']);
         $user->save();
-        return $this->sendResponse('Password updated successfully');
+        return $this->sendResponse('Contraseña actualizada exitosamente');
     }
 }

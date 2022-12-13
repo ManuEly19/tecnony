@@ -17,7 +17,7 @@ class ProfileController extends Controller
         // https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
         $user = Auth::user();
         // Se invoca a la función padre
-        return $this->sendResponse(message: "User's profile returned successfully", result: [
+        return $this->sendResponse(message: "El perfil del usuario se devolvió correctamente", result: [
             'user' => new ProfileResource($user),
         ]);
     }
@@ -54,6 +54,6 @@ class ProfileController extends Controller
         // https://laravel.com/docs/9.x/queries#update-statements
         $user->update($request->all());
         // Se invoca a la función padre
-        return $this->sendResponse('Profile updated successfully');
+        return $this->sendResponse('Perfil actualizado con éxito');
     }
 }

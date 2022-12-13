@@ -32,7 +32,7 @@ class ViewServiceController extends Controller
             ->whereNotIn('user_id', $tecaffiliation)->get();
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service list generated successfully', result: [
+        return $this->sendResponse(message: 'Lista de servicios generada con éxito', result: [
             'services' => ServiceResource::collection($services)
         ]);
     }
@@ -41,7 +41,7 @@ class ViewServiceController extends Controller
     public function show(Service $service)
     {
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service details', result: [
+        return $this->sendResponse(message: 'Detalles del servicio', result: [
             'service' => new ServiceResource($service),
             'created_by' => new ProfileResource($service->user)
         ]);

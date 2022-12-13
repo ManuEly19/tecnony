@@ -27,7 +27,7 @@ class ServicePolicy
     {
         return $user->id === $service->user_id
             ? Response::allow()
-            : Response::deny("You don't own this service.");
+            : Response::deny("No eres el propietario de este servicio");
     }
 
     // Determinar el permiso para el método create
@@ -41,7 +41,7 @@ class ServicePolicy
     {
         return $user->id === $service->user_id
             ? Response::allow()
-            : Response::deny("You don't own this service.");
+            : Response::deny("No eres el propietario de este servicio");
     }
 
     // Determinar el permiso para el método delete
@@ -49,6 +49,6 @@ class ServicePolicy
     {
         return $user->id === $service->user_id
             ? Response::allow()
-            : Response::deny("You don't own this service.");
+            : Response::deny("No eres el propietario de este servicio");
     }
 }

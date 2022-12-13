@@ -56,9 +56,8 @@ class HiringController extends Controller
         $user->service_request_cli()->save($hiring);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service request created successfully');
+        return $this->sendResponse(message: 'Solicitud de servicio creada con éxito');
     }
-
 
     // Mostrar las solicitudes de servicio hechas por el cliente autenticado
     public function index()
@@ -71,11 +70,11 @@ class HiringController extends Controller
 
         // Validamos si existen solicitudes de afiliaciones
         if (!$hirings->first()) {
-            return $this->sendResponse(message: 'There are no service requests for this customer');
+            return $this->sendResponse(message: 'Usted no tiene solicitudes de servicio');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service request list has been generated successfully', result: [
+        return $this->sendResponse(message: 'La lista de solicitudes de servicio se ha generado correctamente', result: [
             'service_requests' => HiringCliResource::collection($hirings)
         ]);
     }
@@ -85,14 +84,14 @@ class HiringController extends Controller
     {
         // Validamos si existen solicitudes de servicio
         if (!$hiring) {
-            return $this->sendResponse(message: 'Service request does not exist');
+            return $this->sendResponse(message: 'La solicitud de servicio no existe');
         }
 
         // valida si la solicitud tiene
         // * en proceso, finalizado o comentado por el tecnico
         if (($hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5)) {
             // Invoca el controlador padre para la respuesta json
-            return $this->sendResponse(message: 'The customer service request was returned successfully', result: [
+            return $this->sendResponse(message: 'La solicitud de servicio fue devuelta con éxito', result: [
                 'service_request' => new HiringCliResource($hiring),
                 'attention' => new HiringTecResource($hiring->service_request_tec),
                 'of_service' => new ServiceResource($hiring->service),
@@ -101,9 +100,8 @@ class HiringController extends Controller
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The customer service request was returned successfully', result: [
+        return $this->sendResponse(message: 'La solicitud de servicio aún no ha sido atendida', result: [
             'service_request' => new HiringCliResource($hiring),
-            'important' => 'the service request has not yet been attended',
             'of_service' => new ServiceResource($hiring->service),
             'created_by' => new ProfileResource($hiring->service->user)
         ]);
@@ -115,7 +113,7 @@ class HiringController extends Controller
         // Validamos
         // * Si la solicitud no esta pendiente o cancelado
         if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
         // Validación de los datos de entrada
@@ -134,7 +132,7 @@ class HiringController extends Controller
         $hiring->update($request->all());
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service request updated successfully');
+        return $this->sendResponse(message: 'Solicitud de servicio actualizada con éxito');
     }
 
     // Cancelar una solicitud de servicio
@@ -143,7 +141,7 @@ class HiringController extends Controller
         // Validamos
         // * Si la solicitud no esta pendiente o cancelado
         if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
         // Obtener el estado de la solcitud de servicio
@@ -153,20 +151,20 @@ class HiringController extends Controller
         if ($hiring_state == 0) {
             // Cambia el estado a cancela
             $hiring->state = 2;
-            $message = 'cancel';
+            $message = 'cancelada ';
         }
 
         // Cambiamos de cancelado a pendiente
         if ($hiring_state == 2) {
             // Cambia el estado a pendiente
             $hiring->state = 0;
-            $message = 'pending';
+            $message = 'rehabilitada';
         }
 
         // Guardar en la BDD
         $hiring->save();
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: "Service request $message successfully");
+        return $this->sendResponse(message: "La solicitud de servicio ha sido $message con éxito");
     }
 }

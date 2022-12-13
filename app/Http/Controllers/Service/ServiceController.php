@@ -28,14 +28,14 @@ class ServiceController extends Controller
 
         // Validamos si existen servicios para el usuario
         if (!$user->services->first()) {
-            return $this->sendResponse(message: 'There are no services for this user');
+            return $this->sendResponse(message: 'No tienes ningún servicio, crea tu primer servicio');
         }
 
         // Del usuario se obtiene los servicios
         $services = $user->services;
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service list generated successfully', result: [
+        return $this->sendResponse(message: 'Lista de servicios generada con éxito', result: [
             'services' => ServiceResource::collection($services)
         ]);
     }
@@ -50,7 +50,7 @@ class ServiceController extends Controller
         // * Si el tecnico esta activo
         // * Si el tecnico esta afiliado
         if (($user->state != 1) or ($user->affiliation_tec->state != 2)) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Esta acción no está autorizada, estas desactivado o no tienes afiliación vigente');
         }
 
         // Validación de los datos de entrada
@@ -60,6 +60,15 @@ class ServiceController extends Controller
             'price' => ['required', 'numeric'],
             'image' => ['nullable', 'image', 'mimes:jpg,png,jpeg', 'max:1000'],
         ]);
+
+        // Obtenemos el servicio con el mismo nombre que el de recien ingresado
+        $ser = Service::where('user_id', $user->id)
+        ->where('name', $request->name);
+
+        // Validar que el servicio no se repita para el mismo usuario
+        if ($ser->first() != null) {
+            return $this->sendResponse(message: 'Ya existe este servicio');
+        }
 
         // Del request se obtiene unicamente los dos campos
         $service_data = $request->only(['name', 'description', 'price']);
@@ -87,14 +96,14 @@ class ServiceController extends Controller
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service has been created');
+        return $this->sendResponse(message: 'El servicio fue creado con éxito');
     }
 
     // Mostrar la información del reporte
     public function show(Service $service)
     {
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service details', result: [
+        return $this->sendResponse(message: 'Detalles del servicio', result: [
             'service' => new ServiceResource($service),
         ]);
     }
@@ -109,7 +118,7 @@ class ServiceController extends Controller
         // * Si el tecnico esta activo
         // * Si el tecnico esta afiliado
         if (($user->state != 1) or ($user->affiliation_tec->state != 2)) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Esta acción no está autorizada, estas desactivado o no tienes afiliación vigente');
         }
 
         // Validación de los datos de entrada
@@ -140,7 +149,7 @@ class ServiceController extends Controller
         $service->fill($service_data)->save();
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service updated successfully');
+        return $this->sendResponse(message: 'Servicio actualizado con éxito');
     }
 
     // Dar de baja a un Servicio
@@ -153,20 +162,20 @@ class ServiceController extends Controller
         // * Si el tecnico esta activo
         // * Si el tecnico esta afiliado
         if (($user->state != 1) or ($user->affiliation_tec->state != 2)) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Esta acción no está autorizada, estas desactivado o no tienes afiliación vigente');
         }
-        
+
         // Obtener el estado del servicio
         $service_state = $service->state;
 
         // Almacenar un string con el mensaje
-        $message = $service_state ? 'inactivated' : 'activated';
+        $message = $service_state ? 'desactivado ' : 'activado';
 
         // Cambia el estado al servicio
         $service->state = !$service_state;
         // Guardar en la BDD
         $service->save();
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: "Service $message successfully");
+        return $this->sendResponse(message: "El servicio fue $message con éxito");
     }
 }

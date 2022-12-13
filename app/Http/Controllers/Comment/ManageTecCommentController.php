@@ -33,7 +33,7 @@ class ManageTecCommentController extends Controller
         $users = $role->users;
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Technician list generated successfully', result: [
+        return $this->sendResponse(message: 'Lista de técnicos generada con éxito', result: [
             'users' => UserResource::collection($users),
         ]);
     }
@@ -43,7 +43,7 @@ class ManageTecCommentController extends Controller
     {
         // validamos si el usuario es tecnico
         if ($tec->role_id != 2) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
         // Obtenemos los id de las solicitudes de servicios del atendidas por el tecnico
@@ -55,14 +55,14 @@ class ManageTecCommentController extends Controller
 
         // Validamos si existen solicitudes para este tecnico
         if (!$comment->first()) {
-            return $this->sendResponse(message: 'This technician has no comments');
+            return $this->sendResponse(message: 'Este técnico no tiene comentarios.');
         }
 
         // Obtenemos el promedio de la calificacion
         $score = round($comment->avg('qualification'), 2);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service request to comment was returned successfully', result: [
+        return $this->sendResponse(message: 'La puntuación y los comentarios del técnico se ha devuelto con éxito', result: [
             'score' => $score,
             'technical' => new ProfileResource($tec),
             'satisfaction_forms' => CommentResource::collection($comment)
@@ -74,14 +74,14 @@ class ManageTecCommentController extends Controller
     {
         // validamos si el usuario es tecnico
         if ($tec->role_id != 2) {
-            return $this->sendResponse(message: 'This action is unauthorized.' . $user->role_id);
+            return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
         // Obtiene el estado del usuario
         $user_state = $tec->state;
 
         // Crear un mensaje en base al estado del usuario
-        $message = $user_state ? 'inactivated' : 'activated';
+        $message = $user_state ? 'desactivado ' : 'activado';
 
         // Cambiar el estado
         $tec->state = !$user_state;
@@ -110,7 +110,7 @@ class ManageTecCommentController extends Controller
         $tec->save();
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: "User $message successfully");
+        return $this->sendResponse(message: "El técnico ha sido  $message con éxito");
     }
 
     // Función para notificar el tecnico que ha sido

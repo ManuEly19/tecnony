@@ -46,11 +46,11 @@ class ManageHiringController extends Controller
 
         // Validamos si existen solicitudes para este tecnico
         if (!$hirings->first()) {
-            return $this->sendResponse(message: 'There are no service requests for this technical');
+            return $this->sendResponse(message: 'No tienes solicitudes de servicios pendientes');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service request for the technician was returned successfully', result: [
+        return $this->sendResponse(message: 'La solicitudes de servicio a atender se devolvió con éxito', result: [
             'service_requests' => HiringCliResource::collection($hirings)
         ]);
     }
@@ -66,11 +66,11 @@ class ManageHiringController extends Controller
 
         // Enviamos mensaje de no pertenecia
         if ($service->user_id != $user->id) {
-            return $this->sendResponse(message: 'This service request is not for this technical');
+            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service request for the technician was returned successfully', result: [
+        return $this->sendResponse(message: 'La solicitud de servicio se devolvió con éxito', result: [
             'service_requests' => new HiringCliResource($hiring),
             'created_by' => new ProfileResource($hiring->user),
             'of_service' => new ServiceResource($hiring->service)
@@ -88,13 +88,13 @@ class ManageHiringController extends Controller
 
         // Enviamos mensaje de no pertenecia
         if ($service->user_id != $user->id) {
-            return $this->sendResponse(message: 'This service request is not for this technical');
+            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio ');
         }
 
         // Validamos solo por si acaso
         // * Si la solicitud ya esta en proceso
         if ($hiring->state == 3) {
-            return $this->sendResponse(message: 'This service request is already being attended');
+            return $this->sendResponse(message: 'Esta solicitud de servicio ya está siendo atendida');
         }
 
         // Cambiar de estado a la solicitud a en proceso
@@ -104,7 +104,7 @@ class ManageHiringController extends Controller
         $hiring->save();
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service request has been approved');
+        return $this->sendResponse(message: 'La solicitud de servicio ha sido aprobada');
     }
 
     // Rechazar una solicitud se serivicio
@@ -118,13 +118,13 @@ class ManageHiringController extends Controller
 
         // Enviamos mensaje de no pertenecia
         if ($service->user_id != $user->id) {
-            return $this->sendResponse(message: 'This service request is not for this technical');
+            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio ');
         }
 
         // Validamos solo por si acaso
         // * Si la solicitud ya esta en proceso
         if ($hiring->state == 3) {
-            return $this->sendResponse(message: 'This service request is already being attended');
+            return $this->sendResponse(message: 'Esta solicitud de servicio ya está siendo atendida');
         }
 
         // Cambiar de estado a la solicitud a rechazado
@@ -134,7 +134,7 @@ class ManageHiringController extends Controller
         $hiring->save();
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service request has been denied');
+        return $this->sendResponse(message: 'La solicitud de servicio ha sido rechazada');
     }
 
     // Finalizar una solicitud de servicio aprovada por el tecnico
@@ -143,7 +143,7 @@ class ManageHiringController extends Controller
         // Validamos solo por si acaso
         // * Si la solicitud no esta en proceso
         if ($hiring->state != 3) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Primero tienes que aprobar la solicitud para finalizar la contratación');
         }
 
         // Validación de los datos de entrada
@@ -181,7 +181,7 @@ class ManageHiringController extends Controller
         $user->service_request_tec()->save($hiringtec);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service request completed successfully');
+        return $this->sendResponse(message: 'Solicitud de servicio completada con éxito');
     }
 
     // Mostrar las solicitudes de servicios finalizada
@@ -194,11 +194,11 @@ class ManageHiringController extends Controller
         $hirings = $user->service_request_tec;
         // Validamos si existen solicitudes de afiliaciones
         if (!$hirings->first()) {
-            return $this->sendResponse(message: 'There are no service requests handled by this technician');
+            return $this->sendResponse(message: 'No tienes solicitudes de servicio atendidas');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The list of attended service requests has been successfully generated', result: [
+        return $this->sendResponse(message: 'Se ha generado con éxito la lista de solicitudes de servicios atendidos', result: [
             'service_requests' => HiringTecResource::collection($hirings)
         ]);
     }
@@ -208,11 +208,11 @@ class ManageHiringController extends Controller
     {
         // Validamos si existen solicitudes de servicio
         if (!$hiring) {
-            return $this->sendResponse(message: 'service request does not exist');
+            return $this->sendResponse(message: 'Esta solicitud de servicio no existe');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The attended service request was returned successfully', result: [
+        return $this->sendResponse(message: 'La solicitud de servicio atendida fue devuelta con éxito', result: [
             'service_request' => new HiringCliResource($hiring->service_request_cli),
             'attention' => new HiringTecResource($hiring),
             'of_service' => new ServiceResource($hiring->service_request_cli->service),
@@ -230,19 +230,19 @@ class ManageHiringController extends Controller
         // Validamos
         // * Si la solicitud le pertenece al tecnico
         if ($hiring->user_id != $user->id) {
-            return $this->sendResponse(message: 'You are not the owner of this service request.');
+            return $this->sendResponse(message: 'Usted no es el propietario de esta solicitud de servicio.');
         }
 
         // Validamos
         // * Si la solcitud ya tiene comentarios en ese caso no se permite actualizar
         if ($hiring->service_request_cli->satisfaction_form->first() != null) {
-            return $this->sendResponse(message: 'You can no longer update this service request.');
+            return $this->sendResponse(message: 'Ya no puedes actualizar esta solicitud de servicio.');
         }
 
         // Validamos
-        // * Si la solicitud no esta finalizada o comentada
-        if ($hiring->state != 4 || $hiring->state != 5) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+        // * Si la solicitud no esta finalizada
+        if ($hiring->state != 4) {
+            return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
         // Validación de los datos de entrada
@@ -266,6 +266,6 @@ class ManageHiringController extends Controller
         $hiring->fill($request_data)->save();
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'Service request updated successfully');
+        return $this->sendResponse(message: 'La solicitud de servicio actualizada con éxito');
     }
 }

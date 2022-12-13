@@ -29,7 +29,7 @@ class ApproveHiringPolicy
     {
         return $user->id === $service_resquest_tec->user_id
             ? Response::allow()
-            : Response::deny("You are not the owner of this service request.");
+            : Response::deny("Usted no es el propietario de esta solicitud de servicio");
     }
 
     // Determinar el permiso para el método create
@@ -51,6 +51,6 @@ class ApproveHiringPolicy
     {
         return $user->id === $service_resquest_tec->user_id
             ? Response::allow()
-            : Response::deny("You are not the owner of this service request.");
+            : Response::deny("Usted no es el propietario de esta solicitud de servicio");
     }
 }

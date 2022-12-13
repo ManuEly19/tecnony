@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
 use App\Models\SatisfactionForm;
-use App\Models\Service;
 use App\Models\ServiceRequestTec;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ViewCommentController extends Controller
@@ -37,14 +35,14 @@ class ViewCommentController extends Controller
 
         // Validamos si existen solicitudes para este tecnico
         if (!$comment->first()) {
-            return $this->sendResponse(message: 'This technician has no comments');
+            return $this->sendResponse(message: 'Usted no tiene comentarios');
         }
 
         // Obtenemos el promedio de la calificacion
         $score = round($comment->avg('qualification'), 2);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service request to comment was returned successfully', result: [
+        return $this->sendResponse(message: 'Las solicitudes de servicios comentados se han devuelto con éxito', result: [
             'score' => $score,
             'satisfaction_forms' => CommentResource::collection($comment)
         ]);

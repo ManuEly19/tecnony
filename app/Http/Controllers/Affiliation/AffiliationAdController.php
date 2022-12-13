@@ -35,11 +35,11 @@ class AffiliationAdController extends Controller
 
         // Validamos si existen solicitudes de afiliaciones
         if (!$affiliations->first()) {
-            return $this->sendResponse(message: 'There are no pending affiliations');
+            return $this->sendResponse(message: 'No hay afiliaciones pendientes');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The affiliation list has been generated successfully', result: [
+        return $this->sendResponse(message: 'La lista de afiliados ha sido generada con éxito', result: [
             'affiliations' => AffiliationTecResource::collection($affiliations)
         ]);
     }
@@ -56,11 +56,11 @@ class AffiliationAdController extends Controller
 
         // Validamos si existen solicitudes de afiliaciones
         if (!$affiliations->first()) {
-            return $this->sendResponse(message: 'No affiliations answered by this admin');
+            return $this->sendResponse(message: 'No hay afiliaciones respondidas por este administrador');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The affiliation answered list has been generated successfully', result: [
+        return $this->sendResponse(message: 'La lista de afiliaciones respondidas se ha generado con éxito', result: [
             'affiliations' => AffiliationAdResource::collection($affiliations)
         ]);
     }
@@ -72,11 +72,11 @@ class AffiliationAdController extends Controller
     {
         // Validamos si existen solicitudes de afiliaciones
         if (!$affiliation) {
-            return $this->sendResponse(message: 'the affiliation request does not exist');
+            return $this->sendResponse(message: 'La solicitud de afiliación no existe');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The affiliation answered list has been generated successfully', result: [
+        return $this->sendResponse(message: 'Los detalles de la afiliación se ha generado con éxito', result: [
             'tecnico' => new ProfileResource($affiliation->affiliation_tec->user),
             'affiliation' => new AffiliationTecResource($affiliation->affiliation_tec),
             'answered' => new AffiliationAdResource($affiliation)
@@ -135,7 +135,7 @@ class AffiliationAdController extends Controller
         $user->affiliation_ad()->save($affiliation);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The response to the affiliation has been created.');
+        return $this->sendResponse(message: 'La respuesta a la afiliación ha sido creada');
     }
 
 
@@ -178,7 +178,7 @@ class AffiliationAdController extends Controller
         $affiliation->update($request->all());
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The response to the affiliation has been updated.');
+        return $this->sendResponse(message: 'Se ha actualizado la respuesta de la afiliación.');
     }
 
 

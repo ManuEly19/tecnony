@@ -28,13 +28,13 @@ class CreateCommentController extends Controller
         $hiring = ServiceRequestCli::where('user_id', $user->id)
             ->where('state', 4)->get();
 
-        // Validamos si existen solicitudes a comentar para este cliente
+        // Validamos si no existen solicitudes a comentar para este cliente
         if (!$hiring->first()) {
-            return $this->sendResponse(message: 'All service requests are commented');
+            return $this->sendResponse(message: 'Todas las solicitudes de servicio ya están comentadas');
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The service request to comment was returned successfully', result: [
+        return $this->sendResponse(message: 'La solicitudes de servicio a comentar se devolvieron con éxito', result: [
             'service_requests' => HiringCliResource::collection($hiring)
         ]);
     }
@@ -45,7 +45,7 @@ class CreateCommentController extends Controller
         // Validamos solo por si acaso
         // * Si la solicitud no esta finalizada
         if ($hiring->state != 4) {
-            return $this->sendResponse(message: 'This action is unauthorized.');
+            return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
         // Se obtiene el usuario autenticado
@@ -53,7 +53,7 @@ class CreateCommentController extends Controller
 
         // Validamos si la solcitiud de servicio es del cliente
         if ($user->id != $hiring->user_id) {
-            return $this->sendResponse(message: 'You are not the owner of this service request');
+            return $this->sendResponse(message: 'No eres el propietario de esta solicitud de servicio');
         }
 
         // Validación de los datos de entrada
@@ -75,6 +75,6 @@ class CreateCommentController extends Controller
         $hiring->satisfaction_form()->save($comment);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The satisfaction form was created successfully');
+        return $this->sendResponse(message: 'El formulario de satisfacción ha sido creado con éxito.');
     }
 }

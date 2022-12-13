@@ -22,7 +22,7 @@ class AffiliationAdPolicy
     {
         return $user->id === $affiliationAd->user_id
             ? Response::allow()
-            : Response::deny("You are not responsible for this affiliation");
+            : Response::deny("Usted no es responsable de esta afiliación");
     }
 
     // Determinar el permiso para el método create
@@ -36,6 +36,6 @@ class AffiliationAdPolicy
     {
         return $user->id === $affiliationAd->user_id
             ? Response::allow()
-            : Response::deny("You are not responsible for this affiliation");
+            : Response::deny("Usted no es responsable de esta afiliación");
     }
 }

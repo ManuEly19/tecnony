@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
@@ -28,6 +27,6 @@ class AvatarController extends Controller
         // Se hace uso del Trait para asociar esta imagen con el modelo user
         $user->attachImage($direciones);
         // Uso de la función padre
-        return $this->sendResponse('Avatar updated successfully');
+        return $this->sendResponse('Avatar actualizado con éxito');
     }
 }

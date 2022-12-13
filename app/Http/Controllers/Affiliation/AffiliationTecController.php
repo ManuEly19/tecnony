@@ -31,7 +31,7 @@ class AffiliationTecController extends Controller
 
         // Validamos si el tecnico no tiene afiliacion
         if (!$user->affiliation_tec){
-            return $this->sendResponse(message: 'The technician has not made the affiliation');
+            return $this->sendResponse(message: 'El técnico no ha realizado la afiliación');
         }
 
         // valida si la afiliacion tiene
@@ -39,7 +39,7 @@ class AffiliationTecController extends Controller
         // * Que los estados de la afiliacion es igual del lado del admin y tecnico
         if (($affiliation->state == 2 || $affiliation->state == 3) && $affiliation->state == $affiliation->affiliation_ad->state) {
             // Invoca el controlador padre para la respuesta json
-            return $this->sendResponse(message: 'The technician affiliation request was returned correctly', result: [
+            return $this->sendResponse(message: 'La solicitud de afiliación fue devuelta correctamente', result: [
                 'affiliation' => new AffiliationTecResource($affiliation),
                 'attention' => new AffiliationAdResource($affiliation->affiliation_ad),
                 'attended_by' => new ProfileResource($affiliation->affiliation_ad->user)
@@ -47,15 +47,21 @@ class AffiliationTecController extends Controller
         }
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The technician affiliation request was returned correctly', result: [
-            'affiliation' => new AffiliationTecResource($affiliation),
-            'important' => 'the affiliation request has not yet been attended'
-
+        return $this->sendResponse(message: 'La solicitud de afiliación aún no ha sido atendida', result: [
+            'affiliation' => new AffiliationTecResource($affiliation)
         ]);
     }
 
     public function create(Request $request)
     {
+        // Se obtiene el usuario autenticado
+        $user = Auth::user();
+
+        // Validamos si el tecnico ya tiene afiliacion
+        if ($user->affiliation_tec != null){
+            return $this->sendResponse(message: 'El técnico ya ha realizado la afiliación');
+        }
+
         // Validación de los datos de entrada
         $request->validate([
             'profession' => ['required', 'string', 'min:3', 'max:50'],
@@ -76,14 +82,11 @@ class AffiliationTecController extends Controller
         // Se agrega la fecha de creacion del estado
         $affiliation->date_issue = date('Y-m-d');
 
-        // Se obtiene el usuario autenticado
-        $user = Auth::user();
-
         // Se almacena la solicitud de afiliacion para este usuario
         $user->affiliation_tec()->save($affiliation);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The affiliation request has been created');
+        return $this->sendResponse(message: 'La solicitud de afiliación ha sido creada con éxito');
     }
 
     public function update(Request $request)
@@ -93,7 +96,7 @@ class AffiliationTecController extends Controller
 
         // Validamos que la solicitud no este aceptada o rechazada
         if ($user->affiliation_tec->state == 2){
-            return $this->sendResponse(message: 'The technician cannot make changes when the affiliation is already accepted');
+            return $this->sendResponse(message: 'El técnico no puede realizar cambios cuando la afiliación ya está aceptada');
         }
 
         // Validación de los datos de entrada
@@ -117,7 +120,6 @@ class AffiliationTecController extends Controller
         $affiliation->update($request->all());
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'The affiliation request has been updated');
+        return $this->sendResponse(message: 'La solicitud de afiliación ha sido actualizada');
     }
-
 }
