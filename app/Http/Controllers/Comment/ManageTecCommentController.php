@@ -74,7 +74,7 @@ class ManageTecCommentController extends Controller
     {
         // validamos si el usuario es tecnico
         if ($tec->role_id != 2) {
-            return $this->sendResponse(message: 'Esta acción no está autorizada');
+            return $this->sendResponse(message: 'Esta acción no es autorizada');
         }
 
         // Obtiene el estado del usuario
