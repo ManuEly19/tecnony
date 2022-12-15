@@ -21,7 +21,8 @@ class AffiliationTecResource extends JsonResource
             // respuesta generales
             'state' => $this->state,
             'date_issue' => $this->date_issue,
-
+            // Propietario de la solicitu
+            'full_name' => $this->user->first_name .' '. $this->user->last_name,
             //  Respuesta de datos laborales del tecnico
             'profession' => $this->profession,
             'specialization' => $this->specialization,

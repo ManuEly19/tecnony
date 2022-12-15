@@ -44,6 +44,20 @@ class AffiliationAdController extends Controller
         ]);
     }
 
+    // Mostrar los detalles de una afiliacion sin atender
+    public function showOne(AffiliationTec $affiliationtec)
+    {
+        // Validamos si la afiliacion ya esta atendida
+        if ($affiliationtec->state != 1) {
+            return $this->sendResponse(message: 'La solicitud de afiliación ya esta atendida');
+        }
+
+        // Invoca el controlador padre para la respuesta json
+        return $this->sendResponse(message: 'La solicitud de afiliación fue devuelta correctamente', result: [
+            'affiliations' => new AffiliationTecResource($affiliationtec),
+            'create_by' => new ProfileResource($affiliationtec->user)
+        ]);
+    }
 
     // Mostra las afiliaciones que atendio el usuario tecnico
     public function showAll()

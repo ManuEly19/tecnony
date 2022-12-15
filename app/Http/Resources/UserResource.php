@@ -18,6 +18,7 @@ class UserResource extends JsonResource
         // https://laravel.com/docs/9.x/eloquent-resources#introduction
         return [
             'id' => $this->id,
+            'state' => $this->state,
             'username' => $this->username,
             'full_name' => $this->getFullName(),
             'cedula' => $this->cedula,
