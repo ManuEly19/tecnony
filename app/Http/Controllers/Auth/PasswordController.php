@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\Rules\Password as PasswordValidator;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Notifications\Messages\MailMessage;
+
 
 class PasswordController extends Controller
 {
@@ -42,8 +44,14 @@ class PasswordController extends Controller
         $frontend_url = env('APP_FRONTEND_URL');
         $token = $request->route('token');
         $email = $request->email;
-        $url = "$frontend_url/$token/$email"; // cambio de URL para el reset mas rapido y directo
-        return $this->sendResponse(message: 'Redirección exitosa', result: ['url' => $url]);
+        $url = "$frontend_url/login/reset_password/$token/$email"; // cambio de URL para el reset mas rapido y directo
+
+        // Creamos una vista de correo, para redirecionar al frontend
+        return (new MailMessage)
+        ->greeting('Cambia tu contraseña!')
+        ->line("Puede cambiar su contraseña en nuestro sistema haciendo clic en el siguiente botón.")
+        ->action("Recuperar Contraseña", $url)
+        ->line("Recuerde: no compartir tu contraseña.");
     }
 
     // Función para la actualización del password

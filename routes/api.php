@@ -112,6 +112,7 @@ Route::prefix('v1')->group(function () {
         Route::prefix('satisfaction-form')->group(function () {
             Route::controller(CreateCommentController::class)->group(function () {
                 Route::get('/', 'index');
+                Route::get('/{hiring}', 'show');
                 Route::post('/create/{hiring}', 'create');
             });
         });

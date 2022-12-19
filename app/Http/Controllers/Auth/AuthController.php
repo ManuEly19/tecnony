@@ -42,8 +42,8 @@ class AuthController extends Controller
         // Valida lo siguiente
         //  * Si el token de usurio no es vacío
         if (!$user->tokens->isEmpty()) {
-            // Se invoca a la función padre
-            return $this->sendResponse(message: 'El usuario ya está autenticado', code: 403);
+            // Se elimina el token anterio en caso de ya estar autenticado
+            $user->tokens()->delete();
         }
 
         // Se procede a la creación de un token para el usuario
@@ -85,8 +85,8 @@ class AuthController extends Controller
         // Valida lo siguiente
         //  * Si el token de usurio no es vacío
         if (!$user->tokens->isEmpty()) {
-            // Se invoca a la función padre
-            return $this->sendResponse(message: 'El usuario ya está autenticado', code: 403);
+            // Se elimina el token anterio en caso de ya estar autenticado
+            $user->tokens()->delete();
         }
 
         // Se procede a la creación de un token para el usuario

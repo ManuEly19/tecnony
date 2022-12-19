@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HiringCliResource;
+use App\Http\Resources\HiringTecResource;
+use App\Http\Resources\ProfileResource;
 use App\Models\SatisfactionForm;
 use App\Models\ServiceRequestCli;
 use Illuminate\Http\Request;
@@ -36,6 +38,22 @@ class CreateCommentController extends Controller
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'La solicitudes de servicio a comentar se devolvieron con éxito', result: [
             'service_requests' => HiringCliResource::collection($hiring)
+        ]);
+    }
+
+    // Mostrar las solicitudes de servicios finalizada
+    public function show(ServiceRequestCli $hiring)
+    {
+        // Validamos si existen solicitudes de servicio
+        if (!$hiring) {
+            return $this->sendResponse(message: 'Esta solicitud de servicio no existe');
+        }
+
+        // Invoca el controlador padre para la respuesta json
+        return $this->sendResponse(message: 'La solicitud de servicio atendida fue devuelta con éxito', result: [
+            'service_request' => new HiringCliResource($hiring),
+            'attention' => new HiringTecResource($hiring->service_request_tec),
+            'attended_by' => new ProfileResource($hiring->service_request_tec->user)
         ]);
     }
 

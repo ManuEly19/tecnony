@@ -33,19 +33,19 @@ class ProfileController extends Controller
 
         // Validación de los datos de entrada
         $request->validate([
-            'first_name' => ['required', 'string', 'min:3', 'max:35'],
-            'last_name' => ['required', 'string', 'min:3', 'max:35'],
+            'first_name' => ['nullable', 'string', 'min:3', 'max:35'],
+            'last_name' => ['nullable', 'string', 'min:3', 'max:35'],
             // https://laravel.com/docs/9.x/validation#rule-unique
-            'username' => ['required', 'string', 'min:5', 'max:20', Rule::unique('users')->ignore($request->user()->id)],
+            'username' => ['nullable', 'string', 'min:5', 'max:20', Rule::unique('users')->ignore($request->user()->id)],
             // https://laravel.com/docs/9.x/validation#rule-after
             'birthdate' => [
                 'nullable', 'string', 'date_format:Y-m-d', "after_or_equal:{$allowed_date_range['max']}",
                 "before_or_equal:{$allowed_date_range['min']}"
             ],
-            'cedula' => ['required', 'numeric', 'digits:10'],
-            'personal_phone' => ['required', 'numeric', 'digits:10'],
+            'cedula' => ['nullable', 'numeric', 'digits:10'],
+            'personal_phone' => ['nullable', 'numeric', 'digits:10'],
             'home_phone' => ['nullable', 'numeric', 'digits:7'],
-            'address' => ['required', 'string', 'min:5', 'max:50'],
+            'address' => ['nullable', 'string', 'min:5', 'max:50'],
         ]);
 
         // Se obtiene el modelo del usuario
