@@ -72,7 +72,7 @@ class ServiceController extends Controller
         }
 
         // Del request se obtiene unicamente los dos campos
-        $service_data = $request->only(['name', 'description', 'price']);
+        $service_data = $request->only(['name','categories','description', 'price']);
 
         // Se crea una nueva instancia (en memoria)
         $service = new Service($service_data);
@@ -132,7 +132,7 @@ class ServiceController extends Controller
         ]);
 
         // Del request se obtiene unicamente los dos campos
-        $service_data = $request->only(['name', 'description', 'price']);
+        $service_data = $request->only(['name','categories','description', 'price']);
 
         // Si del request se tiene una imagen
         if ($request->has('image')) {
