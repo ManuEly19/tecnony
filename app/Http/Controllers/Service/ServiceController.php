@@ -56,6 +56,7 @@ class ServiceController extends Controller
         // Validación de los datos de entrada
         $request->validate([
             'name' => ['required', 'string', 'min:5', 'max:50'],
+            'categories' => ['nullable', 'string', 'min:5', 'max:50'],
             'description' => ['required', 'string', 'min:5', 'max:300'],
             'price' => ['required', 'numeric'],
             'image' => ['nullable', 'image', 'mimes:jpg,png,jpeg', 'max:1000'],
@@ -124,6 +125,7 @@ class ServiceController extends Controller
         // Validación de los datos de entrada
         $request->validate([
             'name' => ['required', 'string', 'min:5', 'max:50'],
+            'categories' => ['nullable', 'string', 'min:5', 'max:50'],
             'description' => ['required', 'string', 'min:5', 'max:300'],
             'price' => ['required', 'numeric'],
             'image' => ['nullable', 'image', 'mimes:jpg,png,jpeg', 'max:1000'],
