@@ -19,6 +19,7 @@ return new class extends Migration
 
             // columna para la tabla
             $table->string('name', 100);
+            $table->string('categories', 50)->nullable();
             $table->text('description');
             $table->float('price', 8, 2);
             $table->boolean('state')->default(true);

@@ -20,6 +20,7 @@ class ServiceResource extends JsonResource
             'state' => $this->state,
 
             'name' => $this->name,
+            'categories' => $this->categories,
             'description' => $this->description,
             'price' => $this->price,
             'image' => $this->getImagePath(),
