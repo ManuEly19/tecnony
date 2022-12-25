@@ -2,7 +2,6 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
-header('Location: /index.html');
 
 define('LARAVEL_START', microtime(true));
 
