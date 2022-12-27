@@ -101,6 +101,11 @@ class AffiliationAdController extends Controller
     // Se crea una respuesta de solicitud
     public function create(Request $request, AffiliationTec $affiliationtec)
     {
+        // Validamos si la afiliacion ya esta atendida
+        if ($affiliationtec->state != 1) {
+            return $this->sendResponse(message: 'La solicitud de afiliación ya esta atendida');
+        }
+
         // Validación de los datos de entrada
         $request->validate([
             'state' => ['required', 'numeric', 'digits:1'],
