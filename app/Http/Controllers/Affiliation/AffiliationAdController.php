@@ -161,6 +161,15 @@ class AffiliationAdController extends Controller
     // Se aptualiza la respuesta de solicitud
     public function update(Request $request, AffiliationAd $affiliation)
     {
+        // Se obtiene el usuario autenticado
+        $user = Auth::user();
+
+
+        // Validamos si existen solicitudes de afiliaciones
+        if ($affiliation->user_id != $user->id) {
+            return $this->sendResponse(message: 'No eres responsable de esta afiliación');
+        }
+
         // Validación de los datos de entrada
         $request->validate([
             'state' => ['required', 'numeric', 'digits:1'],
