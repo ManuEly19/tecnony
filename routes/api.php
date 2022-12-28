@@ -125,7 +125,7 @@ Route::prefix('v1')->group(function () {
             Route::controller(ManageTecCommentController::class)->group(function () {
                 Route::get('/', 'index');
                 Route::get('/show/{tec}', 'show');
-                Route::get('/change-state/{tec}', 'change');
+                Route::post('/change-state/{tec}', 'change');
             });
         });
     });
