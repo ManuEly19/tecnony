@@ -28,9 +28,6 @@ class HiringTecResource extends JsonResource
             'price_spare_parts' => $this->price_spare_parts,
             'final_price' => $this->final_price,
             'end_date' => $this->end_date,
-
-            // observaciones
-            'observation' => $this->observation,
         ];
     }
 }
