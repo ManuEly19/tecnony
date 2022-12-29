@@ -84,8 +84,12 @@ class CreateCommentController extends Controller
         // Se crea instancia del la solicitud de servicio del lado del tecnico
         $comment = new SatisfactionForm($request->all());
 
+        // Se redonde de la calificacion del formulario a 2 decimales
+        $comment->qualification = round($comment->qualification, 2);
+
         // Cambiar el estado a comentado
         $hiring->state = 5;
+        
         // Guardamos el estado
         $hiring->save();
 

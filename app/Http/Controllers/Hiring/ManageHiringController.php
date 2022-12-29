@@ -235,7 +235,7 @@ class ManageHiringController extends Controller
 
         // Validamos
         // * Si la solcitud ya tiene comentarios en ese caso no se permite actualizar
-        if ($hiring->service_request_cli->satisfaction_form->first() != null) {
+        if ($hiring->service_request_cli->state == 5) {
             return $this->sendResponse(message: 'Ya no puedes actualizar esta solicitud de servicio.');
         }
 
@@ -254,6 +254,7 @@ class ManageHiringController extends Controller
             'spare_parts' => ['nullable', 'string', 'min:5', 'max:500'],
             'price_spare_parts' => ['nullable', 'numeric'],
             'final_price' => ['required', 'numeric'],
+
         ]);
 
         // Se agrega la fecha de creacion del estado
