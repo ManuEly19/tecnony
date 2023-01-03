@@ -20,16 +20,20 @@ use Illuminate\Support\Facades\Route;
 // https://laravel.com/docs/9.x/routing#route-group-prefixes
 
 Route::prefix('v1')->group(function () {
-    // Hacer uso del archivo auth.php
+    // CREACION DE PRUEBA UNITARIA POR ENDPOINT
+    // Las APIs probadas se dividen para:
+    // ⚪ General | 🟢 Admin | 🔵 Técnico | 🟣 Cliente
+
+    // ⚪ Hacer uso del archivo auth.php
     require __DIR__ . '/auth.php';
 
-    // Ruta pública para el registro de usuario tecnico
+    // 🔵 Ruta pública para el registro de usuario tecnico
     Route::post('/register-tecnico', [TecnicoController::class, 'register'])->name('register.tecnico');
 
-    // Ruta pública para el registro de usuario cliente
+    // 🟣 Ruta pública para el registro de usuario cliente
     Route::post('/register-cliente', [ClienteController::class, 'register'])->name('register.cliente');
 
-    // Grupo de rutas para la gestion de servicios
+    // 🟣 Grupo de rutas para la gestion de servicios
     Route::prefix('view-service')->group(function () {
         Route::controller(ViewServiceController::class)->group(function () {
             Route::get('/', 'index');
@@ -37,9 +41,10 @@ Route::prefix('v1')->group(function () {
         });
     });
 
-    // Se hace uso de grupo de rutas y que pasen por el proceso de auth con sanctum
+    // 🔐 Se hace uso de grupo de rutas y que pasen por el proceso de auth con sanctum
     Route::middleware(['auth:sanctum'])->group(function () {
-        // Se hace uso de grupo de rutas para la gestion de perfil
+
+        // ⚪ Se hace uso de grupo de rutas para la gestion de perfil
         Route::prefix('profile')->group(function () {
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('/', 'show')->name('profile');
@@ -48,7 +53,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/avatar', [AvatarController::class, 'store'])->name('profile.avatar');
         });
 
-        // Grupo de rutas para la afiliacion del tenico
+        // 🔵 Grupo de rutas para la afiliacion del tenico
         Route::prefix("affiliation")->group(function () {
             Route::controller(AffiliationTecController::class)->group(function () {
                 Route::get('/show', 'show');
@@ -57,7 +62,7 @@ Route::prefix('v1')->group(function () {
             });
         });
 
-        // Grupo de rutas para la gestion de las afiliaciones del lado del administrador
+        // 🟢 Grupo de rutas para la gestion de las afiliaciones del lado del administrador
         Route::prefix("manage")->group(function () {
             Route::controller(AffiliationAdController::class)->group(function () {
                 Route::get('/affiliation', 'index');
@@ -70,7 +75,7 @@ Route::prefix('v1')->group(function () {
             });
         });
 
-        // Grupo de rutas para la gestion de servicios
+        // 🔵 Grupo de rutas para la gestion de servicios
         Route::prefix('service')->group(function () {
             Route::controller(ServiceController::class)->group(function () {
                 Route::get('/', 'index');
@@ -81,7 +86,7 @@ Route::prefix('v1')->group(function () {
             });
         });
 
-        // Grupo de rutas para la gestion de contratacion del lado del cliente
+        // 🟣 Grupo de rutas para la gestion de contratacion del lado del cliente
         Route::prefix('hiring')->group(function () {
             Route::controller(HiringController::class)->group(function () {
                 Route::post('/{service}', 'create');
@@ -93,7 +98,7 @@ Route::prefix('v1')->group(function () {
             });
         });
 
-        // Grupo de rutas para la gestion de contratacion del lado del cliente
+        // 🔵 Grupo de rutas para la gestion de contratacion del lado del tecnico
         Route::prefix('manage-hiring')->group(function () {
             Route::controller(ManageHiringController::class)->group(function () {
                 Route::get('/shownew', 'shownew');
@@ -108,7 +113,7 @@ Route::prefix('v1')->group(function () {
             });
         });
 
-        // Grupo de rutas para creacion de formulario de satisfacion
+        // 🟣 Grupo de rutas para creacion de formulario de satisfacion
         Route::prefix('satisfaction-form')->group(function () {
             Route::controller(CreateCommentController::class)->group(function () {
                 Route::get('/', 'index');
@@ -117,10 +122,10 @@ Route::prefix('v1')->group(function () {
             });
         });
 
-        // Ruta para la visualizacion de formularios de satisfacion para el tecnico
+        // 🔵 Ruta para la visualizacion de formularios de satisfacion para el tecnico
         Route::get('/view-satisfaction-form', [ViewCommentController::class, 'index']);
 
-        // Grupo de rutas para la gestionar los tecnicos
+        // 🟢 Grupo de rutas para la gestionar los tecnicos
         Route::prefix('manage-tec')->group(function () {
             Route::controller(ManageTecCommentController::class)->group(function () {
                 Route::get('/', 'index');
