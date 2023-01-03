@@ -14,7 +14,7 @@ class GeneralTest extends TestCase
      * @return void
      */
 
-    // CREACION DE PRUEBA UNITARIA POR ENDPOINT
+    // CREACION DE PRUEBAS UNITARIAS POR ENDPOINT
     // Las APIs probadas se dividen para:
     // ⚪ General | 🟢 Admin | 🔵 Técnico | 🟣 Cliente
 
@@ -199,7 +199,7 @@ class GeneralTest extends TestCase
         $test_request->assertStatus(200);
     }
 
-    // 🟣 14. Gestión de solicitudes de servicios
+    // 🟣 14. Gestión de solicitudes de contratacion
     // - Visualizar contrataciones
     public function test_visualizacion_de_contrataciones()
     {
