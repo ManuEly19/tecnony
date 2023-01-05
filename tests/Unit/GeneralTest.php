@@ -121,7 +121,7 @@ class GeneralTest extends TestCase
         $test_request->assertStatus(200);
     }
 
-    // 🔵 8. Aprobación de servicios
+    // 🔵 8. Aprobación de contratacion
     // - Aprobar servicio
     public function test_aprobacion_de_servicio()
     {
