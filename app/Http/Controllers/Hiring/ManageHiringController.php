@@ -142,7 +142,7 @@ class ManageHiringController extends Controller
     {
         // Validamos solo por si acaso
         // * Si la solicitud ya ha sido finalizada
-        if ($hiring->state == 4) {
+        if ($hiring->state == 4 || $hiring->state == 5) {
             return $this->sendResponse(message: 'Ya finalizaste la contratación');
         }
         // * Si la solicitud no esta en proceso
