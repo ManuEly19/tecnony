@@ -70,7 +70,7 @@ class AffiliationTecController extends Controller
             'attention_schedule' => ['nullable', 'string', 'max:300'],
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
-            'confirmation' => ['required', 'boolean'],
+            'confirmation' => ['nullable', 'boolean'],
         ]);
 
         // Se crea instancia del la solicitud de afiliacion
@@ -78,6 +78,9 @@ class AffiliationTecController extends Controller
 
         // Se asigana el estado de la solicitud
         $affiliation->state = 1;
+
+        //Seteamos la confirmacion
+        $affiliation->confirmation = true;
 
         // Se agrega la fecha de creacion del estado
         $affiliation->date_issue = date('Y-m-d');
