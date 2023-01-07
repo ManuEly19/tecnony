@@ -70,7 +70,7 @@ class AffiliationTecController extends Controller
             'attention_schedule' => ['nullable', 'string', 'max:300'],
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
-            'confirmation' => ['required', 'boolean', 'digits:1'],
+            'confirmation' => ['required', 'boolean'],
         ]);
 
         // Se crea instancia del la solicitud de afiliacion
