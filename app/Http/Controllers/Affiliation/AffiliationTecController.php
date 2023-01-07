@@ -70,7 +70,7 @@ class AffiliationTecController extends Controller
             'attention_schedule' => ['nullable', 'string', 'max:300'],
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
-            'confirmation' => ['nullable', 'boolean'],
+            'confirmation' => ['nullable', 'boolean'], //Dejamos en nullable TEMPORALMENTE
         ]);
 
         // Se crea instancia del la solicitud de afiliacion
@@ -79,7 +79,7 @@ class AffiliationTecController extends Controller
         // Se asigana el estado de la solicitud
         $affiliation->state = 1;
 
-        //Seteamos la confirmacion
+        //Seteamos la confirmacion TEMPORALMENTE
         $affiliation->confirmation = true;
 
         // Se agrega la fecha de creacion del estado
@@ -110,8 +110,13 @@ class AffiliationTecController extends Controller
             'attention_schedule' => ['nullable', 'string', 'max:300'],
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
-            'confirmation' => ['nullable', 'boolean'],
+            'confirmation' => ['nullable', 'boolean'], //Dejamos en nullable TEMPORALMENTE
         ]);
+
+        // Validamos que la solicitud no este aceptada o rechazada
+        if ($request->confirmation == false){
+            return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
+        }
 
         // Se agrega la fecha de creacion del estado
         $request->date_issue = date('Y-m-d');
@@ -119,7 +124,7 @@ class AffiliationTecController extends Controller
         // Se obtiene la affiliation de tencio autenticado
         $affiliation = $user->affiliation_tec;
 
-        //Seteamos la confirmacion
+        //Seteamos la confirmacion TEMPORALMENTE
         $affiliation->confirmation = true;
 
         // Se guardan los cambios en la base de datos
