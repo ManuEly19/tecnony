@@ -110,7 +110,7 @@ class AffiliationTecController extends Controller
             'attention_schedule' => ['nullable', 'string', 'max:300'],
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
-            'confirmation' => ['required', 'boolean', 'digits:1'],
+            'confirmation' => ['nullable', 'boolean'],
         ]);
 
         // Se agrega la fecha de creacion del estado
@@ -118,6 +118,9 @@ class AffiliationTecController extends Controller
 
         // Se obtiene la affiliation de tencio autenticado
         $affiliation = $user->affiliation_tec;
+
+        //Seteamos la confirmacion
+        $affiliation->confirmation = true;
 
         // Se guardan los cambios en la base de datos
         $affiliation->update($request->all());
