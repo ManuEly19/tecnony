@@ -73,6 +73,11 @@ class AffiliationTecController extends Controller
             'confirmation' => ['nullable', 'boolean'], //Dejamos en nullable TEMPORALMENTE
         ]);
 
+        // Validamos si la confirmacion esta activa
+        if ($request->confirmation == false){
+            return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
+        }
+
         // Se crea instancia del la solicitud de afiliacion
         $affiliation = new AffiliationTec($request->all());
 
@@ -113,7 +118,7 @@ class AffiliationTecController extends Controller
             'confirmation' => ['nullable', 'boolean'], //Dejamos en nullable TEMPORALMENTE
         ]);
 
-        // Validamos que la solicitud no este aceptada o rechazada
+        // Validamos si la confirmacion esta activa
         if ($request->confirmation == false){
             return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
         }
