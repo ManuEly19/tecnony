@@ -74,7 +74,7 @@ class AffiliationTecController extends Controller
         ]);
 
         // Validamos si la confirmacion esta activa
-        if (!$request->confirmation) {
+        if ($request->confirmation != null) {
             if ($request->confirmation == false){
                 return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
             }
@@ -121,7 +121,7 @@ class AffiliationTecController extends Controller
         ]);
 
         // Validamos si la confirmacion esta activa
-        if (!$request->confirmation) {
+        if ($request->confirmation != null) {
             if ($request->confirmation == false){
                 return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
             }
