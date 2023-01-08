@@ -30,7 +30,7 @@ class AffiliationTecController extends Controller
         $affiliation = $user->affiliation_tec;
 
         // Validamos si el tecnico no tiene afiliacion
-        if (!$user->affiliation_tec){
+        if (!$user->affiliation_tec) {
             return $this->sendResponse(message: 'El técnico no ha realizado la afiliación');
         }
 
@@ -58,7 +58,7 @@ class AffiliationTecController extends Controller
         $user = Auth::user();
 
         // Validamos si el tecnico ya tiene afiliacion
-        if ($user->affiliation_tec != null){
+        if ($user->affiliation_tec != null) {
             return $this->sendResponse(message: 'El técnico ya ha realizado la afiliación');
         }
 
@@ -74,10 +74,8 @@ class AffiliationTecController extends Controller
         ]);
 
         // Validamos si la confirmacion esta activa
-        if ($request->confirmation != null) {
-            if ($request->confirmation == false){
-                return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
-            }
+        if ($request->confirmation == false) {
+            return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
         }
 
         // Se crea instancia del la solicitud de afiliacion
@@ -105,7 +103,7 @@ class AffiliationTecController extends Controller
         $user = Auth::user();
 
         // Validamos que la solicitud no este aceptada o rechazada
-        if ($user->affiliation_tec->state == 2){
+        if ($user->affiliation_tec->state == 2) {
             return $this->sendResponse(message: 'El técnico no puede realizar cambios cuando la afiliación ya está aceptada');
         }
 
@@ -121,10 +119,8 @@ class AffiliationTecController extends Controller
         ]);
 
         // Validamos si la confirmacion esta activa
-        if ($request->confirmation != null) {
-            if ($request->confirmation == false){
-                return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
-            }
+        if ($request->confirmation == false) {
+            return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
         }
 
         // Se agrega la fecha de creacion del estado
