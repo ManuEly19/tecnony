@@ -74,8 +74,10 @@ class AffiliationTecController extends Controller
         ]);
 
         // Validamos si la confirmacion esta activa
-        if ($request->confirmation == false){
-            return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
+        if (!$request->confirmation) {
+            if ($request->confirmation == false){
+                return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
+            }
         }
 
         // Se crea instancia del la solicitud de afiliacion
@@ -119,8 +121,10 @@ class AffiliationTecController extends Controller
         ]);
 
         // Validamos si la confirmacion esta activa
-        if ($request->confirmation == false){
-            return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
+        if (!$request->confirmation) {
+            if ($request->confirmation == false){
+                return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
+            }
         }
 
         // Se agrega la fecha de creacion del estado
