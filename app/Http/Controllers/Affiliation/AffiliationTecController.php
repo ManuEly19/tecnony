@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AffiliationAdResource;
 use App\Http\Resources\AffiliationTecResource;
 use App\Http\Resources\ProfileResource;
+use App\Models\AffiliationAd;
 use App\Models\AffiliationTec;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +36,9 @@ class AffiliationTecController extends Controller
         }
 
         // valida si la afiliacion tiene
-        // * aceptacion o rechazo del admin
+        // * aceptacion o rechazo del admin, o en proceso de reatencionn
         // * Que los estados de la afiliacion es igual del lado del admin y tecnico
-        if (($affiliation->state == 2 || $affiliation->state == 3) && $affiliation->state == $affiliation->affiliation_ad->state) {
+        if (($affiliation->state == 2 || $affiliation->state == 3 || $affiliation->state == 4) && $affiliation->state == $affiliation->affiliation_ad->state) {
             // Invoca el controlador padre para la respuesta json
             return $this->sendResponse(message: 'La solicitud de afiliación fue devuelta correctamente', result: [
                 'affiliation' => new AffiliationTecResource($affiliation),
@@ -99,7 +100,7 @@ class AffiliationTecController extends Controller
         // Se obtiene el usuario autenticado
         $user = Auth::user();
 
-        // Validamos que la solicitud no este aceptada o rechazada
+        // Validamos que la solicitud no este aceptada
         if ($user->affiliation_tec->state == 2) {
             return $this->sendResponse(message: 'El técnico no puede realizar cambios cuando la afiliación ya está aceptada');
         }
@@ -125,6 +126,15 @@ class AffiliationTecController extends Controller
 
         // Se obtiene la affiliation de tencio autenticado
         $affiliation = $user->affiliation_tec;
+
+        // Se establece la reatencion en caso de ser rechazado.
+        if ($affiliation->state == 3) {
+            $affiliation->state = 4;
+            //actualizamos la afiliacion del lado del servidor
+            $affiliation_ad = AffiliationAd::where('affiliation_tec_id', $affiliation->id)->first();
+            $affiliation_ad->state = 4;
+            $affiliation_ad->update();
+        }
 
         // Se guardan los cambios en la base de datos
         $affiliation->update($request->all());
