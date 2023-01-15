@@ -39,7 +39,7 @@ class ViewCommentController extends Controller
         }
 
         // Obtenemos el promedio de la calificacion
-        $score = round($comment->avg('qualification'), 2);
+        $score = round($comment->avg('qualification'));
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'Las solicitudes de servicios comentados se han devuelto con éxito', result: [

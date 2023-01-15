@@ -59,7 +59,7 @@ class ManageTecCommentController extends Controller
         }
 
         // Obtenemos el promedio de la calificacion
-        $score = round($comment->avg('qualification'), 2);
+        $score = round($comment->avg('qualification'));
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'La puntuación y los comentarios del técnico se ha devuelto con éxito', result: [

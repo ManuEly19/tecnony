@@ -85,11 +85,11 @@ class CreateCommentController extends Controller
         $comment = new SatisfactionForm($request->all());
 
         // Se redonde de la calificacion del formulario a 2 decimales
-        $comment->qualification = round($comment->qualification, 2);
+        $comment->qualification = round($comment->qualification);
 
         // Cambiar el estado a comentado
         $hiring->state = 5;
-        
+
         // Guardamos el estado
         $hiring->save();
 
