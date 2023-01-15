@@ -178,9 +178,6 @@ class AffiliationAdController extends Controller
         // Se agrega la fecha de creacion del estado
         $affiliation->date_acceptance = date('Y-m-d');
 
-        // Guardamos la nueva fecha
-        $affiliation->update();
-
         // Se obtiene el usuario tecnico
         $userTec = $affiliation->affiliation_tec->user;
 
