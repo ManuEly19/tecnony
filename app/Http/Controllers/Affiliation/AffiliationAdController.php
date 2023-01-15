@@ -109,7 +109,6 @@ class AffiliationAdController extends Controller
         // Validación de los datos de entrada
         $request->validate([
             'state' => ['required', 'numeric', 'digits:1'],
-
             'observation' => ['nullable', 'string', 'max:500'],
         ]);
 
@@ -178,12 +177,14 @@ class AffiliationAdController extends Controller
 
         // Se agrega la fecha de creacion del estado
         $affiliation->date_acceptance = date('Y-m-d');
-        
+
         // Guardamos la nueva fecha
         $affiliation->update();
 
         // Se obtiene el usuario tecnico
         $userTec = $affiliation->affiliation_tec->user;
+
+        $affiliation->update($request->all());
 
         // Se verifica si la afiliacion ha sido aceptada
         if ($request->state == 2) {
@@ -204,8 +205,6 @@ class AffiliationAdController extends Controller
             // Se procede a invocar la función para en envío de una notificación de registro
             $this->sendNotification2($userTec, $affiliation);
         }
-
-        $affiliation->update($request->all());
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'Se ha actualizado la respuesta de la afiliación.');

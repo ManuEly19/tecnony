@@ -20,13 +20,13 @@ class AffiliationNotifi extends Notification
     }
 
     // Se especifica el tipo de notificación
-    public function via($notifiable)
+    public function via(mixed $notifiable)
     {
         return ['mail'];
     }
 
     // Se procede a definir el formato para el correo electrónico
-    public function toMail($notifiable)
+    public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
             ->greeting('Afiliación Aprobada!')
