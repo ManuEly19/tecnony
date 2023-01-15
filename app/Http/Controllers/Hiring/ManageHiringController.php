@@ -10,6 +10,8 @@ use App\Http\Resources\ServiceResource;
 use App\Models\Service;
 use App\Models\ServiceRequestCli;
 use App\Models\ServiceRequestTec;
+use App\Models\User;
+use App\Notifications\RechazoDeContratacionNotifi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -141,8 +143,24 @@ class ManageHiringController extends Controller
         // Guardar cambios
         $hiring->save();
 
+        // Se procede a invocar la función para en envío de una notificación de rechazo
+        $this->sendNotification($hiring->user, $hiring, $user);
+
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'La solicitud de servicio ha sido rechazada');
+    }
+
+    // Función para enviar notificacion para la solicitud de contrtatacion rechazada
+    private function sendNotification(User $user, ServiceRequestCli $hiring, User $tec)
+    {
+        // https://laravel.com/docs/9.x/notifications#sending-notifications
+        $user->notify(
+            new RechazoDeContratacionNotifi(
+                user_name: $user->getFullName(),
+                observation: $hiring->observation,
+                user_tec: $tec->getFullName()
+            )
+        );
     }
 
     // Finalizar una solicitud de servicio aprovada por el tecnico

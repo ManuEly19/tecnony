@@ -38,7 +38,7 @@ class TecnicoDeshabilitadoNotifi extends Notification
     {
         return (new MailMessage)
             ->greeting('Has sido deshabilitado!')
-            ->line("Estimado  $this->user_name")
+            ->line("Estimado $this->user_name")
             ->line("Usted ha sido deshabilitado de Tecnony.")
             ->line("Por el motivo de: ")
             ->line("$this->observation")
