@@ -121,11 +121,11 @@ class AffiliationTecController extends Controller
             return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
         }
 
-        // Se agrega la fecha de creacion del estado
-        $request->date_issue = date('Y-m-d');
-
         // Se obtiene la affiliation de tencio autenticado
         $affiliation = $user->affiliation_tec;
+
+        // Se agrega la fecha de creacion del estado
+        $affiliation->date_issue = date('Y-m-d');
 
         // Se establece la reatencion en caso de ser rechazado.
         if ($affiliation->state == 3) {
