@@ -147,7 +147,7 @@ class ManageHiringController extends Controller
         $this->sendNotification($hiring->user, $hiring, $user);
 
         // Invoca el controlador padre para la respuesta json
-        return $this->sendResponse(message: 'La solicitud de servicio ha sido rechazada');
+        return $this->sendResponse(message: 'La solicitud de servicio ha sido rechazada     ' . $hiring->user);
     }
 
     // Función para enviar notificacion para la solicitud de contrtatacion rechazada
