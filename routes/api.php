@@ -104,7 +104,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('/shownew', 'shownew');
                 Route::get('/showone/{hiring}', 'showone');
                 Route::get('/approve/{hiring}', 'approve');
-                Route::get('/decline/{hiring}', 'decline');
+                Route::post('/decline/{hiring}', 'decline');
                 Route::post('/finalize/{hiring}', 'create');
                 // ------------------------------------
                 Route::get('/show-finalize', 'index');

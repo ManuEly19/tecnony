@@ -83,12 +83,12 @@ class ManageHiringController extends Controller
         // Se obtiene el usuario autenticado
         $user = Auth::user();
 
-        // Obtenemos los id de los servicios del del usuario
+        // Obtenemos el servicio donde proviene la contratacion
         $service = Service::where('id', $hiring->service_id)->first();
 
         // Enviamos mensaje de no pertenecia
         if ($service->user_id != $user->id) {
-            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio ');
+            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio');
         }
 
         // Validamos solo por si acaso
@@ -108,17 +108,17 @@ class ManageHiringController extends Controller
     }
 
     // Rechazar una solicitud se serivicio
-    public function decline(ServiceRequestCli $hiring)
+    public function decline(Request $request, ServiceRequestCli $hiring)
     {
         // Se obtiene el usuario autenticado
         $user = Auth::user();
 
-        // Obtenemos los id de los servicios del del usuario
+        // Obtenemos el servicio donde proviene la contratacion
         $service = Service::where('id', $hiring->service_id)->first();
 
-        // Enviamos mensaje de no pertenecia
+        // Enviamos mensaje de no pertenencia
         if ($service->user_id != $user->id) {
-            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio ');
+            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio');
         }
 
         // Validamos solo por si acaso
@@ -126,6 +126,14 @@ class ManageHiringController extends Controller
         if ($hiring->state == 3) {
             return $this->sendResponse(message: 'Esta solicitud de servicio ya está siendo atendida');
         }
+
+        // Validación de los datos de entrada
+        $request->validate([
+            'observation' => ['required', 'string', 'min:5', 'max:500'],
+        ]);
+
+        // Guardamos la observacion donde esta el motivo del rechazo
+        $hiring->observation = $request->observation;
 
         // Cambiar de estado a la solicitud a rechazado
         $hiring->state = 1;

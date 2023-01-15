@@ -28,6 +28,9 @@ return new class extends Migration
             $table->string('serie', 100)->nullable();
             $table->text('description_problem');
 
+            // columnas de datos de control para la tabla
+            $table->string('observation', 500)->nullable();
+
             // RELACIONES
             // Relación de uno a mucho
             $table->unsignedBigInteger('service_id')->nullable();

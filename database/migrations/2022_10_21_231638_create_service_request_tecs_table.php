@@ -29,9 +29,6 @@ return new class extends Migration
             $table->float('final_price', 8, 2);
             $table->date('end_date');
 
-            // columnas de datos de control para la tabla
-            $table->text('observation')->nullable();
-
             // RELACION
             // Relación de uno a uno
             $table->unsignedBigInteger('service_request_cli_id')->unique()->nullable();
