@@ -30,7 +30,7 @@ class RechazoDeContratacionNotifi extends Notification
     }
 
     // Se procede a definir el formato del correo
-    public function toMail($notifiable)
+    public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
             ->greeting('Solicitud de contratación rechazada!')
