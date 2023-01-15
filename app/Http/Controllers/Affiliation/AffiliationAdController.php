@@ -173,12 +173,14 @@ class AffiliationAdController extends Controller
         // Validación de los datos de entrada
         $request->validate([
             'state' => ['required', 'numeric', 'digits:1'],
-
             'observation' => ['nullable', 'string', 'max:500'],
         ]);
 
         // Se agrega la fecha de creacion del estado
-        $request->date_acceptance = date('Y-m-d');
+        $affiliation->date_acceptance = date('Y-m-d');
+        
+        // Guardamos la nueva fecha
+        $affiliation->update();
 
         // Se obtiene el usuario tecnico
         $userTec = $affiliation->affiliation_tec->user;
