@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProfileResource;
+use App\Http\Resources\AffiliationTecResource;
 use App\Http\Resources\ServiceResource;
 use App\Models\AffiliationTec;
 use App\Models\Service;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ViewServiceController extends Controller
 {
@@ -40,10 +39,13 @@ class ViewServiceController extends Controller
     // Muestra un servicio selecionado
     public function show(Service $service)
     {
+        // Obtener los datos de la afiliacion del tecnico
+        $tecaffiliation = AffiliationTec::where('user_id', $service->user->id)->first();
+
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'Detalles del servicio', result: [
             'service' => new ServiceResource($service),
-            'created_by' => new ProfileResource($service->user)
+            'created_by' => new AffiliationTecResource($tecaffiliation)
         ]);
     }
 }

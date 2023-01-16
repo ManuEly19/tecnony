@@ -31,6 +31,12 @@ class AffiliationTecResource extends JsonResource
             'local_name' => $this->local_name,
             'local_address' => $this->local_address,
             'confirmation' => $this->confirmation,
+            // Datos Bancarios
+            'account_number' => $this->account_number,
+            'account_type' => $this->account_type,
+            'banking_entity' => $this->banking_entity,
+            // Archivo
+            'file' => $this->file_path,
         ];
     }
 }

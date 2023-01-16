@@ -84,6 +84,7 @@ class ServiceController extends Controller
         if ($request->has('image')) {
             // Pasando a la función la imagen del request
             $image = $request['image'];
+
             // Se guarda la imagen en Cloudinary
             $imageService = Cloudinary::upload($image->getRealPath(), ["Sercios" => "imageService"]);
 
@@ -138,6 +139,7 @@ class ServiceController extends Controller
         if ($request->has('image')) {
             // Pasando a la función la imagen del request
             $image = $request['image'];
+            
             // Se guarda la imagen en Cloudinary
             $imageService = Cloudinary::upload($image->getRealPath(), ["Sercios" => "imageService"]);
 

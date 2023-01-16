@@ -29,6 +29,11 @@ class AffiliationTecFactory extends Factory
             'attention_schedule' => $this->faker->paragraph(2),
             'local_name' => $this->faker->sentence(2),
             'local_address' => $this->faker->paragraph(1),
+
+            'account_number' => $this->faker->randomNumber(10),
+            'account_type' => $this->faker->word(),
+            'banking_entity' => $this->faker->word(),
+
         ];
     }
 }

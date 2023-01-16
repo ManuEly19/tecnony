@@ -30,6 +30,13 @@ return new class extends Migration
             $table->string('local_address', 300)->nullable();
             $table->boolean('confirmation')->default(false);
 
+            // Datos Bancarios
+            $table->string('account_number', 20)->unique()->nullable();
+            $table->string('account_type', 20)->nullable();
+            $table->string('banking_entity', 50)->nullable();
+            // Pach del archivo
+            $table->string('file_path', 500)->nullable();
+
             // RELACION
             // De uno a uno
             // Relacion con un usuario tecnico

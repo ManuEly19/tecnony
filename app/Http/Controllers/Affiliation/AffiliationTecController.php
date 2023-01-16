@@ -8,6 +8,7 @@ use App\Http\Resources\AffiliationTecResource;
 use App\Http\Resources\ProfileResource;
 use App\Models\AffiliationAd;
 use App\Models\AffiliationTec;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,6 +73,11 @@ class AffiliationTecController extends Controller
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
             'confirmation' => ['required', 'boolean'],
+
+            'account_number' => ['required', 'numeric', 'digits:10'],
+            'account_type' => ['required', 'string', 'max:20'],
+            'banking_entity' => ['required', 'string', 'max:50'],
+            'file' => ['required', 'file', 'mimes:pdf', 'max:5000'],
         ]);
 
         // Validamos si la confirmacion esta activa
@@ -79,8 +85,14 @@ class AffiliationTecController extends Controller
             return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
         }
 
+        // Del request se obtiene unicamente los dos campos
+        $affiliation_data = $request->only([
+            'profession', 'specialization', 'work_phone', 'attention_schedule',
+            'local_name', 'local_address', 'confirmation', 'account_number', 'account_type', 'banking_entity'
+        ]);
+
         // Se crea instancia del la solicitud de afiliacion
-        $affiliation = new AffiliationTec($request->all());
+        $affiliation = new AffiliationTec($affiliation_data);
 
         // Se asigana el estado de la solicitud
         $affiliation->state = 1;
@@ -90,6 +102,23 @@ class AffiliationTecController extends Controller
 
         // Se almacena la solicitud de afiliacion para este usuario
         $user->affiliation_tec()->save($affiliation);
+
+        // Si del request se tiene una archivo
+        if ($request->has('file')) {
+            // Pasando a la función del file del request
+            $file = $request['file'];
+
+            // Se guarda el archivo en Cloudinary
+            $fileAffiliation = Cloudinary::upload($file->getRealPath(), ["Afiliaciones" => "fileAffiliation"]);
+
+            $direciones = $fileAffiliation->getSecurePath();
+
+            // Se hace uso del Trait para asociar este archivo con el modelo affiliationTec
+            $affiliation->file_pach = $direciones;
+
+            //Actualizar la afiliacion
+            $affiliation->save();
+        }
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'La solicitud de afiliación ha sido creada con éxito');
@@ -114,12 +143,24 @@ class AffiliationTecController extends Controller
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
             'confirmation' => ['required', 'boolean'],
+
+            'account_number' => ['required', 'numeric', 'digits:10'],
+            'account_type' => ['required', 'string', 'max:20'],
+            'banking_entity' => ['required', 'string', 'max:50'],
+            'file' => ['nullable', 'file', 'mimes:pdf', 'max:5000'],
         ]);
 
         // Validamos si la confirmacion esta activa
         if ($request->confirmation == false) {
             return $this->sendResponse(message: 'El técnico tiene que aceptar los termino y condiciones');
         }
+
+
+        // Del request se obtiene unicamente los dos campos
+        $affiliation_data = $request->only([
+            'profession', 'specialization', 'work_phone', 'attention_schedule',
+            'local_name', 'local_address', 'confirmation', 'account_number', 'account_type', 'banking_entity'
+        ]);
 
         // Se obtiene la affiliation de tencio autenticado
         $affiliation = $user->affiliation_tec;
@@ -136,8 +177,25 @@ class AffiliationTecController extends Controller
             $affiliation_ad->update();
         }
 
+        // Si del request se tiene un archivo
+        if ($request->has('file')) {
+            // Pasando a la función del file del request
+            $file = $request['file'];
+
+            // Se guarda el archivo en Cloudinary
+            $fileAffiliation = Cloudinary::upload($file->getRealPath(), ["Afiliaciones" => "fileAffiliation"]);
+
+            $direciones = $fileAffiliation->getSecurePath();
+
+            // Se hace uso del Trait para asociar este archivo con el modelo affiliationTec
+            $affiliation->file_pach = $direciones;
+
+            //Actualizar la afiliacion
+            $affiliation->save();
+        }
+
         // Se guardan los cambios en la base de datos
-        $affiliation->update($request->all());
+        $affiliation->fill($affiliation_data)->save();
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'La solicitud de afiliación ha sido actualizada');
