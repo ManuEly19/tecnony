@@ -42,9 +42,13 @@ class ViewServiceController extends Controller
         // Obtener los datos de la afiliacion del tecnico
         $tecaffiliation = AffiliationTec::where('user_id', $service->user->id)->first();
 
+        // Obtener los datos de la afiliacion del tecnico
+        $tec = User::where('id', $service->user->id)->first();
+
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'Detalles del servicio', result: [
             'service' => new ServiceResource($service),
+            'tec_avatar' => $tec->getAvatarPath(),
             'created_by' => new AffiliationTecResource($tecaffiliation)
         ]);
     }
