@@ -36,7 +36,7 @@ class AffiliationTecResource extends JsonResource
             'account_type' => $this->account_type,
             'banking_entity' => $this->banking_entity,
             // Archivo
-            'file' => $this->file_path,
+            'documento' => $this->getFilePath(),
         ];
     }
 }

@@ -10,10 +10,7 @@ class AffiliationTec extends Model
 {
     use HasFactory, HasFile;
 
-    protected $fillable = [
-        'state', 'date_issue', 'profession', 'specialization', 'work_phone','attention_schedule',
-        'local_name', 'local_address', 'confirmation', 'account_number', 'account_type', 'banking_entity'
-    ];
+    protected $fillable = ['state', 'date_issue', 'profession', 'specialization', 'work_phone','attention_schedule','local_name', 'local_address', 'confirmation', 'account_number', 'account_type', 'banking_entity'];
 
     // Relacion de uno a uno
     // Una solicitud de afiliación del lado del técnico tiene una solicitud de afiliación del lado del admin
@@ -40,7 +37,7 @@ class AffiliationTec extends Model
     public function getFilePath()
     {
         // se verifica no si existe un archivo
-        if (!$this->image) {
+        if (!$this->file) {
             // asignarle el path de una imagen por defecto
             return 'No tiene archivo';
         }
