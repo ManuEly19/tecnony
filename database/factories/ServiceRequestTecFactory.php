@@ -20,7 +20,7 @@ class ServiceRequestTecFactory extends Factory
     public function definition()
     {
         return [
-            'state' => '4',
+            'state' => 4,
             'diagnosis' => $this->faker->text(255),
 
             'incident_resolution' => $this->faker->text(255),

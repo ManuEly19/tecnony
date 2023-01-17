@@ -14,6 +14,7 @@ class AffiliationTecResource extends JsonResource
      */
     public function toArray($request)
     {
+        
         // Se procede a definir la estructura de la respuesta de la petición
         // https://laravel.com/docs/9.x/eloquent-resources#introduction
         return [
@@ -27,6 +28,7 @@ class AffiliationTecResource extends JsonResource
             'profession' => $this->profession,
             'specialization' => $this->specialization,
             'work_phone' => $this->work_phone,
+            'whatsapp' => 'wa.me/593' . $this->work_phone,
             'attention_schedule' => $this->attention_schedule,
             'local_name' => $this->local_name,
             'local_address' => $this->local_address,

@@ -48,7 +48,11 @@ class ViewServiceController extends Controller
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'Detalles del servicio', result: [
             'service' => new ServiceResource($service),
-            'tec_avatar' => $tec->getAvatarPath(),
+            'datos_tecnico' => [
+                'avatar' => $tec->getAvatarPath(),
+                'cedula' => $tec->cedula,
+                'correo' => $tec->email,
+            ],
             'created_by' => new AffiliationTecResource($tecaffiliation)
         ]);
     }

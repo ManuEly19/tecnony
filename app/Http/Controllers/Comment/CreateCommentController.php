@@ -28,7 +28,7 @@ class CreateCommentController extends Controller
 
         // obtenemos las solcicitudes de servicio sin comentar el cliente autenticado
         $hiring = ServiceRequestCli::where('user_id', $user->id)
-            ->where('state', 4)->get();
+            ->where('state', 5)->get();
 
         // Validamos si no existen solicitudes a comentar para este cliente
         if (!$hiring->first()) {
@@ -61,8 +61,8 @@ class CreateCommentController extends Controller
     public function create(Request $request, ServiceRequestCli $hiring)
     {
         // Validamos solo por si acaso
-        // * Si la solicitud no esta finalizada
-        if ($hiring->state != 4) {
+        // * Si la solicitud que ya estan comentada
+        if ($hiring->state != 6) {
             return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
@@ -88,7 +88,7 @@ class CreateCommentController extends Controller
         $comment->qualification = round($comment->qualification);
 
         // Cambiar el estado a comentado
-        $hiring->state = 5;
+        $hiring->state = 6;
 
         // Guardamos el estado
         $hiring->save();

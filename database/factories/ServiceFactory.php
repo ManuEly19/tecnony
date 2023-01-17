@@ -24,6 +24,14 @@ class ServiceFactory extends Factory
             'categories' => $this->faker->word(),
             'description' => $this->faker->text(255),
             'price' => $this->faker->randomFloat(2, 5, 50),
+
+            // Datos de la atencion
+            'attention_mode' => 1,
+            'attention_description' => $this->faker->sentence(5),
+
+            //Datos de el pago
+            'payment_method' => 1,
+            'payment_description' => $this->faker->sentence(10)
         ];
     }
 }

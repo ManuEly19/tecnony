@@ -60,7 +60,23 @@ class ServiceController extends Controller
             'description' => ['required', 'string', 'min:5', 'max:300'],
             'price' => ['required', 'numeric'],
             'image' => ['nullable', 'image', 'mimes:jpg,png,jpeg', 'max:1000'],
+
+            'attention_mode' => ['required', 'numeric', 'digits:1'],
+            'attention_description' => ['required', 'string', 'min:5', 'max:5000'],
+            
+            'payment_method' => ['required', 'numeric', 'digits:1'],
+            'payment_description' => ['required', 'string', 'min:5', 'max:5000'],
         ]);
+
+        // Validamos si el mode de atencion sea 1. Fisico o 2.Domicilio
+        if (($request->attention_mode < 1) or ($request->attention_mode > 2)) {
+            return $this->sendResponse(message: 'Este modo de atención no existe, ingresa uno valido');
+        }
+
+        // Validamos si el metodo de pago sea 1. Efectivo o 2.Deposito
+        if (($request->payment_method < 1) or ($request->payment_method > 2)) {
+            return $this->sendResponse(message: 'Este método de pago no existe, ingrese uno valido');
+        }
 
         // Obtenemos el servicio con el mismo nombre que el de recien ingresado
         $ser = Service::where('user_id', $user->id)
@@ -72,7 +88,7 @@ class ServiceController extends Controller
         }
 
         // Del request se obtiene unicamente los dos campos
-        $service_data = $request->only(['name','categories','description', 'price']);
+        $service_data = $request->only(['name','categories','description', 'price', 'attention_mode', 'attention_description', 'payment_method', 'payment_description']);
 
         // Se crea una nueva instancia (en memoria)
         $service = new Service($service_data);
@@ -130,10 +146,26 @@ class ServiceController extends Controller
             'description' => ['required', 'string', 'min:5', 'max:300'],
             'price' => ['required', 'numeric'],
             'image' => ['nullable', 'image', 'mimes:jpg,png,jpeg', 'max:1000'],
+
+            'attention_mode' => ['required', 'numeric', 'digits:1'],
+            'attention_description' => ['nullable', 'string', 'min:5', 'max:5000'],
+            
+            'payment_method' => ['required', 'numeric', 'digits:1'],
+            'payment_description' => ['nullable', 'string', 'min:5', 'max:5000'],
         ]);
 
+        // Validamos si el mode de atencion sea 1. Fisico o 2.Domicilio
+        if (($request->attention_mode < 1) or ($request->attention_mode > 2)) {
+            return $this->sendResponse(message: 'Este modo de atención no existe, ingresa uno valido');
+        }
+
+        // Validamos si el metodo de pago sea 1. Efectivo o 2.Deposito
+        if (($request->payment_method < 1) or ($request->payment_method > 2)) {
+            return $this->sendResponse(message: 'Este método de pago no existe, ingrese uno valido');
+        }
+
         // Del request se obtiene unicamente los dos campos
-        $service_data = $request->only(['name','categories','description', 'price']);
+        $service_data = $request->only(['name','categories','description', 'price', 'attention_mode', 'attention_description', 'payment_method', 'payment_description']);
 
         // Si del request se tiene una imagen
         if ($request->has('image')) {

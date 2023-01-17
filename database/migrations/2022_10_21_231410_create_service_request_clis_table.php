@@ -28,6 +28,9 @@ return new class extends Migration
             $table->string('serie', 100)->nullable();
             $table->text('description_problem');
 
+            // Datos para la pago
+            $table->integer('payment_method')->default(1); // 1. Fisicamente 2. Domicilio
+
             // columnas de datos de control para la tabla
             $table->string('observation', 500)->nullable();
 

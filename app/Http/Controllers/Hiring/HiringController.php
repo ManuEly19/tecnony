@@ -35,7 +35,19 @@ class HiringController extends Controller
             'brand' => ['required', 'string', 'min:1', 'max:50'],
             'serie' => ['nullable', 'string', 'min:1', 'max:100'],
             'description_problem' => ['required', 'string', 'min:5', 'max:300'],
+
+            'payment_method' => ['required', 'numeric', 'digits:1'],
         ]);
+
+        // Validamos si el metodo de pago sea 1. Efectivo o 2.Deposito
+        if (($request->payment_method < 1) or ($request->payment_method > 2)) {
+            return $this->sendResponse(message: 'Este método de pago no existe, ingrese uno valido');
+        }
+
+        // Validamos si el metodo de pago sea 1. Efectivo o 2.Deposito
+        if (($service->payment_method == 1) and ($request->payment_method != 1)) {
+            return $this->sendResponse(message: 'Este método de pago no está disponible para este servicio, ingrese uno valido');
+        }
 
         // Se crea instancia del la solicitud de afiliacion
         $hiring = new ServiceRequestCli($request->all());
@@ -87,9 +99,9 @@ class HiringController extends Controller
             return $this->sendResponse(message: 'La solicitud de servicio no existe');
         }
 
-        // valida si la solicitud tiene
-        // * en proceso, finalizado o comentado por el tecnico
-        if (($hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5)) {
+        // valida si la solicitud tiene estado en:
+        // * en proceso, finalizado, pagado o comentado
+        if (($hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5 || $hiring->state == 6)) {
             // Invoca el controlador padre para la respuesta json
             return $this->sendResponse(message: 'La solicitud de servicio fue devuelta con éxito', result: [
                 'service_request' => new HiringCliResource($hiring),
@@ -112,7 +124,7 @@ class HiringController extends Controller
     {
         // Validamos
         // * Si la solicitud no esta pendiente o cancelado
-        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5) {
+        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5 || $hiring->state == 6) {
             return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
@@ -123,10 +135,25 @@ class HiringController extends Controller
             'brand' => ['required', 'string', 'min:1', 'max:50'],
             'serie' => ['nullable', 'string', 'min:1', 'max:100'],
             'description_problem' => ['required', 'string', 'min:5', 'max:300'],
+
+            'payment_method' => ['required', 'numeric', 'digits:1'],
         ]);
 
+        // Validamos si el metodo de pago sea 1. Efectivo o 2.Deposito
+        if (($request->payment_method < 1) or ($request->payment_method > 2)) {
+            return $this->sendResponse(message: 'Este método de pago no existe, ingrese uno valido');
+        }
+
+        // Obtenemos el servicio donde proviene la contratacion
+        $service = Service::where('id', $hiring->service_id)->first();
+
+        // Validamos si el metodo de pago sea 1. Efectivo o 2.Deposito
+        if (($service->payment_method == 1) and ($request->payment_method != 1)) {
+            return $this->sendResponse(message: 'Este método de pago no está disponible para este servicio, ingrese uno valido');
+        }
+
         // Se agrega la fecha de creacion de la solicitud
-        $request->date_issue = date('Y-m-d');
+        $hiring->date_issue = date('Y-m-d');
 
         // Se actualiza la informacion del servicio
         $hiring->update($request->all());
@@ -140,7 +167,7 @@ class HiringController extends Controller
     {
         // Validamos
         // * Si la solicitud no esta pendiente o cancelado
-        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5) {
+        if ($hiring->state == 1 || $hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5 || $hiring->state == 6) {
             return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 

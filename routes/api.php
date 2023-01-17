@@ -106,6 +106,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('/approve/{hiring}', 'approve');
                 Route::post('/decline/{hiring}', 'decline');
                 Route::post('/finalize/{hiring}', 'create');
+                Route::get('/paid/{hiring}', 'paid'); 
                 // ------------------------------------
                 Route::get('/show-finalize', 'index');
                 Route::get('/show-finalize/{hiring}', 'show');

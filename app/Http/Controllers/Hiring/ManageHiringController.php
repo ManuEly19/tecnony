@@ -11,6 +11,7 @@ use App\Models\Service;
 use App\Models\ServiceRequestCli;
 use App\Models\ServiceRequestTec;
 use App\Models\User;
+use App\Notifications\ContratacionPagadaNotifi;
 use App\Notifications\RechazoDeContratacionNotifi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,7 @@ class ManageHiringController extends Controller
             ->where('user_id', $userid)->get();
 
         // Obtenemos las solcitudes de servicio hechas por cliente al tecnico
-        // * Si estan pendiente o en proceso
+        // * Si estan pendiente o en proceso y si pagar
         // * Si pertenece a uno de los servicios del tecnico autenticado
         $hirings = ServiceRequestCli::whereIn('state', [0, 3])
             ->whereIn('service_id', $serviceid)->get();
@@ -168,7 +169,7 @@ class ManageHiringController extends Controller
     {
         // Validamos solo por si acaso
         // * Si la solicitud ya ha sido finalizada
-        if ($hiring->state == 4 || $hiring->state == 5) {
+        if ($hiring->state == 4 || $hiring->state == 5 || $hiring->state == 6) {
             return $this->sendResponse(message: 'Ya finalizaste la contratación');
         }
         // * Si la solicitud no esta en proceso
@@ -264,8 +265,8 @@ class ManageHiringController extends Controller
         }
 
         // Validamos
-        // * Si la solcitud ya tiene comentarios en ese caso no se permite actualizar
-        if ($hiring->service_request_cli->state == 5) {
+        // * Si la solcitud ya tiene comentarios o ya esta pagado en ese caso no se permite actualizar
+        if ($hiring->service_request_cli->state == 5 or $hiring->service_request_cli->state == 6) {
             return $this->sendResponse(message: 'Ya no puedes actualizar esta solicitud de servicio.');
         }
 
@@ -288,7 +289,7 @@ class ManageHiringController extends Controller
         ]);
 
         // Se agrega la fecha de creacion del estado
-        $request->end_date = date('Y-m-d');
+        $hiring->end_date = date('Y-m-d');
 
         // Del request se obtiene unicamente los dos campos
         $request_data = $request->only(['diagnosis', 'incident_resolution', 'warranty', 'spare_parts', 'price_spare_parts', 'final_price']);
@@ -298,5 +299,58 @@ class ManageHiringController extends Controller
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'La solicitud de servicio actualizada con éxito');
+    }
+
+
+    // Marcar como pagado una solicitud se serivicio
+    public function paid(ServiceRequestTec $hiring)
+    {
+
+        // Se obtiene el usuario autenticado
+        $user = Auth::user();
+
+        // Enviamos mensaje de no pertenencia
+        if ($hiring->user_id != $user->id) {
+            return $this->sendResponse(message: 'Usted no es responsable de esta solicitud de servicio');
+        }
+
+        // Validamos solo por si acaso
+        // * Si la solicitud ya esta en finalizada
+        if ($hiring->state != 4) {
+            return $this->sendResponse(message: 'Esta solicitud de servicio no esta finalizada');
+        }
+
+        // Obtenemos la contratacion del lado del cleinte donde proviene la contratacion
+        $hiringCli = ServiceRequestCli::where('id', $hiring->service_request_cli_id)->first();
+
+        //Cambiamos de estado a la contratacion ddel lado del cliente a pagado
+        $hiringCli->state = 5;
+
+        // Guardamos los cambios
+        $hiringCli->update();
+
+        // Cambiar de estado a la solicitud a pagado
+        $hiring->state = 5;
+
+        // Guardar cambios
+        $hiring->save();
+
+        // Se procede a invocar la función para en envío de una notificación de rechazo
+        $this->sendNotificationPaga($hiringCli->user, $user);
+
+        // Invoca el controlador padre para la respuesta json
+        return $this->sendResponse(message: 'La solicitud de servicio ha sido pagada');
+    }
+
+    // Función para enviar notificacion para la solicitud de contrtatacion pagada
+    private function sendNotificationPaga(User $user, User $tec)
+    {
+        // https://laravel.com/docs/9.x/notifications#sending-notifications
+        $user->notify(
+            new ContratacionPagadaNotifi(
+                user_name: $user->getFullName(),
+                user_tec: $tec->getFullName()
+            )
+        );
     }
 }

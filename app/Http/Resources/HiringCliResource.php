@@ -27,6 +27,7 @@ class HiringCliResource extends JsonResource
             'brand' => $this->brand,
             'serie' => $this->serie,
             'description_problem' => $this->description_problem,
+            'payment_method' => $this->payment_method
         ];
     }
 }

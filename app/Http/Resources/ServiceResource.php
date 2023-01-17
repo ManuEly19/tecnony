@@ -24,6 +24,13 @@ class ServiceResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'image' => $this->getImagePath(),
+
+            'attention_mode' => $this->attention_mode,
+            'attention_description' => $this->attention_description,
+
+            'payment_method' => $this->payment_method,
+            'payment_description' => $this->payment_description,
+
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

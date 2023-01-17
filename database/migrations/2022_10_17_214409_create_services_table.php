@@ -24,6 +24,14 @@ return new class extends Migration
             $table->float('price', 8, 2);
             $table->boolean('state')->default(true);
 
+            // Datos para la atencion
+            $table->integer('attention_mode')->default(1); // 1. Fisicamente 2. Domicilio
+            $table->text('attention_description')->nullable();
+
+            // Datos para la pago
+            $table->integer('payment_method')->default(1); // 1. Fisicamente 2. Domicilio
+            $table->text('payment_description')->nullable();
+
             // REALACION
             // Relación de uno a mucho
             // Relacion con un usuario tecnico
