@@ -178,7 +178,7 @@ class HiringController extends Controller
         if ($hiring_state == 0) {
             // Cambia el estado a cancela
             $hiring->state = 2;
-            $message = 'cancelada ';
+            $message = 'cancelada';
         }
 
         // Cambiamos de cancelado a pendiente
