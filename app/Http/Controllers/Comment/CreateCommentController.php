@@ -62,7 +62,7 @@ class CreateCommentController extends Controller
     {
         // Validamos solo por si acaso
         // * Si la solicitud que ya estan comentada
-        if ($hiring->state != 6) {
+        if ($hiring->state != 5) {
             return $this->sendResponse(message: 'Esta acción no está autorizada');
         }
 
