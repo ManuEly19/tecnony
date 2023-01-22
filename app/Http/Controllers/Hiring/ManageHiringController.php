@@ -60,7 +60,7 @@ class ManageHiringController extends Controller
 
     // Mostrar las solicitudes de servicio hechas por el cliente a detalle
     public function showone(ServiceRequestCli $hiring)
-    {hhhh
+    {
         // Se obtiene el usuario autenticado
         $user = Auth::user();
 
