@@ -317,7 +317,7 @@ class ManageHiringController extends Controller
         // Validamos solo por si acaso
         // * Si la solicitud ya esta en finalizada
         if ($hiring->state != 4) {
-            return $this->sendResponse(message: 'Esta solicitud de servicio no esta finalizada');
+            return $this->sendResponse(message: 'Esta solicitud de servicio ya esta pagada');
         }
 
         // Obtenemos la contratacion del lado del cleinte donde proviene la contratacion
