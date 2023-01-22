@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Hiring;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AffiliationTecResource;
 use App\Http\Resources\HiringCliResource;
 use App\Http\Resources\HiringTecResource;
 use App\Http\Resources\ProfileResource;
@@ -107,7 +108,12 @@ class HiringController extends Controller
                 'service_request' => new HiringCliResource($hiring),
                 'attention' => new HiringTecResource($hiring->service_request_tec),
                 'of_service' => new ServiceResource($hiring->service),
-                'created_by' => new ProfileResource($hiring->service->user)
+                'datos_tecnico' => [
+                    'avatar' => $hiring->service->user->getAvatarPath(),
+                    'cedula' => $hiring->service->user->cedula,
+                    'correo' => $hiring->service->user->email,
+                ],
+                'created_by' => new AffiliationTecResource($hiring->service->user->affiliation_tec)
             ]);
         }
 
@@ -115,7 +121,12 @@ class HiringController extends Controller
         return $this->sendResponse(message: 'La solicitud de servicio aún no ha sido atendida', result: [
             'service_request' => new HiringCliResource($hiring),
             'of_service' => new ServiceResource($hiring->service),
-            'created_by' => new ProfileResource($hiring->service->user)
+            'datos_tecnico' => [
+                'avatar' => $hiring->service->user->getAvatarPath(),
+                'cedula' => $hiring->service->user->cedula,
+                'correo' => $hiring->service->user->email,
+            ],
+            'created_by' => new AffiliationTecResource($hiring->service->user->affiliation_tec)
         ]);
     }
 

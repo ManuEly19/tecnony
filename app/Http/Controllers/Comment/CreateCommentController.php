@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Comment;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AffiliationTecResource;
 use App\Http\Resources\HiringCliResource;
 use App\Http\Resources\HiringTecResource;
 use App\Http\Resources\ProfileResource;
@@ -53,7 +54,12 @@ class CreateCommentController extends Controller
         return $this->sendResponse(message: 'La solicitud de servicio atendida fue devuelta con éxito', result: [
             'service_request' => new HiringCliResource($hiring),
             'attention' => new HiringTecResource($hiring->service_request_tec),
-            'attended_by' => new ProfileResource($hiring->service_request_tec->user)
+            'datos_tecnico' => [
+                'avatar' => $hiring->service_request_tec->user->getAvatarPath(),
+                'cedula' => $hiring->service_request_tec->user->cedula,
+                'correo' => $hiring->service_request_tec->user->email,
+            ],
+            'attended_by' => new AffiliationTecResource($hiring->service_request_tec->user->affiliation_tec),
         ]);
     }
 
