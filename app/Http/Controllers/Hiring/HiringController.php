@@ -141,13 +141,13 @@ class HiringController extends Controller
 
         // Validación de los datos de entrada
         $request->validate([
-            'device' => ['required', 'string', 'min:1', 'max:50'],
-            'model' => ['required', 'string', 'min:1', 'max:50'],
-            'brand' => ['required', 'string', 'min:1', 'max:50'],
+            'device' => ['nullable', 'string', 'min:1', 'max:50'],
+            'model' => ['nullable', 'string', 'min:1', 'max:50'],
+            'brand' => ['nullable', 'string', 'min:1', 'max:50'],
             'serie' => ['nullable', 'string', 'min:1', 'max:100'],
-            'description_problem' => ['required', 'string', 'min:5', 'max:300'],
+            'description_problem' => ['nullable', 'string', 'min:5', 'max:300'],
 
-            'payment_method' => ['required', 'numeric', 'digits:1'],
+            'payment_method' => ['nullable', 'numeric', 'digits:1'],
         ]);
 
         // Validamos si el metodo de pago sea 1. Efectivo o 2.Deposito

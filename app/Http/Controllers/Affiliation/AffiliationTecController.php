@@ -74,7 +74,7 @@ class AffiliationTecController extends Controller
             'local_address' => ['nullable', 'string', 'max:300'],
             'confirmation' => ['required', 'boolean'],
 
-            'account_number' => ['required', 'numeric', 'digits:10'],
+            'account_number' => ['required', 'numeric', 'digits:10', 'unique:affiliation_tecs'],
             'account_type' => ['required', 'string', 'max:20'],
             'banking_entity' => ['required', 'string', 'max:50'],
             'documento' => ['required', 'file', 'mimes:pdf', 'max:5000'],
@@ -133,17 +133,17 @@ class AffiliationTecController extends Controller
 
         // Validación de los datos de entrada
         $request->validate([
-            'profession' => ['required', 'string', 'min:3', 'max:50'],
-            'specialization' => ['required', 'string', 'min:3', 'max:50'],
-            'work_phone' => ['required', 'numeric', 'digits:10'],
+            'profession' => ['nullable', 'string', 'min:3', 'max:50'],
+            'specialization' => ['nullable', 'string', 'min:3', 'max:50'],
+            'work_phone' => ['nullable', 'numeric', 'digits:10'],
             'attention_schedule' => ['nullable', 'string', 'max:300'],
             'local_name' => ['nullable', 'string', 'max:50'],
             'local_address' => ['nullable', 'string', 'max:300'],
-            'confirmation' => ['required', 'boolean'],
+            'confirmation' => ['nullable', 'boolean'],
 
-            'account_number' => ['required', 'numeric', 'digits:10'],
-            'account_type' => ['required', 'string', 'max:20'],
-            'banking_entity' => ['required', 'string', 'max:50'],
+            'account_number' => ['nullable', 'numeric', 'digits:10', 'unique:affiliation_tecs'],
+            'account_type' => ['nullable', 'string', 'max:20'],
+            'banking_entity' => ['nullable', 'string', 'max:50'],
             'documento' => ['nullable', 'file', 'mimes:pdf', 'max:5000'],
         ]);
 

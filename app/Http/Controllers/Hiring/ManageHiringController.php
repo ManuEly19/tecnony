@@ -278,13 +278,13 @@ class ManageHiringController extends Controller
 
         // Validación de los datos de entrada
         $request->validate([
-            'diagnosis' => ['required', 'string', 'min:5', 'max:500'],
+            'diagnosis' => ['nullable', 'string', 'min:5', 'max:500'],
 
-            'incident_resolution' => ['required', 'string', 'min:5', 'max:500'],
+            'incident_resolution' => ['nullable', 'string', 'min:5', 'max:500'],
             'warranty' => ['nullable', 'string', 'min:5', 'max:300'],
             'spare_parts' => ['nullable', 'string', 'min:5', 'max:500'],
             'price_spare_parts' => ['nullable', 'numeric'],
-            'final_price' => ['required', 'numeric'],
+            'final_price' => ['nullable', 'numeric'],
 
         ]);
 
