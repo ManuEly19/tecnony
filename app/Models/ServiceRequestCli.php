@@ -53,7 +53,7 @@ class ServiceRequestCli extends Model
         // se verifica no si existe una iamgen
         if (!$this->image) {
             // asignarle el path de una imagen por defecto
-            return 'No existe un comprovante de pago';
+            return 'No existe un comprobante de pago';
         }
         // retornar el path de la imagen registrada en la BDD
         return $this->image->path;
