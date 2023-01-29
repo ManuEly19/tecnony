@@ -12,12 +12,12 @@ class AvatarController extends Controller
     {
         // Validación de los datos de entrada
         $request -> validate([
-            'image' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:1000'],
+            'image' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:10000'],
         ]);
 
         // Se obtiene el usario que esta haciendo el Request
         $user = $request->user();
-        // Se invoca la función del helper
+
         // Pasando a la función la imagen del request
         $image = $request['image'];
 

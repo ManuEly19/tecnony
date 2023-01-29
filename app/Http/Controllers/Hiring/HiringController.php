@@ -10,6 +10,9 @@ use App\Http\Resources\ProfileResource;
 use App\Http\Resources\ServiceResource;
 use App\Models\Service;
 use App\Models\ServiceRequestCli;
+use App\Models\User;
+use App\Notifications\NuevoComprobanteDePagoNotifi;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -105,6 +108,7 @@ class HiringController extends Controller
         if (($hiring->state == 3 || $hiring->state == 4 || $hiring->state == 5 || $hiring->state == 6)) {
             // Invoca el controlador padre para la respuesta json
             return $this->sendResponse(message: 'La solicitud de servicio fue devuelta con éxito', result: [
+                'comprobante' => $hiring->getImagePath(),
                 'service_request' => new HiringCliResource($hiring),
                 'attention' => new HiringTecResource($hiring->service_request_tec),
                 'of_service' => new ServiceResource($hiring->service),
@@ -207,16 +211,53 @@ class HiringController extends Controller
     }
 
     // Subir el comprobante de pago de un servicio finalizado
-    public function uploadReceipt(ServiceRequestCli $hiring)
+    public function uploadReceipt(Request $request, ServiceRequestCli $hiring)
     {
+        // Se obtiene el usuario autenticado
+        $user = Auth::user();
+
+        // validar propiedad
+        if ($hiring->user_id != $user->id) {
+            return $this->sendResponse(message: 'Esta contratación de servicio no le pertenece.');
+        }
+
         // Validamos si el contrato no esta finalizado
-        if ($hiring->state != 4 ){
+        if ($hiring->state != 4) {
             return $this->sendResponse(message: 'El servicio contratado aún no está finalizado.');
         }
 
-        // validar propiedad
-        // enviar notificacion
-        
+        // Validación de los datos de entrada
+        $request->validate([
+            'image' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:10000'],
+        ]);
 
+        // Pasando a la función la imagen del request
+        $image = $request['image'];
+
+        $con = Cloudinary::upload($image->getRealPath(), ["carpeta" => "comprobantePago"]);
+
+        $direciones = $con->getSecurePath();
+
+        // Se hace uso del Trait para asociar esta imagen con el modelo
+        $hiring->attachImage($direciones);
+
+        // Se procede a invocar la función para en envío de la notificación
+        $this->sendNotificationComprobante($user, $hiring->service_request_tec->user, $hiring);
+
+        return $this->sendResponse('Comprobante de pago subido con éxito');
+    }
+
+    // Función para enviar notificacion para la el comprobante de pago
+    private function sendNotificationComprobante(User $user, User $tec, ServiceRequestCli $hiring)
+    {
+        // https://laravel.com/docs/9.x/notifications#sending-notifications
+        $user->notify(
+            new NuevoComprobanteDePagoNotifi(
+                user_cli: $user->getFullName(),
+                device: $hiring->device,
+                model: $hiring->model,
+                user_tec: $tec->getFullName()
+            )
+        );
     }
 }
