@@ -38,7 +38,7 @@ class AffiliationTec extends Model
     {
         // se verifica no si existe un archivo
         if (!$this->file) {
-            // asignarle el path de una imagen por defecto
+            // asignarle el path de una archivo por defecto
             return 'No tiene archivo';
         }
         // retornar el path del archivo registrado en la BD

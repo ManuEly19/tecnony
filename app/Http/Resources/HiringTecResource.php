@@ -17,10 +17,12 @@ class HiringTecResource extends JsonResource
         // Se procede a definir la estructura de la respuesta de la petición
         return [
             'id' => $this->id,
+            // cliente y dispositivo
+            'cliente' => $this->service_request_cli->user->getFullName(),
+            'device' => $this->service_request_cli->device,
             // respuesta generales
             'state' => $this->state,
             'diagnosis' => $this->diagnosis,
-
             // respuesta de datos de finalizacion del servicio
             'incident_resolution' => $this->incident_resolution,
             'warranty' => $this->warranty,

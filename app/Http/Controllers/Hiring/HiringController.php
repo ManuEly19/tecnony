@@ -205,4 +205,18 @@ class HiringController extends Controller
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: "La solicitud de servicio ha sido $message con éxito");
     }
+
+    // Subir el comprobante de pago de un servicio finalizado
+    public function uploadReceipt(ServiceRequestCli $hiring)
+    {
+        // Validamos si el contrato no esta finalizado
+        if ($hiring->state != 4 ){
+            return $this->sendResponse(message: 'El servicio contratado aún no está finalizado.');
+        }
+
+        // validar propiedad
+        // enviar notificacion
+        
+
+    }
 }

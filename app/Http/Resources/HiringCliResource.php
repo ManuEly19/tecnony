@@ -17,17 +17,18 @@ class HiringCliResource extends JsonResource
          // Se procede a definir la estructura de la respuesta de la petición
         return [
             'id' => $this->id,
+            // Nombre del cliente
+            'cliente' => $this->user->getFullName(),
             // respuesta generales
             'state' => $this->state,
-            'date_issue' => $this->date_issue,
-
             // respuesta de datos del dispositivo
             'device' => $this->device,
             'model' => $this->model,
             'brand' => $this->brand,
             'serie' => $this->serie,
             'description_problem' => $this->description_problem,
-            'payment_method' => $this->payment_method
+            'payment_method' => $this->payment_method,
+            'date_issue' => $this->date_issue
         ];
     }
 }
