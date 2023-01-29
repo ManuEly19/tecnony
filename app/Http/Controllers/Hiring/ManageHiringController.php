@@ -244,6 +244,7 @@ class ManageHiringController extends Controller
 
         // Invoca el controlador padre para la respuesta json
         return $this->sendResponse(message: 'La solicitud de servicio atendida fue devuelta con éxito', result: [
+            'comprobante' => $hiring->service_request_cli->getImagePath(),
             'service_request' => new HiringCliResource($hiring->service_request_cli),
             'attention' => new HiringTecResource($hiring),
             'of_service' => new ServiceResource($hiring->service_request_cli->service),
