@@ -226,6 +226,11 @@ class HiringController extends Controller
             return $this->sendResponse(message: 'El servicio contratado aún no está finalizado.');
         }
 
+        // Validamos si la solicitud de contrato tiene el metodo de pago 1: Efectivo
+        if ($hiring->payment_method == 1) {
+            return $this->sendResponse(message: 'Esta solicitud de contrato tiene el método de pago en efectivo, no es necesario subir ningún comprobante de pago.');
+        }
+
         // Validación de los datos de entrada
         $request->validate([
             'image' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:10000'],
