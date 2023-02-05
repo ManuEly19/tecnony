@@ -46,12 +46,13 @@ Saludos,<br>
 {{-- Subcopy --}}
 @isset($actionText)
 <x-slot:subcopy>
-"Si tiene problemas para hacer clic en el \":actionText\" boton, copia y pega la siguiente URL\n".
-'en su navegador web:',
-[
-    'actionText' => $actionText,
-]
-<span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
+@lang(
+    "Si tiene problemas para hacer clic en el \":actionText\" boton, copia y pega la siguiente URL\n".
+    'en su navegador web:',
+    [
+        'actionText' => $actionText,
+    ]
+) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 </x-slot:subcopy>
 @endisset
 </x-mail::message>
