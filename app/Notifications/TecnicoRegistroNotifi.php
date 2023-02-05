@@ -32,7 +32,7 @@ class TecnicoRegistroNotifi extends Notification
         public function toMail(mixed $notifiable)
         {
             return (new MailMessage)
-                ->greeting('Registro completo!')
+                ->greeting('Registro completo')
                 ->line("Bienvenido $this->user_name")
                 ->line("Tú has sido registrado en Tecnony.")
                 ->line("Detalles del registro: ")

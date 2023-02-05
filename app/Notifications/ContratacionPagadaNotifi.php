@@ -32,7 +32,7 @@ class ContratacionPagadaNotifi extends Notification
     public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
-            ->greeting('Solicitud de contratación pagada!')
+            ->greeting('Solicitud de contratación pagada')
             ->line("Estimado $this->user_name")
             ->line("De parte del técnico $this->user_tec, te doy las gracias por contratar nuestros servicios.")
             ->line("Te invitamos a ingresar a Tecnony y calificar el servicio prestado con el objetivo de mejorar la calidad de nuestros servicios.");

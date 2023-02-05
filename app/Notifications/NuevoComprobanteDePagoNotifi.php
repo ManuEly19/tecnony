@@ -35,7 +35,7 @@ class NuevoComprobanteDePagoNotifi extends Notification
     public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
-            ->greeting('Comprobante de pago recibido!')
+            ->greeting('Comprobante de pago recibido')
             ->line("Estimado técnico $this->user_tec")
             ->line("De parte del cliente $this->user_cli ha recibido un comprobante de pago por el servicio realizado al:")
             ->line("Dispositivo: $this->device")

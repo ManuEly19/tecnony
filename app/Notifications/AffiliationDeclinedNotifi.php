@@ -31,7 +31,7 @@ class AffiliationDeclinedNotifi extends Notification
     public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
-            ->greeting('Afiliación Rechazada!')
+            ->greeting('Afiliación Rechazada')
             ->line("Usuario $this->user_name")
             ->line("Su solicitud de afiliación ha sido rechazada.")
             ->line("Debido a las siguientes observaciones:")

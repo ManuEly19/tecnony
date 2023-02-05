@@ -33,7 +33,7 @@ class RechazoDeContratacionNotifi extends Notification
     public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
-            ->greeting('Solicitud de contratación rechazada!')
+            ->greeting('Solicitud de contratación rechazada')
             ->line("Estimado $this->user_name")
             ->line("De parte del técnico $this->user_tec temo notificarle que su solicitud de contratación a sido rechazada.")
             ->line("Por el motivo de: ")

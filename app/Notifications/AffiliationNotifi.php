@@ -29,7 +29,7 @@ class AffiliationNotifi extends Notification
     public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
-            ->greeting('Afiliación Aprobada!')
+            ->greeting('Afiliación Aprobada')
             ->line("Felicitaciones $this->user_name")
             ->line("Su solicitud de afiliación ha sido aprobada.")
             ->line("Ahora ya eres parte de Tecnony  ")

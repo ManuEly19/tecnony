@@ -29,7 +29,7 @@ class TecnicoHabilitadoNotifi extends Notification
     public function toMail(mixed $notifiable)
     {
         return (new MailMessage)
-            ->greeting('Has sido habilitado!')
+            ->greeting('Has sido habilitado')
             ->line("Estimado  $this->user_name")
             ->line("Usted ha sido habilitado en Tecnony.")
             ->line("Puede iniciar sesión en nuestro sistema haciendo clic en el siguiente botón.")
