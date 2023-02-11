@@ -29,9 +29,22 @@ class S1AdminTest extends TestCase
         $test_request->assertStatus(200);
     } */
 
-    // - [ ]  forgo-passwork
+    // - Recuperación de contraseña
+    public function test_recuperar_contraseña()
+    {
+        $test_request = $this->post('/api/v1/forgot-password', [
+            "email" => "chance12@example.org",
+        ]);
+        $test_request->assertStatus(200);
+    }
 
-    // - [ ]  Cerrar sesion
+    // - Cerrar sesion
+    public function test_cerrar_sesion()
+    {
+        $user = User::factory()->make(['role_id' => 1]);
+        $test_request = $this->actingAs($user)->post('/api/v1/logout');
+        $test_request->assertStatus(200);
+    }
 
     // ⚪ Modificación de perfil de usuario.
     // - [*]  Modificar de perfil
@@ -52,7 +65,16 @@ class S1AdminTest extends TestCase
         $test_request = $this->actingAs($user)->post('/api/v1/profile/', $profile);
         $test_request->assertStatus(200);
     } */
-    // - [ ]  Modificar avatar
+
+    // - Modificar avatar
+    public function test_modificacion_de_avatar() //MODIFICAR
+    {
+        $user = User::factory()->make(['role_id' => 1]);
+        $avatar = [
+        ];
+        $test_request = $this->actingAs($user)->post('/api/v1/profile/avatar', $avatar);
+        $test_request->assertStatus(200);
+    }
 
     // 🟢 Gestión de solicitudes de afiliación.
     // - [*] Visualizar solicitud de afiliación
@@ -62,11 +84,35 @@ class S1AdminTest extends TestCase
         $test_request = $this->actingAs($user)->get('/api/v1/manage/affiliations');
         $test_request->assertStatus(200);
     } */
-    // - [ ]  Visualizar solicitud de afiliación seleccionada
-    // - [ ]  Aceptación de solicitud de afiliación
+
+    // - Visualizar solicitud de afiliación seleccionada
+    public function test_visualizacion_de_solicitudes_de_afiliacion_seleccionada()
+    {
+        $user = User::where('id', 1)->first();
+        $test_request = $this->actingAs($user)->get(sprintf('/api/v1/manage/affiliation/%u', 14));
+        $test_request->assertStatus(200);
+    }
+
+    // - Aceptación de solicitud de afiliación ****
+    public function test_aceptacion_de_solicitud_de_afiliacion()
+    {
+        $user = User::where('id', 1)->first();
+        $answer = [
+            "state" => 2,
+            "observation" => "La información esta en orden",
+        ];
+        $test_request = $this->actingAs($user)->post(sprintf('/api/v1/manage/affiliation/create/%u', 14), $answer);
+        $test_request->assertStatus(200);
+    }
 
     // 🟢 Visualización de comentarios, sugerencias y calificación de los técnicos.
-    // - [ ]  Visualizar técnicos
+    // - Visualizar técnicos
+    public function test_visualizar_tecnicos()
+    {
+        $user = User::where('id', 1)->first();
+        $test_request = $this->actingAs($user)->get('/api/v1/manage-tec');
+        $test_request->assertStatus(200);
+    }
     // - [ ]  visualizar los comentarios de un técnico seleccionado
 /*     public function test_visualizacion_de_comentarios_de_un_tecnico()
     {
@@ -74,6 +120,16 @@ class S1AdminTest extends TestCase
         $test_request = $this->actingAs($user)->get(sprintf('/api/v1/manage-tec/show/%u', 6));
         $test_request->assertStatus(200);
     } */
-    // - [ ]  Activación o desactivación de técnico
+
+    // - Activación o desactivación de técnico
+    public function test_activacion_o_desactivacion_de_tecnicos()
+    {
+        $user = User::where('id', 1)->first();
+        $change = [
+            "observation" => "Tecnico desactivado",
+        ];
+        $test_request = $this->actingAs($user)->post(sprintf('/api/v1/manage-tec/change-state/%u', 24), $change); //INGRESAR UNA ID DE UN TECNICO
+        $test_request->assertStatus(200);
+    }
 }
 
