@@ -19,7 +19,7 @@ class GeneralTest extends TestCase
     // ⚪ General | 🟢 Admin | 🔵 Técnico | 🟣 Cliente
 
     // ⚪ 1. Iniciar sesión, cerrar sesión y recuperar contraseña
-    // - Iniciar sesión nuevodgt
+    // - Iniciar sesión nuevo
     public function test_inicio_de_sesion()
     {
         $test_request = $this->post('/api/v1/login', [
