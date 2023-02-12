@@ -90,7 +90,7 @@ class S3ClienteTest extends TestCase
     public function test_visualizacion_contratacion_seleccionada()
     {
         $user = User::where('id', 33)->first();
-        $test_request = $this->actingAs($user)->get(sprintf('/api/v1/hiring/show/%u', 61)); //INGRESAR UNA ID
+        $test_request = $this->actingAs($user)->get(sprintf('/api/v1/hiring/show/%u', 61));
         $test_request->assertStatus(200);
     }
 
@@ -106,15 +106,15 @@ class S3ClienteTest extends TestCase
             "description_problem" => "Necesito el formateo completo",
             'payment_method' => 1
         ];
-        $test_request = $this->actingAs($user)->post(sprintf('/api/v1/hiring/update/%u', 61), $hiring); //INGRESAR UNA ID
+        $test_request = $this->actingAs($user)->post(sprintf('/api/v1/hiring/update/%u', 61), $hiring);
         $test_request->assertStatus(200);
     }
-    
+
     // - Cancelar una solicitud de contratación.
     public function test_cancelar_una_solicitud_de_contratacion ()
     {
         $user = User::where('id', 33)->first();
-        $test_request = $this->actingAs($user)->get(sprintf('/api/v1/hiring/cancel/%u', 61)); //INGRESAR UNA ID
+        $test_request = $this->actingAs($user)->get(sprintf('/api/v1/hiring/cancel/%u', 61));
         $test_request->assertStatus(200);
     }
     // 🟣 Comentar, sugerir y calificar servicios.

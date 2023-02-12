@@ -67,7 +67,7 @@ class S1AdminTest extends TestCase
     } */
 
     // - Modificar avatar
-    public function test_modificacion_de_avatar() //MODIFICAR
+    public function test_modificacion_de_avatar()
     {
         $user = User::factory()->make(['role_id' => 1]);
         $avatar = [
@@ -93,7 +93,7 @@ class S1AdminTest extends TestCase
         $test_request->assertStatus(200);
     }
 
-    // - Aceptación de solicitud de afiliación ****
+    // - Aceptación de solicitud de afiliación
     public function test_aceptacion_de_solicitud_de_afiliacion()
     {
         $user = User::where('id', 1)->first();
@@ -128,7 +128,7 @@ class S1AdminTest extends TestCase
         $change = [
             "observation" => "Tecnico desactivado",
         ];
-        $test_request = $this->actingAs($user)->post(sprintf('/api/v1/manage-tec/change-state/%u', 24), $change); //INGRESAR UNA ID DE UN TECNICO
+        $test_request = $this->actingAs($user)->post(sprintf('/api/v1/manage-tec/change-state/%u', 24), $change);
         $test_request->assertStatus(200);
     }
 }
