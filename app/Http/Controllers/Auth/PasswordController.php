@@ -44,7 +44,7 @@ class PasswordController extends Controller
         $frontend_url = env('APP_FRONTEND_URL');
         $token = $request->route('token');
         $email = $request->email;
-        $url = "$frontend_url/login/reset_password/$token/$email"; // cambio de URL para el reset mas rapido y directo
+        $url = "$frontend_url/landing/reset_password/$token/$email"; // cambio de URL para el reset mas rapido y directo
 
         // Creamos una vista de correo, para redirecionar al frontend
         return (new MailMessage)
