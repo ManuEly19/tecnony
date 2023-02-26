@@ -1,7 +1,11 @@
-# tecnony
-# 💫 About Me:
-Actualmente estoy trabajando como desarrollo de software<br>Estoy buscando colaborar como desarrollador web<br>Actualmente estoy aprendiendo desarrollo Full-Stack
-
+![Image text](https://res.cloudinary.com/dlzylh5f6/image/upload/v1675559741/logo/Group_135_ixamwq.png)
+---
+- [ ] Descripcion general
+- [ ] Descripcion del contenido
+- [ ] Referenciar el video
+- [ ] Referenciar la page de notion
+- [ ] Referenciar las rame del proyecto
+- [ ] Ubicar la el zip para facilitar el consumo y explicar como usarlo
 
 ## 🌐 Socials:
 [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/ManuEly19 #5883) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/manuely19) 
