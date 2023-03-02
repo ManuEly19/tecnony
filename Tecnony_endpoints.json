@@ -1,0 +1,2290 @@
+{
+    "info": {
+        "name": "Endpoints",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "General",
+            "item": [
+                {
+                    "name": "Iniciar sesión, cerrar sesión y recuperar contraseña",
+                    "item": [
+                        {
+                            "name": "login",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/login",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "login"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"email\":\"juanca2@example.net\",\n  \"password\":\"happySad1*\"\n}"
+                                }
+                            }
+                        },
+                        {
+                            "name": "logout",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/logout",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "logout"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "402|xlLI0nOR6dPaQBLGgUq1l4faIdSUeNCUnQXNsp5Y",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "forgot-password",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/forgot-password",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "forgot-password"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"email\":\"chance12@example.org\"\n}"
+                                }
+                            }
+                        },
+                        {
+                            "name": "reset-password",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/reset-password",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "reset-password"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"token\":\"32e303f2f9cd6f34754ea9ad02db79758b5f9991e489939f341367a6a760a484\",\n  \"email\":\"chance12@example.org\",\n  \"password\":\"happySad1*\",\n  \"password_confirmation\":\"happySad1*\"\n}"
+                                }
+                            }
+                        },
+                        {
+                            "name": "update-password",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/update-password",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "update-password"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"password\":\"happySad1*\",\n  \"password_confirmation\":\"happySad1*\"\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "130|6md1W35nn7qMNx4wttnplfYmH0Z7TxZ47364Jtcu",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Modificar perfil de usuario",
+                    "item": [
+                        {
+                            "name": "profile",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/profile",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "profile"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"username\": \"Crystel Morar DVM\",\n  \"first_name\": \"Crystel\",\n  \"last_name\": \"Morar\",\n  \"cedula\": \"1737882525\",\n  \"email\": \"price.darlene@example.net\",\n  \"birthdate\": \"2000-12-18\",\n  \"home_phone\": \"023945944\",\n  \"personal_phone\": \"0926998183\",\n  \"address\": \"258 Shane Plaza Apt. 508\"\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "244|Pvr7ZkgDb1kbWHya5eB6xWXqyX4gPBphOxrSepcl",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "profile",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/profile",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "profile"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"username\": \"juanca12\",\n  \"first_name\": \"juan\",\n  \"last_name\": \"jaramillo\",\n  \"cedula\": \"1729645002\",\n  \"email\": \"juanca2@example.net\",\n  \"birthdate\": \"2000-08-15\",\n  \"home_phone\": \"0288869\",\n  \"personal_phone\": \"0988002598\",\n  \"address\": \"489 Caleigh Oval Apt. 35\"\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "244|Pvr7ZkgDb1kbWHya5eB6xWXqyX4gPBphOxrSepcl",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "profile/avatar",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/profile/avatar",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "profile",
+                                        "avatar"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image",
+                                            "src": "c:\\Users\\manue\\Downloads\\6380434.png",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "131|lWvm25JuYEmjs4GgvgCUFofftgSDXbDqq83tSxzi",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Administrador",
+            "item": [
+                {
+                    "name": "Gestión de solicitudes de afiliación",
+                    "item": [
+                        {
+                            "name": "manage/affiliation",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage/affiliation",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage",
+                                        "affiliation"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage/affiliation/{id} ",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage/affiliation/28",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage",
+                                        "affiliation",
+                                        "28"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage/affiliation/create/{id}  ",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage/affiliation/create/29",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage",
+                                        "affiliation",
+                                        "create",
+                                        "29"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"state\": 3,\n  \"observation\": \"Es obligatorio subir un documento que evidencie sus conocimientos, actualice el formulario de afiliación.\"\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage/affiliations",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage/affiliations",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage",
+                                        "affiliations"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage/affiliation/show/{id} ",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage/affiliation/show/4",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage",
+                                        "affiliation",
+                                        "show",
+                                        "4"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage/affiliation/update/{id} ",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage/affiliation/update/5",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage",
+                                        "affiliation",
+                                        "update",
+                                        "5"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"state\": 3,\n  \"observation\": \"Solicitud de afiliacion comprometida\"\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Visualización de comentarios, sugerencias y calificación de los técnicos",
+                    "item": [
+                        {
+                            "name": "manage-tec",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-tec",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-tec"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-tec/show/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-tec/show/6",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-tec",
+                                        "show",
+                                        "6"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-tec/change-state/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-tec/change-state/8",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-tec",
+                                        "change-state",
+                                        "8"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"observation\":\"Los comentarios y calificaciones son muy negativas\"\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "294|MPN7BPysIxwncGLPcmCI5hqNYmNteDV42Zr3mBeR",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Técnico",
+            "item": [
+                {
+                    "name": "Registro de usuario para el perfil técnico",
+                    "item": [
+                        {
+                            "name": "register-tecnico",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/register-tecnico",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "register-tecnico"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"username\": \"Tecito25\",\n  \"first_name\": \"Merlon\",\n  \"last_name\": \"Mendez\",\n  \"personal_phone\": \"0965648534\",\n  \"address\": \"453 Chillogallo Oval Apt. 7\",\n  \n  \"cedula\": \"1724837542\",\n  \"email\": \"tecito25@gmail.com\",\n  \n  \"birthdate\": \"1999-08-15\",\n  \"home_phone\": \"0273532\",\n  \n  \"password\":\"happySad1*\",\n  \"password_confirmation\":\"happySad1*\"\n}"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Solicitación de afiliación",
+                    "item": [
+                        {
+                            "name": "affiliation/show",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/affiliation/show",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "affiliation",
+                                        "show"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "299|8XQgMT8zBRAgZeGoWWGrGjjEPDF1vjSmurmWDaYr",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "affiliation/create",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/affiliation/create",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "affiliation",
+                                        "create"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "profession",
+                                            "value": "Ingeniero en sistemas",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "specialization",
+                                            "value": "En sistemas informaticos",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "work_phone",
+                                            "value": "0988675944",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "attention_schedule",
+                                            "value": "De 8 de la mañana hasta las 4 de la tarde",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "local_name",
+                                            "value": "Marquitos",
+                                            "disabled": true,
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "local_address",
+                                            "value": "Chilibulo",
+                                            "disabled": true,
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "confirmation",
+                                            "value": "1",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "account_number",
+                                            "value": "2974836746",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "account_type",
+                                            "value": "Corriente",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "banking_entity",
+                                            "value": "BANCO DEL PICHINCHA",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "documento",
+                                            "src": "c:\\Users\\manue\\Downloads\\Curriculum.pdf",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "362|gZACMAXhG2SojItuQuDcWkUPQPFSqYqsjNKdy819",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "affiliation/update",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/affiliation/update",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "affiliation",
+                                        "update"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "profession",
+                                            "value": "Ingeniero en sistemas",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "specialization",
+                                            "value": "En sistemas informaticos",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "work_phone",
+                                            "value": "0988675949",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "attention_schedule",
+                                            "value": "De 8 de la mañana hasta las 4 de la tarde",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "local_name",
+                                            "value": "Marquitos",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "local_address",
+                                            "value": "Chilibulo",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "confirmation",
+                                            "value": "1",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "account_number",
+                                            "value": "2974836748",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "account_type",
+                                            "value": "Corriente",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "banking_entity",
+                                            "value": "BANCO DEL PICHINCHA",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "documento",
+                                            "src": "g:\\Mi unidad\\Hoja de vida y certificados\\Manuel Auqui .pdf",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "299|8XQgMT8zBRAgZeGoWWGrGjjEPDF1vjSmurmWDaYr",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Gestión de servicios",
+                    "item": [
+                        {
+                            "name": "service",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/service",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "service"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "455|AsscDSsBVVdxDZIV8Dne7K9qh2RjmQU0bl4a81m7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "service/create",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/service/create",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "service",
+                                        "create"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "name",
+                                            "value": "Instalacion de discos",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "categories",
+                                            "value": "software",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "description",
+                                            "value": "Se instala programas",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "price",
+                                            "value": "5.00",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "attention_mode",
+                                            "value": "1",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "attention_description",
+                                            "value": "Solo poseemos atencion en el mismo local, necesitamos que se hacerque al siguiente local en chillogallo para poder atender a su solicitud. las horas de atencion es de 8 de la mañana hasta las 4 de la tarde.",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "payment_method",
+                                            "value": "2",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "payment_description",
+                                            "value": "Poseemos pagos en esfectivo y depositos, los datos del la cuenta esta ajuntada para realizar el pago, porfavor enviar el comprobande de pago por WhastApp",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "image",
+                                            "src": "c:\\Users\\manue\\Downloads\\domina tu pc.jpg",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "362|gZACMAXhG2SojItuQuDcWkUPQPFSqYqsjNKdy819",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "service/show/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/service/show/1",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "service",
+                                        "show",
+                                        "1"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "service/update/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/service/update/32",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "service",
+                                        "update",
+                                        "32"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "name",
+                                            "value": "Instalacion de software",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "categories",
+                                            "value": "software",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "description",
+                                            "value": "se instala programas",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "price",
+                                            "value": "5.60",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "attention_mode",
+                                            "value": "1",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "attention_description",
+                                            "value": "Solo poseemos atencion en el mismo local, necesitamos que se hacerque al siguiente local en chillogallo para poder atender a su solicitud. las horas de atencion es de 8 de la mañana hasta las 4 de la tarde.",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "payment_method",
+                                            "value": "2",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "payment_description",
+                                            "value": "Poseemos pagos en esfectivo y depositos, los datos del la cuenta esta ajuntada para realizar el pago, porfavor enviar el comprobande de pago por WhastApp",
+                                            "type": "default"
+                                        },
+                                        {
+                                            "key": "image",
+                                            "src": "c:\\Users\\manue\\Downloads\\domina tu pc.jpg",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "292|6n2FfgpdEt8I81EpVQPyQMZeIuUfkgTfk02vEVC7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "service/destroy/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/service/destroy/20",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "service",
+                                        "destroy",
+                                        "20"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "218|gQXfXVCsO5wlSvvcQLaVFBQTB1GGRUQDanerJlF5",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Aprobación de contratación",
+                    "item": [
+                        {
+                            "name": "manage-hiring/shownew",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/shownew",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "shownew"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "455|AsscDSsBVVdxDZIV8Dne7K9qh2RjmQU0bl4a81m7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/showone/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/showone/54",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "showone",
+                                        "54"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/approve/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/approve/85",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "approve",
+                                        "85"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/decline/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/decline/54",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "decline",
+                                        "54"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"observation\": \"No poseemos soporte para computadoras HP\"\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/finalize/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/finalize/85",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "finalize",
+                                        "85"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"diagnosis\": \"Necesita formateo del sistema operativo\",\n  \"incident_resolution\": \"Necesita formateo del sistema operativo\",\n  \"warranty\": \"garantia de 1 semana\",\n  \"spare_parts\":\"Sistema operativo a 8.90\",\n  \"price_spare_parts\":8.90,\n  \"final_price\":10.50\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/show-finalize",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/show-finalize",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "show-finalize"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/paid/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/paid/70",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "paid",
+                                        "70"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "User-Agent",
+                                        "value": "Thunder Client (https://www.thunderclient.com)",
+                                        "disabled": true
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/show-finalize/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/show-finalize/64",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "show-finalize",
+                                        "64"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "331|ClkZCCws6iCgjMZ1269Js4lTR3UjbfFK2d5Mg2rm",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "manage-hiring/update-finalize/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/manage-hiring/update-finalize/45",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "manage-hiring",
+                                        "update-finalize",
+                                        "45"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"diagnosis\": \"La pantalle sufrio grabes daño en la pantalla\",\n  \"incident_resolution\": \"Se procedio a cambiar de pantalla\",\n  \"warranty\": \"La pantalla nueva y la reparacion tiene garantia de 1 año\",\n  \"spare_parts\":\"pantalla adactable a 8.60\",\n  \"price_spare_parts\":8.60,\n  \"final_price\":20\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "292|6n2FfgpdEt8I81EpVQPyQMZeIuUfkgTfk02vEVC7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Visualización de comentarios, sugerencias y calificación de los servicios",
+                    "item": [
+                        {
+                            "name": "view-satisfaction-form",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/view-satisfaction-form",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "view-satisfaction-form"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "403|SQSxdv7eu8WL3a786qSVYwVAl2WBZOAXTGmJHmE7",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cliente",
+            "item": [
+                {
+                    "name": "Iniciar sesión para el cliente",
+                    "item": [
+                        {
+                            "name": "loginCli",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/loginCli",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "loginCli"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"email\":\"lupitamerced19@gmail.com\",\n  \"password\":\"happySad1*\"\n}"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Registro de usuario para el perfil cliente",
+                    "item": [
+                        {
+                            "name": "register-cliente",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/register-cliente",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "register-cliente"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"username\": \"Leoni23\",\n  \"first_name\": \"Leoni\",\n  \"last_name\": \"Guambo\",\n  \"personal_phone\": \"0967748367\",\n  \"address\": \"4 Comite del pueblo. 78\",\n  \n  \"cedula\": \"1723299203\",\n  \"email\": \"leoni23@gmail.con\",\n  \n  \"birthdate\": \"1999-08-15\",\n  \n  \n  \"password\":\"happySad1*\",\n  \"password_confirmation\":\"happySad1*\"\n}"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Visualización de servicios",
+                    "item": [
+                        {
+                            "name": "view-service",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/view-service",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "view-service"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "view-service/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/view-service/21",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "view-service",
+                                        "21"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Contratación de servicios",
+                    "item": [
+                        {
+                            "name": "hiring/{id} ",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/hiring/20",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "hiring",
+                                        "20"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"device\": \"Computadora\",\n  \"model\": \"HP-500\",\n  \"brand\": \"HP\",\n  \"serie\":\"HSOE874N395\",\n  \"description_problem\":\"Necesito la instalacion de programas de diseño\",\n  \"payment_method\":1\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "313|gVasSsv6coeA8WMqJ1khi0qexYhko1VN1cYCuJbf",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Gestión de solicitudes de contratación",
+                    "item": [
+                        {
+                            "name": "hiring/show",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/hiring/show",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "hiring",
+                                        "show"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "457|PL34mWKdTxkiU7jtimdZCebItrGZKjcYIwUTWXdF",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "hiring/show/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/hiring/show/88",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "hiring",
+                                        "show",
+                                        "88"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "404|MScXFBf3mo99nxkdcJuvY5Z2hvTr5Sfw6QPgqT0e",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "hiring/update/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/hiring/update/63",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "hiring",
+                                        "update",
+                                        "63"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"device\": \"Computadora\",\n  \"model\": \"DL-80\",\n  \"brand\": \"SANSUNG\",\n  \"serie\":\"HSOE88T4N675\",\n  \"description_problem\":\"No funciona el disco duro\",\n  \"payment_method\":1\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "313|gVasSsv6coeA8WMqJ1khi0qexYhko1VN1cYCuJbf",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "hiring/cancel/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/hiring/cancel/63",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "hiring",
+                                        "cancel",
+                                        "63"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "313|gVasSsv6coeA8WMqJ1khi0qexYhko1VN1cYCuJbf",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "hiring/uploadCon/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/hiring/uploadCon/88",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "hiring",
+                                        "uploadCon",
+                                        "88"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image",
+                                            "src": "c:\\Users\\manue\\Downloads\\WhatsApp Image 2023-01-31 at 8.01.39 PM.jpeg",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "404|MScXFBf3mo99nxkdcJuvY5Z2hvTr5Sfw6QPgqT0e",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Comentar, sugerir y calificar los servicios",
+                    "item": [
+                        {
+                            "name": "satisfaction-form",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/satisfaction-form",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "satisfaction-form"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "404|MScXFBf3mo99nxkdcJuvY5Z2hvTr5Sfw6QPgqT0e",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "satisfaction-form/{id}",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/satisfaction-form/35",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "satisfaction-form",
+                                        "35"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "143|rs0uhWwf4aY7hsaxgEChf1Fi6GuqHKZsJ35zMv7j",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "satisfaction-form/create/{id}",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "https://tecnony-v1.herokuapp.com/api/v1/satisfaction-form/create/58",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "satisfaction-form",
+                                        "create",
+                                        "58"
+                                    ],
+                                    "protocol": "https",
+                                    "host": [
+                                        "tecnony-v1",
+                                        "herokuapp",
+                                        "com"
+                                    ]
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "{\n  \"comment\": \"El trabaja resulto satisfactorio\",\n  \"suggestion\": \"Nada que sugerir, todo bien\",\n  \"qualification\":9.60\n}"
+                                },
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "404|MScXFBf3mo99nxkdcJuvY5Z2hvTr5Sfw6QPgqT0e",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
