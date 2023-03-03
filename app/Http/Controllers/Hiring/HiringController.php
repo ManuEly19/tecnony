@@ -32,6 +32,20 @@ class HiringController extends Controller
     // Se crea una contratacion a un servicio
     public function create(Request $request, Service $service)
     {
+        // Se obtiene el usuario cliente autenticado
+        $user = Auth::user();
+
+        // Obtener los contratos del cliente si
+        // * Pertenece al mismo servicio
+        // * El estado es diferente de pagado o denegado y comentado
+        $hiringDuplicate = ServiceRequestCli::where('service_id', $service->id)
+                            ->whereIn('state', [0, 2, 3, 4])->where('user_id', $user->id)->first();
+
+        // Validar si existe algun servicio se repitido
+        if ($hiringDuplicate != null) {
+            return $this->sendResponse(message: 'Usted ya tiene un servicio contratado, espere a que finalice la contratación para volver a contratar este servicio.');
+        }
+
         // Validación de los datos de entrada
         $request->validate([
             'device' => ['required', 'string', 'min:1', 'max:50'],
@@ -64,9 +78,6 @@ class HiringController extends Controller
 
         // Agregamos el id del servicio al que pertenece
         $hiring->service_id = $service->id;
-
-        // Se obtiene el usuario cliente autenticado
-        $user = Auth::user();
 
         // Se almacena la solicitud de contratacion para este usuario
         $user->service_request_cli()->save($hiring);
